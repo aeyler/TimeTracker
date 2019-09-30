@@ -9,4 +9,6 @@ To that end I plan/hope to accomplish the following:
 - Save time data
 - Get a list of projects and times spend on them at the end of the week
 
+Please see this project's Wiki section for more information: [Wiki Link](../wiki/Home)
+
 And yes, at the end, I may go back to using Toggl, but I want to give this a learning shot first.
