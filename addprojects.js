@@ -7,9 +7,19 @@ var projectData = {
     projectId: 0
 };
 
+function resetAddProjectControls() {
+    // reset form items to their origianl placeholder values
+    document.getElementById("newProjectName").value = "";
+    document.getElementById("newProjectId").value = "";
+}
+
 function onAddNewProject() {
-    var projectName = document.getElementById("newProjectName").value;
-    var projectId = document.getElementById("newProjectId").value;
+    var projectNameElem = document.getElementById("newProjectName");
+    var projectName = projectNameElem.value;
+    var projectIdElem = document.getElementById("newProjectId");
+    var projectId = projectIdElem.value;
+
+    resetAddProjectControls();
 
     if (projectName === "") {
         alert("Project Name cannot be blank");
