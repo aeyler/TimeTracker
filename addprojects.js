@@ -14,10 +14,8 @@ function resetAddProjectControls() {
 }
 
 function onAddNewProject() {
-    var projectNameElem = document.getElementById("newProjectName");
-    var projectName = projectNameElem.value;
-    var projectIdElem = document.getElementById("newProjectId");
-    var projectId = projectIdElem.value;
+    var projectName = document.getElementById("newProjectName").value;
+    var projectId = document.getElementById("newProjectId").value;
 
     resetAddProjectControls();
 
@@ -41,4 +39,61 @@ function addProjectDataToList(name, id) {
 
     console.log(projectData);
     console.log(projectList);
+
+    createProjectDisplayRow(name, id);
+}
+
+function getTagIdentifer(str1, str2) {
+    if (typeof str1 != "string" || typeof str2 != "string") {
+        console.error("One of these isn't a string: ", str1, str2);
+    }
+    
+    return str1 + str2;
+}
+
+function createProjectDisplayRow(name, id) {
+    var row = document.createElement("div");
+    row.className = "w3-row";
+    row.id = getTagIdentifer(name, id);
+
+    var col = createProjectDisplayColumn(name);
+    row.appendChild(col);
+
+    col = createProjectDisplayColumn(id);
+    row.appendChild(col);
+
+    col = createProjectDisplayRemoveButton(name, id);
+    row.appendChild(col);
+
+    document.getElementById("projectDisplayArea").appendChild(row);
+}
+
+// return: "div" element as a column for w3
+function createProjectDisplayColumn(display) {
+    var col = document.createElement("div");
+    col.className = "w3-col m2 w3-left";
+
+    var node = document.createTextNode(display);
+    col.appendChild(node);
+
+    return col;
+}
+
+function createProjectDisplayRemoveButton(name, id) {
+    var col = document.createElement("div");
+    col.className = "w3-col m2 w3-left";
+
+    var button = document.createElement("button");
+    var buttonFuncStr = "onRemoveRow(" + getTagIdentifer(name, id) + ")";
+    button.id = "button" + getTagIdentifer(name, id);
+    button.setAttribute = buttonFuncStr;
+    button.textContent = "Remove";
+    
+    col.appendChild(button);
+
+    return col;
+}
+
+function onRemoveRow(rowId) {
+    document.getElementById(rowId).remove();
 }
