@@ -1,2 +1,30 @@
-<h1>Hello!</>
-<h2>Pretending...</>
+<!doctype html>
+<html>
+
+<head>
+    <title>Project Definition & Review</title>
+    <script src="addprojects.js"></script>
+</head>
+
+<body>
+
+    <!-- onsubmit return false keeps the page from reloading -->
+    <form onsubmit="onAddNewProject();return false;">
+        Project Name:<br>
+        <input type="text" id="newProjectName" value="Default">
+        <br>
+        Project Id:<br>
+        <input type="text" id="newProjectId" value="">
+        <br><br>
+        <input type="submit" value="Create">
+    </form>
+
+    <hr>
+    <p id="projectDisplay"><i>Projects Display Area...I hope...</i></p>
+
+    <hr>
+    <p id="testDisplay"><i>Test Display Area</i></p>
+
+</body>
+
+</html>
