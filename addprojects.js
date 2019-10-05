@@ -16,17 +16,35 @@ function resetAddProjectControls() {
 }
 
 function debug_displayCurrentItem(name, id, operation) {
+    var sep = ", ";
     // show new item in test field
     var debugDisplay = document.getElementById("debugDisplay");
-    debugDisplay.innerHTML = "Operation: " + operation + "<br>";
-    debugDisplay.innerHTML += "Project Name: " + name + "<br>";
-    debugDisplay.innerHTML += "Project Id: " + id + "<br>";
-    debugDisplay.innerHTML += "Tracking Id: " + getTagIdentifer(name, id) + "<br>";
+    debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
+    debugDisplay.innerHTML += "<b>Project Name:</b> " + name + sep;
+    debugDisplay.innerHTML += "<b>Project Id:</b> " + id + sep;
+    debugDisplay.innerHTML += "<b>Tracking Id:</b> " + getTagIdentifer(name, id) + "<br>";
 }
 
-function onAddNewProject() {
+function debug_displayProjectListJson() {
+    var list = retrieveProjectList();
+    var jsonList = JSON.stringify(list);
+    var debugDisplay = document.getElementById("debugDisplayJson");
+    debugDisplay.innerHTML = "<b>Project List as JSON:</b>" + "<br>" + jsonList;
+}
+
+// If the projectId is blank or null, we will use
+// the projectName instead
+function ensureValidProjectId (name, id) {
+    if (id === "" || id == null) {
+        return name;
+    }
+    return id;
+}
+
+function onButtonClick_AddNewProject() {
     var projectName = document.getElementById("newProjectName").value;
-    var projectId = document.getElementById("newProjectId").value;
+    var checkProjectId = document.getElementById("newProjectId").value;
+    var projectId = ensureValidProjectId(projectName, checkProjectId);
 
     resetAddProjectControls();
 
@@ -39,6 +57,10 @@ function onAddNewProject() {
     debug_displayCurrentItem(projectName, projectId, "Add");
 
     addProjectDataToProjectList(projectName, projectId);
+
+    // Having removed an item, store current projectList
+    storeProjectList(projectList);
+    debug_displayProjectListJson();
 }
 
 function addProjectDataToProjectList(name, id) {
@@ -79,6 +101,9 @@ function createProjectDisplayColumn(display) {
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
+    if (display === "" || display == null) {
+        display = "xxx";
+    }
     var node = document.createTextNode(display);
     col.appendChild(node);
 
@@ -90,12 +115,13 @@ function createProjectDisplayRemoveButton(name, id) {
     col.className = "w3-col m2 w3-left";
 
     var button = document.createElement("button");
-    var buttonFuncStr = "onRemoveRow(" + getTagIdentifer(name, id) + ")";
     var tagId = getTagIdentifer(name, id);
     button.id = "button" + tagId;
     button.textContent = "Remove";
+    // set up listener for Remove button click
+    // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function() {
-        onRemoveRow(name, id);
+        onButtonClick_OnRemoveRow(name, id);
     });
     
     col.appendChild(button);
@@ -103,7 +129,7 @@ function createProjectDisplayRemoveButton(name, id) {
     return col;
 }
 
-function onRemoveRow(name, id) {
+function onButtonClick_OnRemoveRow(name, id) {
     debug_displayCurrentItem(name, id, "Remove");
 
     // Remove the row in the html page
@@ -118,4 +144,8 @@ function onRemoveRow(name, id) {
                 break;
             }        
     }
+
+    // Having removed an item, store current projectList
+    storeProjectList(projectList);
+    debug_displayProjectListJson();
 }

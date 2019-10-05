@@ -5,6 +5,7 @@
     <title>Project Definition & Review</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="addprojects.js"></script>
+    <script src="storage.js"></script>
 </head>
 
 <body>
@@ -12,7 +13,7 @@
     <h2>Add Project</h2>
     <div class="w3-row">
         <!-- onsubmit return false keeps the page from reloading -->
-        <form onsubmit="onAddNewProject();return false;">
+        <form onsubmit="onButtonClick_AddNewProject();return false;">
             <div class="w3-col m2 w3-center">
                 <input type="text" id="newProjectName" placeholder="Project Name" style="font-style:italic">
             </div>
@@ -27,8 +28,9 @@
 
     <hr>
 
-    <p>Debug Data Display Area</p>
+    <p><i>Debug Data Display Area</i></p>
     <p id="debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="debugDisplayJson"><i>...JSON data empty until filled...</i></p>
 
     <hr>
 
