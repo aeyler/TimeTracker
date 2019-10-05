@@ -16,17 +16,35 @@ function resetAddProjectControls() {
 }
 
 function debug_displayCurrentItem(name, id, operation) {
+    var sep = ", ";
     // show new item in test field
     var debugDisplay = document.getElementById("debugDisplay");
-    debugDisplay.innerHTML = "Operation: " + operation + "<br>";
-    debugDisplay.innerHTML += "Project Name: " + name + "<br>";
-    debugDisplay.innerHTML += "Project Id: " + id + "<br>";
-    debugDisplay.innerHTML += "Tracking Id: " + getTagIdentifer(name, id) + "<br>";
+    debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
+    debugDisplay.innerHTML += "<b>Project Name:</b> " + name + sep;
+    debugDisplay.innerHTML += "<b>Project Id:</b> " + id + sep;
+    debugDisplay.innerHTML += "<b>Tracking Id:</b> " + getTagIdentifer(name, id) + "<br>";
+}
+
+function debug_displayProjectListJson() {
+    var list = retrieveProjectList();
+    var jsonList = JSON.stringify(list);
+    var debugDisplay = document.getElementById("debugDisplayJson");
+    debugDisplay.innerHTML = "<b>Project List as JSON:</b>" + "<br>" + jsonList;
+}
+
+// If the projectId is blank or null, we will use
+// the projectName instead
+function ensureValidProjectId (name, id) {
+    if (id === "" || id == null) {
+        return name;
+    }
+    return id;
 }
 
 function onButtonClick_AddNewProject() {
     var projectName = document.getElementById("newProjectName").value;
-    var projectId = document.getElementById("newProjectId").value;
+    var checkProjectId = document.getElementById("newProjectId").value;
+    var projectId = ensureValidProjectId(projectName, checkProjectId);
 
     resetAddProjectControls();
 
@@ -39,6 +57,10 @@ function onButtonClick_AddNewProject() {
     debug_displayCurrentItem(projectName, projectId, "Add");
 
     addProjectDataToProjectList(projectName, projectId);
+
+    // Having removed an item, store current projectList
+    storeProjectList(projectList);
+    debug_displayProjectListJson();
 }
 
 function addProjectDataToProjectList(name, id) {
@@ -79,6 +101,9 @@ function createProjectDisplayColumn(display) {
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
+    if (display === "" || display == null) {
+        display = "xxx";
+    }
     var node = document.createTextNode(display);
     col.appendChild(node);
 
@@ -119,4 +144,8 @@ function onButtonClick_OnRemoveRow(name, id) {
                 break;
             }        
     }
+
+    // Having removed an item, store current projectList
+    storeProjectList(projectList);
+    debug_displayProjectListJson();
 }
