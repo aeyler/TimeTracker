@@ -1,16 +1,27 @@
 "use strict";
 
 // **shudder** Global Variables!
-var projectList = [];
-var projectData = {
-    projectName: "",
-    projectId: 0
+var projectList = new Array();
+
+// Constructor
+function ProjectData (projectName, projectId) {
+    this.projectName = projectName;
+    this.projectId = projectId;
 };
 
 function resetAddProjectControls() {
     // reset form items to their origianl placeholder values
     document.getElementById("newProjectName").value = "";
     document.getElementById("newProjectId").value = "";
+}
+
+function debug_displayCurrentItem(name, id, operation) {
+    // show new item in test field
+    var debugDisplay = document.getElementById("debugDisplay");
+    debugDisplay.innerHTML = "Operation: " + operation + "<br>";
+    debugDisplay.innerHTML += "Project Name: " + name + "<br>";
+    debugDisplay.innerHTML += "Project Id: " + id + "<br>";
+    debugDisplay.innerHTML += "Tracking Id: " + getTagIdentifer(name, id) + "<br>";
 }
 
 function onAddNewProject() {
@@ -25,24 +36,19 @@ function onAddNewProject() {
         return;
     }
 
-    // show new item in test field
-    var testDisplayField = document.getElementById("testDisplay");
-    testDisplayField.innerHTML = "Project Name = " + projectName + "<br>" + "Project Id = " + projectId;
+    debug_displayCurrentItem(projectName, projectId, "Add");
 
-    addProjectDataToList(projectName, projectId);
+    addProjectDataToProjectList(projectName, projectId);
 }
 
-function addProjectDataToList(name, id) {
-    projectData.projectName = name;
-    projectData.projectId = id;
+function addProjectDataToProjectList(name, id) {
+    var projectData = new ProjectData(name, id);
     projectList.push(projectData);
-
-    console.log(projectData);
-    console.log(projectList);
 
     createProjectDisplayRow(name, id);
 }
 
+// "id" tag based on concat of str1+str2
 function getTagIdentifer(str1, str2) {
     if (typeof str1 != "string" || typeof str2 != "string") {
         console.error("One of these isn't a string: ", str1, str2);
@@ -85,15 +91,31 @@ function createProjectDisplayRemoveButton(name, id) {
 
     var button = document.createElement("button");
     var buttonFuncStr = "onRemoveRow(" + getTagIdentifer(name, id) + ")";
-    button.id = "button" + getTagIdentifer(name, id);
-    button.setAttribute = buttonFuncStr;
+    var tagId = getTagIdentifer(name, id);
+    button.id = "button" + tagId;
     button.textContent = "Remove";
+    button.addEventListener("click", function() {
+        onRemoveRow(name, id);
+    });
     
     col.appendChild(button);
 
     return col;
 }
 
-function onRemoveRow(rowId) {
-    document.getElementById(rowId).remove();
+function onRemoveRow(name, id) {
+    debug_displayCurrentItem(name, id, "Remove");
+
+    // Remove the row in the html page
+    document.getElementById(getTagIdentifer(name, id)).remove();
+    
+    // Now remove the item from the project list array
+    for (var i = 0; i < projectList.length; i++) {
+        if (projectList[i].projectName == name &&
+            projectList[i].projectId == id) {
+                projectList.splice(i, 1);
+                // breaking out here...will ensure no duplicates elsewhere
+                break;
+            }        
+    }
 }
