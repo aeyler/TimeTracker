@@ -1,8 +1,5 @@
 "use strict";
 
-// **shudder** Global Variables!
-var categoryList = new Array();
-
 // Constructor
 function CategoryData (category) {
     this.category = category;
@@ -46,14 +43,19 @@ function onButtonClick_AddNewCategory() {
     var categoryData = new CategoryData(category);
     debug_displayCurrentCategoryItem(categoryData, "Add");
 
-    addCategoryToCategoryList(categoryData);
-
-    // Having added an item, store current categoryList
-    storeCategoryList(categoryList);
+    addCategoryDataToCategoryList(categoryData);
 }
 
-function addCategoryToCategoryList(categoryData) {
+function addCategoryDataToCategoryList(categoryData) {
+    // Retrieve current categories
+    var categoryList = retrieveCategoryList();
+    if (categoryList == null) {
+        categoryList = new Array();
+    }
+
+    // Add and store categories
     categoryList.push(categoryData);
+    storeCategoryList(categoryList);
 
     // DEBUGGING
     debug_displayCategoryListJson();
@@ -121,20 +123,22 @@ function onButtonClick_OnRemoveRow(rowId) {
     // Remove the row in the html page
     document.getElementById(getTagIdentifer(rowId)).remove();
     
-    var removedCategoryItem = null;
+    var categoryList = retrieveCategoryList();
+    var removedCategoryData = null;
     // Now remove the item from the category list array
     for (var i = 0; i < categoryList.length; i++) {
         if (categoryList[i].categoryId == rowId) {
-                removedCategoryItem = categoryList.splice(i, 1);
+                var retList = categoryList.splice(i, 1);
+                removedCategoryData = retList[0];
                 // breaking out here...will ensure no duplicates elsewhere
                 break;
             }        
     }
 
-    if (removedCategoryItem === null) {
+    if (removedCategoryData == null) {
         console.error("No category item removed for: ", rowId);
     } else {
-        debug_displayCurrentCategoryItem(removedCategoryItem, "Remove");
+        debug_displayCurrentCategoryItem(removedCategoryData, "Remove");
     }
 
     // Having removed an item, store current categoryList

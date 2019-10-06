@@ -1,5 +1,9 @@
 "use strict";
 
+function debug_clearLocalStorage() {
+    localStorage.clear();
+}
+
 // Input: ProgramList of data
 // Return: ProgramList as JSON string
 function storeProjectList(programList) {
