@@ -1,0 +1,145 @@
+"use strict";
+
+// **shudder** Global Variables!
+var categoryList = new Array();
+
+// Constructor
+function CategoryData (category) {
+    this.category = category;
+    this.categoryId = category;
+};
+
+function resetAddCategoryControls() {
+    // reset form items to their origianl placeholder values
+    document.getElementById("newCategory").value = "";
+}
+
+function debug_displayCurrentCategoryItem(categoryData, operation) {
+    var sep = ", ";
+    // show new item in test field
+    var debugDisplay = document.getElementById("debugDisplay");
+    debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
+    debugDisplay.innerHTML += "<b>Category:</b> " + categoryData.category + sep;
+    debugDisplay.innerHTML += "<b>Category Id:</b> " + categoryData.categoryId + sep;
+    debugDisplay.innerHTML += "<br>";
+}
+
+function debug_displayCategoryListJson() {
+    var list = retrieveCategoryList();
+    var jsonList = JSON.stringify(list);
+    var debugDisplay = document.getElementById("debugDisplayJson");
+    debugDisplay.innerHTML = "<b>Category List as JSON:</b>" + "<br>" + jsonList;
+}
+
+function onButtonClick_AddNewCategory() {
+    var category = document.getElementById("newCategory").value;
+
+    // reset new category control to default blank value
+    resetAddCategoryControls();
+
+    if (category === "") {
+        alert("Category cannot be blank");
+        document.getElementById("newCategory").focus();
+        return;
+    }
+
+    var categoryData = new CategoryData(category);
+    debug_displayCurrentCategoryItem(categoryData, "Add");
+
+    addCategoryToCategoryList(categoryData);
+
+    // Having added an item, store current categoryList
+    storeCategoryList(categoryList);
+}
+
+function addCategoryToCategoryList(categoryData) {
+    categoryList.push(categoryData);
+
+    // DEBUGGING
+    debug_displayCategoryListJson();
+
+    createCategoryDisplayRow(categoryData);
+}
+
+function createCategoryDisplayRow(categoryData) {
+    var row = document.createElement("div");
+    row.className = "w3-row";
+    row.id = categoryData.categoryId;
+
+    var col = createCategoryDisplayColumn(categoryData.category);
+    row.appendChild(col);
+
+    col = createCategoryDisplayRemoveButton(categoryData);
+    row.appendChild(col);
+
+    document.getElementById("categoryDisplayArea").appendChild(row);
+}
+
+// return: "div" element as a column for w3
+function createCategoryDisplayColumn(displayItem) {
+    var col = document.createElement("div");
+    col.className = "w3-col m2 w3-left";
+
+    if (displayItem === "" || displayItem == null) {
+        displayItem = "xxx";
+    }
+    var node = document.createTextNode(displayItem);
+    col.appendChild(node);
+
+    return col;
+}
+
+// "id" tag = str1
+function getTagIdentifer(str1) {
+    if (typeof str1 != "string") {
+        console.error("str1 isn't a string: ", str1);
+    }
+    
+    return str1;
+}
+
+function createCategoryDisplayRemoveButton(categoryData) {
+    var col = document.createElement("div");
+    col.className = "w3-col m2 w3-left";
+
+    var button = document.createElement("button");
+    var tagId = getTagIdentifer(categoryData.categoryId);
+    button.id = "button" + tagId;
+    button.textContent = "Remove";
+    // set up listener for Remove button click
+    // anonymous function allows passing calling my function with parameters
+    button.addEventListener("click", function() {
+        onButtonClick_OnRemoveRow(categoryData.categoryId);
+    });
+    
+    col.appendChild(button);
+
+    return col;
+}
+
+function onButtonClick_OnRemoveRow(rowId) {
+    // Remove the row in the html page
+    document.getElementById(getTagIdentifer(rowId)).remove();
+    
+    var removedCategoryItem = null;
+    // Now remove the item from the category list array
+    for (var i = 0; i < categoryList.length; i++) {
+        if (categoryList[i].categoryId == rowId) {
+                removedCategoryItem = categoryList.splice(i, 1);
+                // breaking out here...will ensure no duplicates elsewhere
+                break;
+            }        
+    }
+
+    if (removedCategoryItem === null) {
+        console.error("No category item removed for: ", rowId);
+    } else {
+        debug_displayCurrentCategoryItem(removedCategoryItem, "Remove");
+    }
+
+    // Having removed an item, store current categoryList
+    storeCategoryList(categoryList);
+
+    // DEBUGGING
+    debug_displayCategoryListJson();
+}
