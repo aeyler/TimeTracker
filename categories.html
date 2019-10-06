@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Category Definition & Review</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="addcategories.js"></script>
+    <script src="storage.js"></script>
+</head>
+
+<body>
+
+    <h2>Add Category</h2>
+    <div class="w3-row">
+        <!-- onsubmit return false keeps the page from reloading -->
+        <form onsubmit="onButtonClick_AddNewCategory();return false;">
+            <div class="w3-col m2 w3-center">
+                <input type="text" id="newCategory" placeholder="Category" style="font-style:italic">
+            </div>
+            <div class="w3-col m2 w3-center">
+                <input type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="debug_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+
+    <hr>
+
+    <h3>Current Categories</h3>
+    <div id="categoryDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
