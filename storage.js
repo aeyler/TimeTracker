@@ -1,13 +1,14 @@
 "use strict";
 
-// Return: list as JSON string
+// Input: ProgramList of data
+// Return: ProgramList as JSON string
 function storeProjectList(list) {
     var jsonList = JSON.stringify(list);
     localStorage.setItem("projectList", jsonList);
     return jsonList;
 }
 
-// Return: ProgramList data
+// Return: ProgramList data from localStorage
 function retrieveProjectList() {
     var jsonList = localStorage.getItem("projectList");
     var list = JSON.parse(jsonList);
