@@ -165,7 +165,7 @@ function createTimeDataDisplayColumn(displayString) {
     col.className = "w3-col m1 w3-left";
 
     if (displayString === "" || displayString == null) {
-        displayString = "T.T.T.";   // Time daTa incorrecT :)
+        displayString = "<generic>";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
@@ -181,7 +181,7 @@ function createTimeDataTimeDisplayColumn(startTimeEpoch) {
 
     var displayString = startTime.toLocaleString("en-GR", {hourCycle: "h24"});
     if (startTimeEpoch == "0" || startTimeEpoch == 0 || startTimeEpoch == null) {
-        displayString = "<undefined>";   // Time daTa incorrecT :)
+        displayString = "<undefined>";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
