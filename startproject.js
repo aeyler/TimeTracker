@@ -166,8 +166,8 @@ function createTimeDataDisplayColumn(displayString) {
     var col = document.createElement("div");
     col.className = "w3-col m1 w3-left";
 
-    if (displayString === "" || displayString == null) {
-        displayString = "<generic>";
+    if (displayString == null) {
+        displayString = "";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
