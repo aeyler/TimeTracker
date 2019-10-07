@@ -1,9 +1,9 @@
 "use strict";
 
 // Constructor
-function CategoryData (category) {
-    this.category = category;
-    this.categoryId = category;
+function CategoryData (categoryName) {
+    this.categoryName = categoryName;
+    this.categoryId = categoryName;
 };
 
 function resetAddCategoryControls() {
@@ -16,7 +16,7 @@ function debug_displayCurrentCategoryItem(categoryData, operation) {
     // show new item in test field
     var debugDisplay = document.getElementById("cat_debugDisplay");
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
-    debugDisplay.innerHTML += "<b>Category:</b> " + categoryData.category + sep;
+    debugDisplay.innerHTML += "<b>Category:</b> " + categoryData.categoryName + sep;
     debugDisplay.innerHTML += "<b>Category Id:</b> " + categoryData.categoryId + sep;
     debugDisplay.innerHTML += "<br>";
 }
@@ -29,18 +29,18 @@ function debug_displayCategoryListJson() {
 }
 
 function onButtonClick_AddNewCategory() {
-    var category = document.getElementById("cat_newCategory").value;
+    var categoryName = document.getElementById("cat_newCategory").value;
 
     // reset new category control to default blank value
     resetAddCategoryControls();
 
-    if (category === "") {
+    if (categoryName === "") {
         alert("Category cannot be blank");
         document.getElementById("cat_newCategory").focus();
         return;
     }
 
-    var categoryData = new CategoryData(category);
+    var categoryData = new CategoryData(categoryName);
     debug_displayCurrentCategoryItem(categoryData, "Add");
 
     addCategoryDataToCategoryList(categoryData);
@@ -68,7 +68,7 @@ function createCategoryDisplayRow(categoryData) {
     row.className = "w3-row";
     row.id = categoryData.categoryId;
 
-    var col = createCategoryDisplayColumn(categoryData.category);
+    var col = createCategoryDisplayColumn(categoryData.categoryName);
     row.appendChild(col);
 
     col = createCategoryDisplayRemoveButton(categoryData);

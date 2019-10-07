@@ -1,7 +1,7 @@
 "use strict";
 
 var testProjectList = '[{"projectName":"test proj 1","projectId":"11111"},{"projectName":"test project 22","projectId":"22222"},{"projectName":"test project 333","projectId":"33333"}]';
-var testCategoryList = '[{"category":"test cat 1","categoryId":"test cat 1"},{"category":"test cat 22","categoryId":"test cat 22"}]';
+var testCategoryList = '[{"categoryName":"test cat 1","categoryId":"test cat 1"},{"categoryName":"test cat 22","categoryId":"test cat 22"}]';
 
 function debug_clearLocalStorage() {
     localStorage.clear();

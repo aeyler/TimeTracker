@@ -10,28 +10,31 @@
 
 <body onload="performLoadOperations()">
 
-    <h2>Select Project</h2>
+    <h2>Begin Tracking Your Time</h2>
     <div class="w3-row">
         <!-- onsubmit return false keeps the page from reloading -->
         <form onsubmit="onButtonClick_StartProject();return false;">
             <div class="w3-col m2 w3-center">
                 <div class="w3-dropdown-hover">
                     <button id="time_selectProject" class="w3-button w3-black">Select Project</button>
-                    <div class="w3-dropdown-content w3-bar-block w3-border">
-                        <a onclick="selectProject()" href="#" class="w3-bar-item w3-button">test proj</a>
+                    <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        <div onclick="selectProject()" class="w3-bar-item w3-button">test proj</div>
+                        <div onclick="selectProject()" class="w3-bar-item w3-button">test projx</div>
+                        <div onclick="selectProject()" class="w3-bar-item w3-button">test projxx</div>
                     </div>
                 </div>
             </div>
             <div class="w3-col m2 w3-center">
                 <div class="w3-dropdown-hover">
                     <button id="time_selectCategory" class="w3-button w3-black">Select Category</button>
-                    <div class="w3-dropdown-content w3-bar-block w3-border">
-                        <a onclick="selectCategory()" href="#" class="w3-bar-item w3-button">test cat</a>
+                    <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div>
                     </div>
                 </div>
             </div>
             <div class="w3-col m2 w3-center">
-                <input type="text" id="time_projectDescription" placeholder="Project Description" style="font-style:italic">
+                <input type="text" id="time_projectDescription" placeholder="Free Text Description"
+                    style="font-style:italic">
             </div>
             <div class="w3-col m2 w3-center">
                 <input type="submit" value="Start">
