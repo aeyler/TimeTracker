@@ -1,11 +1,5 @@
 "use strict";
 
-// Constructor
-function ProjectData(projectName, projectId) {
-    this.projectName = projectName;
-    this.projectId = projectId;
-};
-
 function resetAddProjectControls() {
     // reset form items to their origianl placeholder values
     document.getElementById("proj_newProjectName").value = "";

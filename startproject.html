@@ -13,10 +13,11 @@
     <h2>Begin Tracking Your Time</h2>
     <div class="w3-row">
         <!-- onsubmit return false keeps the page from reloading -->
-        <form onsubmit="onButtonClick_StartProject();return false;">
+        <!-- <form onsubmit="onButtonClick_StartProject();return false;"> -->
             <div class="w3-col m2 w3-center">
                 <div class="w3-dropdown-hover">
-                    <button id="time_selectProjectButton" class="w3-button w3-black" value="hi">Select Project</button>
+                    <button id="time_selectProjectButton" class="w3-button w3-black" value="unset">Select
+                        Project</button>
                     <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
                         <!-- <div onclick="selectProject()" class="w3-bar-item w3-button">test proj</div>
                         <div onclick="selectProject()" class="w3-bar-item w3-button">test projx</div>
@@ -26,7 +27,8 @@
             </div>
             <div class="w3-col m2 w3-center">
                 <div class="w3-dropdown-hover">
-                    <button id="time_selectCategoryButton" class="w3-button w3-black">Select Category</button>
+                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="unset">Select
+                        Category</button>
                     <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
                         <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
                     </div>
@@ -37,9 +39,9 @@
                     style="font-style:italic">
             </div>
             <div class="w3-col m2 w3-center">
-                <input type="submit" value="Start">
+                <button id="time_startProjectButton" onclick="onButtonClick_StartProject()" class="w3-button w3-green">Begin</button>
             </div>
-        </form>
+        <!-- </form> -->
     </div>
 
     <hr>
@@ -48,17 +50,24 @@
     <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
     <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
     <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+    <p id="time_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
 
     <hr>
 
-    <h3>Current Projects</h3>
+    <h3>Your Day</h3>
     <div id="time_projectDisplayArea">
         <div class="w3-row">
-            <div class="w3-col m2 w3-left">
+            <div class="w3-col m1 w3-left">
                 <p style="font-weight:bold">Project Name</p>
             </div>
-            <div class="w3-col m2 w3-left">
-                <p style="font-weight:bold">Project Identifier</p>
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Description</p>
+            </div>
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Begin Time</p>
             </div>
         </div>
     </div>

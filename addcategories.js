@@ -1,11 +1,5 @@
 "use strict";
 
-// Constructor
-function CategoryData (categoryName) {
-    this.categoryName = categoryName;
-    this.categoryId = categoryName;
-};
-
 function resetAddCategoryControls() {
     // reset form items to their origianl placeholder values
     document.getElementById("cat_newCategory").value = "";

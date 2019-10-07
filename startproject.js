@@ -2,12 +2,13 @@
 
 var USETESTDATA = true;
 
-function TimeData (projectId, categoryId, description, startTime) {
-    this.projectId = projectId;
-    this.categoryId = categoryId;
-    this.description = description;
-    this.startTime = startTime;
+function debug_displayTimeDataListJson() {
+    var list = retrieveTimeDataList();
+    var jsonList = JSON.stringify(list);
+    var debugDisplay = document.getElementById("time_debugDisplayTimeDataJson");
+    debugDisplay.innerHTML = "<b>TimeData List as JSON:</b>" + "<br>" + jsonList;
 }
+
 
 // Fill out the project and category selections
 function performLoadOperations() {
@@ -78,3 +79,36 @@ function addCategoryDataToDropdown(categoryData) {
     var categoryDropdown = document.getElementById("time_selectCategoryDropdown");
     categoryDropdown.appendChild(div);
 }
+
+function onButtonClick_StartProject() {
+    var projectButton = document.getElementById("time_selectProjectButton");
+    var projectData = new ProjectData(projectButton.textContent, projectButton.value);
+    var categoryButton = document.getElementById("time_selectCategoryButton");
+    var categoryData = new CategoryData(categoryButton.textContent, categoryButton.value);
+    if (projectData.projectId == "unset" ||
+        categoryData.categoryId == "unset") {
+            alert("You must select both a project and a category prior to the start of time tracking");
+            return;
+        }
+    var description = document.getElementById("time_projectDescription").value;
+    var startTimeEpoch = Date.now();
+
+    console.log(startTimeEpoch);
+    var timeData = new TimeData(projectData, categoryData, description, startTimeEpoch);
+    addTimeDataToTimeDataList(timeData);
+}
+
+function addTimeDataToTimeDataList(timeData) {
+    var timeDataList = retrieveTimeDataList(USETESTDATA);
+    if (timeDataList == null) {
+        timeDataList = new Array();
+    }
+
+    timeDataList.push(timeData);
+    storeTimeDataList(timeDataList);
+
+    //createProjectDisplayRow(projectData);
+
+    debug_displayTimeDataListJson();
+}
+
