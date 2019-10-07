@@ -111,7 +111,7 @@ function createCategoryDisplayRemoveButton(categoryData) {
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function() {
-        onButtonClick_OnRemoveRow(categoryData.categoryId);
+        onButtonClick_OnRemoveRow(tagId);
     });
     
     col.appendChild(button);
@@ -121,7 +121,7 @@ function createCategoryDisplayRemoveButton(categoryData) {
 
 function onButtonClick_OnRemoveRow(rowId) {
     // Remove the row in the html page
-    document.getElementById(getTagIdentifer(rowId)).remove();
+    document.getElementById(rowId).remove();
     
     var categoryList = retrieveCategoryList();
     var removedCategoryData = null;
