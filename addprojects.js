@@ -8,14 +8,14 @@ function ProjectData(projectName, projectId) {
 
 function resetAddProjectControls() {
     // reset form items to their origianl placeholder values
-    document.getElementById("newProjectName").value = "";
-    document.getElementById("newProjectId").value = "";
+    document.getElementById("proj_newProjectName").value = "";
+    document.getElementById("proj_newProjectId").value = "";
 }
 
 function debug_displayCurrentProgramItem(projectData, operation) {
     var sep = ", ";
     // show new item in test field
-    var debugDisplay = document.getElementById("debugDisplay");
+    var debugDisplay = document.getElementById("proj_debugDisplay");
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
     debugDisplay.innerHTML += "<b>Project Name:</b> " + projectData.projectName + sep;
     debugDisplay.innerHTML += "<b>Project Id:</b> " + projectData.projectId + sep;
@@ -26,7 +26,7 @@ function debug_displayCurrentProgramItem(projectData, operation) {
 function debug_displayProjectListJson() {
     var list = retrieveProjectList();
     var jsonList = JSON.stringify(list);
-    var debugDisplay = document.getElementById("debugDisplayJson");
+    var debugDisplay = document.getElementById("proj_debugDisplayJson");
     debugDisplay.innerHTML = "<b>Project List as JSON:</b>" + "<br>" + jsonList;
 }
 
@@ -40,15 +40,15 @@ function ensureValidProjectId(projectName, projectId) {
 }
 
 function onButtonClick_AddNewProject() {
-    var projectName = document.getElementById("newProjectName").value;
-    var checkProjectId = document.getElementById("newProjectId").value;
+    var projectName = document.getElementById("proj_newProjectName").value;
+    var checkProjectId = document.getElementById("proj_newProjectId").value;
     var projectId = ensureValidProjectId(projectName, checkProjectId);
 
     resetAddProjectControls();
 
     if (projectName === "") {
         alert("Project Name cannot be blank");
-        document.getElementById("newProjectName").focus();
+        document.getElementById("proj_newProjectName").focus();
         return;
     }
 
@@ -93,10 +93,10 @@ function createProjectDisplayRow(projectData) {
     col = createProjectDisplayColumn(projectData.projectId);
     row.appendChild(col);
 
-    col = createProjectDisplayRemoveButton(projectData);
+    col = createProjectDisplayRemoveButton(projectData, row.id);
     row.appendChild(col);
 
-    document.getElementById("projectDisplayArea").appendChild(row);
+    document.getElementById("proj_projectDisplayArea").appendChild(row);
 }
 
 // return: "div" element as a column for w3
@@ -113,7 +113,7 @@ function createProjectDisplayColumn(displayString) {
     return col;
 }
 
-function createProjectDisplayRemoveButton(projectData) {
+function createProjectDisplayRemoveButton(projectData, rowId) {
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
@@ -124,7 +124,7 @@ function createProjectDisplayRemoveButton(projectData) {
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function () {
-        onButtonClick_OnRemoveRow(tagId);
+        onButtonClick_OnRemoveRow(rowId);
     });
 
     col.appendChild(button);
