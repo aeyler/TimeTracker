@@ -65,7 +65,7 @@ function createCategoryDisplayRow(categoryData) {
     var col = createCategoryDisplayColumn(categoryData.categoryName);
     row.appendChild(col);
 
-    col = createCategoryDisplayRemoveButton(categoryData);
+    col = createCategoryDisplayRemoveButton(categoryData, row.id);
     row.appendChild(col);
 
     document.getElementById("cat_categoryDisplayArea").appendChild(row);
@@ -94,12 +94,12 @@ function getTagIdentifer(str1) {
     return str1;
 }
 
-function createCategoryDisplayRemoveButton(categoryData) {
+function createCategoryDisplayRemoveButton(categoryData, rowId) {
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
     var button = document.createElement("button");
-    var tagId = getTagIdentifer(categoryData.categoryId);
+    var tagId = rowId;
     button.id = "button" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click

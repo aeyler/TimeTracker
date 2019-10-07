@@ -2,20 +2,28 @@
 
 var USETESTDATA = true;
 
+function debug_displayCurrentTimeDataItem(timeData, operation) {
+    var sep = ", ";
+    // show new item in test field
+    var debugDisplay = document.getElementById("time_debugDisplay");
+    debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
+    debugDisplay.innerHTML += "<b>Project Name & Id:</b> " + timeData.projectData.projectName + ", " + timeData.projectData.projectId + sep;
+    debugDisplay.innerHTML += "<b>Time Epoch:</b> " + timeData.startTimeEpoch + sep;
+    debugDisplay.innerHTML += "<br>";
+}
+
 function debug_displayTimeDataListJson() {
     var list = retrieveTimeDataList();
+    console.log(list);
     var jsonList = JSON.stringify(list);
     var debugDisplay = document.getElementById("time_debugDisplayTimeDataJson");
     debugDisplay.innerHTML = "<b>TimeData List as JSON:</b>" + "<br>" + jsonList;
 }
 
-
 // Fill out the project and category selections
 function performLoadOperations() {
     var projectList = retrieveProjectList(USETESTDATA);
     var categoryList = retrieveCategoryList(USETESTDATA);
-
-    console.log(JSON.stringify(projectList));
 
     document.getElementById("time_debugDisplayProjectJson").textContent = JSON.stringify(projectList);
     document.getElementById("time_debugDisplayCategoryJson").textContent = JSON.stringify(categoryList);
@@ -95,6 +103,8 @@ function onButtonClick_StartProject() {
 
     console.log(startTimeEpoch);
     var timeData = new TimeData(projectData, categoryData, description, startTimeEpoch);
+    debug_displayCurrentTimeDataItem(timeData, "Add");
+
     addTimeDataToTimeDataList(timeData);
 }
 
@@ -107,8 +117,110 @@ function addTimeDataToTimeDataList(timeData) {
     timeDataList.push(timeData);
     storeTimeDataList(timeDataList);
 
-    //createProjectDisplayRow(projectData);
+    createTimeDataDisplayRow(timeData);
 
     debug_displayTimeDataListJson();
 }
 
+function createTimeDataDisplayRow(timeData) {
+    var row = document.createElement("div");
+    row.className = "w3-row";
+    row.id = timeData.startTimeEpoch;
+
+    var col = createTimeDataDisplayColumn(timeData.projectData.projectName);
+    row.appendChild(col);
+
+    col = createTimeDataDisplayColumn(timeData.categoryData.categoryId);
+    row.appendChild(col);
+
+    col = createTimeDataDisplayColumn(timeData.description);
+    row.appendChild(col);
+
+    col = createTimeDataTimeDisplayColumn(timeData.startTimeEpoch);
+    row.appendChild(col);
+
+    col = createProjectDisplayRemoveButton(timeData, row.id);
+    row.appendChild(col);
+
+    document.getElementById("time_projectDisplayArea").appendChild(row);
+}
+
+function createTimeDataDisplayColumn(displayString) {
+    var col = document.createElement("div");
+    col.className = "w3-col m1 w3-left";
+
+    if (displayString === "" || displayString == null) {
+        displayString = "T.T.T.";   // Time daTa incorrecT :)
+    }
+    var node = document.createTextNode(displayString);
+    col.appendChild(node);
+
+    return col;
+}
+
+function createTimeDataTimeDisplayColumn(startTimeEpoch) {
+    var startTime = new Date(startTimeEpoch);
+
+    var col = document.createElement("div");
+    col.className = "w3-col m2 w3-left";
+
+    var displayString = startTime.toLocaleString("en-GR", {hourCycle: "h24"});
+    if (startTimeEpoch == "0" || startTimeEpoch == 0 || startTimeEpoch == null) {
+        displayString = "<undefined>";   // Time daTa incorrecT :)
+    }
+    var node = document.createTextNode(displayString);
+    col.appendChild(node);
+
+    return col;
+}
+
+function createProjectDisplayRemoveButton(timeData, rowId) {
+    var col = document.createElement("div");
+    col.className = "w3-col m1 w3-left";
+
+    var button = document.createElement("button");
+    var tagId = rowId
+    button.id = "button" + tagId;
+    button.textContent = "Remove";
+    // set up listener for Remove button click
+    // anonymous function allows passing calling my function with parameters
+    button.addEventListener("click", function () {
+        onButtonClick_OnRemoveRow(rowId);
+    });
+
+    col.appendChild(button);
+
+    return col;
+}
+
+function onButtonClick_OnRemoveRow(rowId) {
+    // Remove the row in the html page
+    document.getElementById(rowId).remove();
+    
+    var timeDataList = retrieveTimeDataList();
+    console.log(timeDataList);
+    var removedTimeData = null;
+    // Now remove the item from the category list array
+    for (var i = 0; i < timeDataList.length; i++) {
+        var startTimeEpoch = timeDataList[i].startTimeEpoch;
+        var startTimeEpochString = startTimeEpoch.toString();
+        if (startTimeEpochString === rowId) {
+                var retList = timeDataList.splice(i, 1);
+                removedTimeData = retList[0];
+                // breaking out here...will ensure no duplicates elsewhere
+                break;
+            }        
+    }
+
+    if (removedTimeData == null) {
+        console.error("No time data item removed for: ", rowId);
+    } else {
+        debug_displayCurrentTimeDataItem(removedTimeData, "Remove");
+    }
+
+    // Having removed an item, store current categoryList
+    storeTimeDataList(timeDataList);
+
+    // DEBUGGING
+    debug_displayTimeDataListJson();
+}
