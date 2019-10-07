@@ -1,10 +1,7 @@
 "use strict";
 
-// **shudder** Global Variables!
-var projectList = new Array();
-
 // Constructor
-function ProjectData (projectName, projectId) {
+function ProjectData(projectName, projectId) {
     this.projectName = projectName;
     this.projectId = projectId;
 };
@@ -15,14 +12,15 @@ function resetAddProjectControls() {
     document.getElementById("newProjectId").value = "";
 }
 
-function debug_displayCurrentItem(name, id, operation) {
+function debug_displayCurrentProgramItem(projectData, operation) {
     var sep = ", ";
     // show new item in test field
     var debugDisplay = document.getElementById("debugDisplay");
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
-    debugDisplay.innerHTML += "<b>Project Name:</b> " + name + sep;
-    debugDisplay.innerHTML += "<b>Project Id:</b> " + id + sep;
-    debugDisplay.innerHTML += "<b>Tracking Id:</b> " + getTagIdentifer(name, id) + "<br>";
+    debugDisplay.innerHTML += "<b>Project Name:</b> " + projectData.projectName + sep;
+    debugDisplay.innerHTML += "<b>Project Id:</b> " + projectData.projectId + sep;
+    debugDisplay.innerHTML += "<b>Tracking Id:</b> " + getTagIdentifer(projectData);
+    debugDisplay.innerHTML += "<br>";
 }
 
 function debug_displayProjectListJson() {
@@ -34,11 +32,11 @@ function debug_displayProjectListJson() {
 
 // If the projectId is blank or null, we will use
 // the projectName instead
-function ensureValidProjectId (name, id) {
-    if (id === "" || id == null) {
-        return name;
+function ensureValidProjectId(projectName, projectId) {
+    if (projectId === "" || projectId == null) {
+        return projectName;
     }
-    return id;
+    return projectId;
 }
 
 function onButtonClick_AddNewProject() {
@@ -54,98 +52,111 @@ function onButtonClick_AddNewProject() {
         return;
     }
 
-    debug_displayCurrentItem(projectName, projectId, "Add");
+    var projectData = new ProjectData(projectName, projectId);
+    debug_displayCurrentProgramItem(projectData, "Add");
 
-    addProjectDataToProjectList(projectName, projectId);
+    addProjectDataToProjectList(projectData);
 
-    // Having removed an item, store current projectList
+}
+
+function addProjectDataToProjectList(projectData) {
+    var projectList = retrieveProjectList();
+    if (projectList == null) {
+        projectList = new Array();
+    }
+
+    projectList.push(projectData);
     storeProjectList(projectList);
+
+    createProjectDisplayRow(projectData);
+
     debug_displayProjectListJson();
 }
 
-function addProjectDataToProjectList(name, id) {
-    var projectData = new ProjectData(name, id);
-    projectList.push(projectData);
-
-    createProjectDisplayRow(name, id);
-}
-
 // "id" tag based on concat of str1+str2
-function getTagIdentifer(str1, str2) {
-    if (typeof str1 != "string" || typeof str2 != "string") {
-        console.error("One of these isn't a string: ", str1, str2);
+function getTagIdentifer(projectData) {
+    if (typeof projectData.projectName != "string" || typeof projectData.projectId != "string") {
+        console.error("One of these isn't a string: ", projectData.projectName, projectData.projectId);
     }
-    
-    return str1 + str2;
+
+    return projectData.projectName + projectData.projectId;
 }
 
-function createProjectDisplayRow(name, id) {
+function createProjectDisplayRow(projectData) {
     var row = document.createElement("div");
     row.className = "w3-row";
-    row.id = getTagIdentifer(name, id);
+    row.id = getTagIdentifer(projectData);
 
-    var col = createProjectDisplayColumn(name);
+    var col = createProjectDisplayColumn(projectData.projectName);
     row.appendChild(col);
 
-    col = createProjectDisplayColumn(id);
+    col = createProjectDisplayColumn(projectData.projectId);
     row.appendChild(col);
 
-    col = createProjectDisplayRemoveButton(name, id);
+    col = createProjectDisplayRemoveButton(projectData);
     row.appendChild(col);
 
     document.getElementById("projectDisplayArea").appendChild(row);
 }
 
 // return: "div" element as a column for w3
-function createProjectDisplayColumn(display) {
+function createProjectDisplayColumn(displayString) {
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
-    if (display === "" || display == null) {
-        display = "xxx";
+    if (displayString === "" || displayString == null) {
+        displayString = "xxx";
     }
-    var node = document.createTextNode(display);
+    var node = document.createTextNode(displayString);
     col.appendChild(node);
 
     return col;
 }
 
-function createProjectDisplayRemoveButton(name, id) {
+function createProjectDisplayRemoveButton(projectData) {
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
     var button = document.createElement("button");
-    var tagId = getTagIdentifer(name, id);
+    var tagId = getTagIdentifer(projectData);
     button.id = "button" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
-    button.addEventListener("click", function() {
-        onButtonClick_OnRemoveRow(name, id);
+    button.addEventListener("click", function () {
+        onButtonClick_OnRemoveRow(tagId);
     });
-    
+
     col.appendChild(button);
 
     return col;
 }
 
-function onButtonClick_OnRemoveRow(name, id) {
-    debug_displayCurrentItem(name, id, "Remove");
-
+function onButtonClick_OnRemoveRow(rowId) {
     // Remove the row in the html page
-    document.getElementById(getTagIdentifer(name, id)).remove();
-    
+    document.getElementById(rowId).remove();
+
+    var programList = retrieveProjectList();
+    var removedProgramData = null;
     // Now remove the item from the project list array
-    for (var i = 0; i < projectList.length; i++) {
-        if (projectList[i].projectName == name &&
-            projectList[i].projectId == id) {
-                projectList.splice(i, 1);
-                // breaking out here...will ensure no duplicates elsewhere
-                break;
-            }        
+    for (var i = 0; i < programList.length; i++) {
+        if (getTagIdentifer(programList[i]) == rowId) {
+            var removedProgramList = programList.splice(i, 1);
+            removedProgramData = removedProgramList[0];
+            // breaking out here...will ensure no duplicates elsewhere
+            break;
+        }
+    }
+
+    if (removedProgramData == null) {
+        console.error("No program item removed for: ", rowId);
+    } else {
+        debug_displayCurrentProgramItem(removedProgramData, "Remove");
     }
 
     // Having removed an item, store current projectList
-    storeProjectList(projectList);
+    storeProjectList(programList);
+
+    // DEBUGGING
     debug_displayProjectListJson();
 }
