@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Calculate Project Time</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="timecalc.js"></script>
+    <script src="storage.js"></script>
+</head>
+
+<body onload="performLoadOperations()">
+
+    <h2>Time Tracker: Today</h2>
+    <div id="report_projectDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Project Name</p>
+            </div>
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Description</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Begin Time</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Time Tracker: Weekly</h2>
+    <div class="w3-row">
+        <!-- onsubmit return false keeps the page from reloading -->
+        <!-- <form onsubmit="onButtonClick_StartProject();return false;"> -->
+        <div class="w3-col m2 w3-center">
+            <div class="w3-dropdown-hover">
+                <button id="report_selectProjectButton" class="w3-button w3-black" value="unset">Select
+                    Project</button>
+                <div id="report_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                    <!-- <div onclick="selectProject()" class="w3-bar-item w3-button">test proj</div>
+                        <div onclick="selectProject()" class="w3-bar-item w3-button">test projx</div>
+                        <div onclick="selectProject()" class="w3-bar-item w3-button">test projxx</div> -->
+                </div>
+            </div>
+        </div>
+        <div class="w3-col m2 w3-center">
+            <div class="w3-dropdown-hover">
+                <button id="report_selectCategoryButton" class="w3-button w3-black" value="unset">Select
+                    Category</button>
+                <div id="report_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                    <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
+                </div>
+            </div>
+        </div>
+        <div class="w3-col m2 w3-center">
+            <input type="text" id="report_projectDescription" placeholder="Free Text Description"
+                style="font-style:italic">
+        </div>
+        <div class="w3-col m2 w3-center">
+            <button id="report_startProjectButton" onclick="onButtonClick_StartProject()"
+                class="w3-button w3-green">Begin</button>
+        </div>
+        <!-- </form> -->
+    </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="debug_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+    <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+    <p id="report_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
+
+    <hr>
+
+    <h3>Your Day</h3>
+
+</body>
+
+</html>
