@@ -20,11 +20,11 @@ function CategoryData (categoryName) {
 };
 
 // Constructor
-function TimeData (projectData, categoryData, description, startTimeEpoch) {
+function TimeData (projectData, categoryData, description, startTime) {
     this.projectData = projectData;
     this.categoryData = categoryData;
     this.description = description;
-    this.startTimeEpoch = startTimeEpoch;
+    this.startTimeDateString = startTime.toString();
 }
 
 // Input: ProgramList of data

@@ -8,7 +8,7 @@ function debug_displayCurrentTimeDataItem(timeData, operation) {
     var debugDisplay = document.getElementById("time_debugDisplay");
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
     debugDisplay.innerHTML += "<b>Project Name & Id:</b> " + timeData.projectData.projectName + ", " + timeData.projectData.projectId + sep;
-    debugDisplay.innerHTML += "<b>Time Epoch:</b> " + timeData.startTimeEpoch + sep;
+    debugDisplay.innerHTML += "<b>Start Time:</b> " + timeData.dateString + sep;
     debugDisplay.innerHTML += "<br>";
 }
 
@@ -114,10 +114,10 @@ function onButtonClick_StartProject() {
             return;
         }
     var description = document.getElementById("time_projectDescription").value;
-    var startTimeEpoch = Date.now();
+    var startTime = new Date();
 
-    console.log(startTimeEpoch);
-    var timeData = new TimeData(projectData, categoryData, description, startTimeEpoch);
+    console.log(startTime.toString());
+    var timeData = new TimeData(projectData, categoryData, description, startTime);
     debug_displayCurrentTimeDataItem(timeData, "Add");
 
     addTimeDataToTimeDataList(timeData);
@@ -140,7 +140,9 @@ function addTimeDataToTimeDataList(timeData) {
 function createTimeDataDisplayRow(timeData) {
     var row = document.createElement("div");
     row.className = "w3-row";
-    row.id = timeData.startTimeEpoch;
+
+    var startTime = new Date(timeData.startTimeDateString);
+    row.id = startTime.getTime();
 
     var col = createTimeDataDisplayColumn(timeData.projectData.projectName);
     row.appendChild(col);
@@ -151,7 +153,7 @@ function createTimeDataDisplayRow(timeData) {
     col = createTimeDataDisplayColumn(timeData.description);
     row.appendChild(col);
 
-    col = createTimeDataTimeDisplayColumn(timeData.startTimeEpoch);
+    col = createTimeDataTimeDisplayColumn(startTime);
     row.appendChild(col);
 
     col = createProjectDisplayRemoveButton(timeData, row.id);
@@ -173,16 +175,15 @@ function createTimeDataDisplayColumn(displayString) {
     return col;
 }
 
-function createTimeDataTimeDisplayColumn(startTimeEpoch) {
-    var startTime = new Date(startTimeEpoch);
-
+function createTimeDataTimeDisplayColumn(startTime) {
+    if (typeof startTime != "object") {
+        console.error("startTime should be a Date object.");
+    }
+    
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
     var displayString = startTime.toLocaleString("en-GR", {hourCycle: "h24"});
-    if (startTimeEpoch == "0" || startTimeEpoch == 0 || startTimeEpoch == null) {
-        displayString = "<undefined>";
-    }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
 
@@ -209,6 +210,10 @@ function createProjectDisplayRemoveButton(timeData, rowId) {
 }
 
 function onButtonClick_OnRemoveRow(rowId) {
+    if (typeof rowId != "string") {
+        console.error("rowId should be a string (a number as a string).");
+    }
+
     // Remove the row in the html page
     document.getElementById(rowId).remove();
     
@@ -217,7 +222,9 @@ function onButtonClick_OnRemoveRow(rowId) {
     var removedTimeData = null;
     // Now remove the item from the category list array
     for (var i = 0; i < timeDataList.length; i++) {
-        var startTimeEpoch = timeDataList[i].startTimeEpoch;
+        var startTimeDateString = timeDataList[i].startTimeDateString;
+        var startTime = new Date(startTimeDateString);
+        var startTimeEpoch = startTime.getTime();
         var startTimeEpochString = startTimeEpoch.toString();
         if (startTimeEpochString === rowId) {
                 var retList = timeDataList.splice(i, 1);
