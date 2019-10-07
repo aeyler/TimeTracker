@@ -12,6 +12,14 @@ function debug_displayCurrentTimeDataItem(timeData, operation) {
     debugDisplay.innerHTML += "<br>";
 }
 
+function debug_displayProjectList(projectList) {
+    document.getElementById("time_debugDisplayProjectJson").textContent = JSON.stringify(projectList);
+}
+
+function debug_displayCategoryList(categoryList) {
+    document.getElementById("time_debugDisplayCategoryJson").textContent = JSON.stringify(categoryList);
+}
+
 function debug_displayTimeDataListJson() {
     var list = retrieveTimeDataList();
     console.log(list);
@@ -24,20 +32,31 @@ function debug_displayTimeDataListJson() {
 function performLoadOperations() {
     var projectList = retrieveProjectList(USETESTDATA);
     var categoryList = retrieveCategoryList(USETESTDATA);
+    if (!validateListsContainData(projectList, categoryList)) {
+        return;
+    }
 
-    document.getElementById("time_debugDisplayProjectJson").textContent = JSON.stringify(projectList);
-    document.getElementById("time_debugDisplayCategoryJson").textContent = JSON.stringify(categoryList);
+    debug_displayProjectList(projectList);
+    debug_displayCategoryList(categoryList);
 
     addProjectsToDropdown(projectList);
     addCategoriesToDropdown(categoryList);
 }
 
-// Create dropdown project selections
-function addProjectsToDropdown(projectList) {
+function validateListsContainData(projectList, categoryList) {
     if (projectList == null) {
         alert("No Projects Defined");
-        return;
+        return false;
     }
+    if (categoryList == null) {
+        alert("No Categories Defined");
+        return false;
+    }
+    return true;
+}
+
+// Create dropdown project selections
+function addProjectsToDropdown(projectList) {
     for (var i = 0; i < projectList.length; i++) {
         addProjectDataToDropdown(projectList[i]);
     }
@@ -45,10 +64,6 @@ function addProjectsToDropdown(projectList) {
 
 // Create dropdown category selections
 function addCategoriesToDropdown(categoryList) {
-    if (categoryList == null) {
-        alert("No Categories Defined");
-        return;
-    }
     for (var i = 0; i < categoryList.length; i++) {
         addCategoryDataToDropdown(categoryList[i]);
     }
