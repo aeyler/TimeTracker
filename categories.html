@@ -15,7 +15,7 @@
         <!-- onsubmit return false keeps the page from reloading -->
         <form onsubmit="onButtonClick_AddNewCategory();return false;">
             <div class="w3-col m2 w3-center">
-                <input type="text" id="newCategory" placeholder="Category" style="font-style:italic">
+                <input type="text" id="cat_newCategory" placeholder="Category" style="font-style:italic">
             </div>
             <div class="w3-col m2 w3-center">
                 <input type="submit" value="Create">
@@ -26,13 +26,13 @@
     <hr>
 
     <p><i>Debug Data Display Area</i> <button onclick="debug_clearLocalStorage()">Clear localStorage</button></p>
-    <p id="debugDisplay"><i>...Empty until filled...</i></p>
-    <p id="debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+    <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
 
     <hr>
 
     <h3>Current Categories</h3>
-    <div id="categoryDisplayArea">
+    <div id="cat_categoryDisplayArea">
         <div class="w3-row">
             <div class="w3-col m2 w3-left">
                 <p style="font-weight:bold">Category</p>

@@ -8,13 +8,13 @@ function CategoryData (category) {
 
 function resetAddCategoryControls() {
     // reset form items to their origianl placeholder values
-    document.getElementById("newCategory").value = "";
+    document.getElementById("cat_newCategory").value = "";
 }
 
 function debug_displayCurrentCategoryItem(categoryData, operation) {
     var sep = ", ";
     // show new item in test field
-    var debugDisplay = document.getElementById("debugDisplay");
+    var debugDisplay = document.getElementById("cat_debugDisplay");
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
     debugDisplay.innerHTML += "<b>Category:</b> " + categoryData.category + sep;
     debugDisplay.innerHTML += "<b>Category Id:</b> " + categoryData.categoryId + sep;
@@ -24,19 +24,19 @@ function debug_displayCurrentCategoryItem(categoryData, operation) {
 function debug_displayCategoryListJson() {
     var list = retrieveCategoryList();
     var jsonList = JSON.stringify(list);
-    var debugDisplay = document.getElementById("debugDisplayJson");
+    var debugDisplay = document.getElementById("cat_debugDisplayJson");
     debugDisplay.innerHTML = "<b>Category List as JSON:</b>" + "<br>" + jsonList;
 }
 
 function onButtonClick_AddNewCategory() {
-    var category = document.getElementById("newCategory").value;
+    var category = document.getElementById("cat_newCategory").value;
 
     // reset new category control to default blank value
     resetAddCategoryControls();
 
     if (category === "") {
         alert("Category cannot be blank");
-        document.getElementById("newCategory").focus();
+        document.getElementById("cat_newCategory").focus();
         return;
     }
 
@@ -74,7 +74,7 @@ function createCategoryDisplayRow(categoryData) {
     col = createCategoryDisplayRemoveButton(categoryData);
     row.appendChild(col);
 
-    document.getElementById("categoryDisplayArea").appendChild(row);
+    document.getElementById("cat_categoryDisplayArea").appendChild(row);
 }
 
 // return: "div" element as a column for w3
