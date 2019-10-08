@@ -9,7 +9,7 @@ function performLoadOperations() {
     var todayList = getTimeEntryListFor(today);
     displayTodayTimeEntry(todayList);
 
-    //calculateWeekTimeEntries(today);
+    calculateWeekTimeEntries(today);
 }
 
 // Exp: timeEntry1 & timeEntry2 are Date()
@@ -116,7 +116,7 @@ function getMatchingTimeEntryList(timeEntryList, matchingDate) {
     for (var i = 0; i < timeEntryList.length; i++) {
         var testDate = new Date(timeEntryList[i].startTimeDateString);
         if (datesEqual(testDate, matchingDate)) {
-            matchingTimeEntryList.push(testDate);
+            matchingTimeEntryList.push(timeEntryList[i]);
         }
     }
     return matchingTimeEntryList;
@@ -157,6 +157,7 @@ function totalUpTimeEntryList(timeEntryList)
 
     for (var i = 0; i < timeEntryList.length; i++) {
         var beginTimeEntry = timeEntryList[i];
+        console.log(beginTimeEntry);
         if (isProjectNone(beginTimeEntry.projectData)) {
             // do not calculate "none" entries
             continue;
@@ -168,15 +169,15 @@ function totalUpTimeEntryList(timeEntryList)
             nextTimeEntry = new Date(timeEntry.getFullYear(), timeEntry.getMonth(), timeEntry.getDate(), 23, 59, 59, 999);
         }
 
-        var timeDiffEpoch = timeDiff(beginTime, nextTime);
+        var timeDiffEpoch = timeDiff(beginTimeEntry, nextTimeEntry);
 
         // If this time entry is already in our list, add it on.
         // Otherwise, push it in.
         var found = false;
-        for (var i = 0; i < projectTimeTotalList.length; i++) {
-            if (equalProjects(beginTimeEntry.projectData, projectTimeTotalList[i].projectData) &&
-                equalCategories(beginTimeEntry.categoryData, projectTimeTotalList[i].categoryData)) {
-                    projectTimeTotalList[i].totalTime += timeDiffEpoch;
+        for (var projCnt = 0; projCnt < projectTimeTotalList.length; projCnt++) {
+            if (equalProjects(beginTimeEntry.projectData, projectTimeTotalList[projCnt].projectData) &&
+                equalCategories(beginTimeEntry.categoryData, projectTimeTotalList[projCnt].categoryData)) {
+                    projectTimeTotalList[projCnt].totalTime += timeDiffEpoch;
                     found = true;
                     break;
                 }
@@ -197,6 +198,7 @@ function calculateWeekTimeEntries(someDate) {
     //           try using "foreach" and anonymous functions.
     for (var i = 0; i < weekDateArray.length; i++) {
         var weekDateTimeEntryList = getMatchingTimeEntryList(entireTimeEntryList, weekDateArray[i]);
+        console.log(i, weekDateTimeEntryList);
         var weekDateProjectTimeTotalList = totalUpTimeEntryList(weekDateTimeEntryList);
     }
 }
