@@ -25,6 +25,7 @@ function performLoadOperations() {
     var displayDivId = "report_weeklyReportDisplayArea";
     var removalClassName = "report_weeklyReportDisplayArea";
     displayWeekTimeEntriesFor(today, displayDivId, removalClassName);
+    displayWeeklyDateRangeFor(today);
 }
 
 // Exp: timeEntry1 & timeEntry2 are Date()
@@ -275,6 +276,9 @@ function displayWeekTimeEntriesFor(someDate, displayDivId, removalClassName) {
         addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntryList[i], displayDivId, removalClassName);
     }
     
+    // another quick hack for no time data available
+    var isEmpty = projectTimeWeekEntryList.length == 0;
+    return isEmpty;
 }
 
 function removeRows(displayDivId, removalClassName) {
@@ -341,5 +345,17 @@ function onButtonClick_DisplayWeeklyDataForSelectedDate() {
     var displayDivId = "report_weeklyReportDisplayArea";
     var removalClassName = "report_weeklyReportDisplayArea";
     removeRows(displayDivId, removalClassName);
-    displayWeekTimeEntriesFor(userChosenDate, displayDivId, removalClassName);
+    var isEmpty = displayWeekTimeEntriesFor(userChosenDate, displayDivId, removalClassName);
+    displayWeeklyDateRangeFor(userChosenDate, isEmpty);
+}
+
+function displayWeeklyDateRangeFor(someDate, isEmpty) {
+    var firstDateElement = document.getElementById("report_firstDayOfWeekReport");
+    var lastDateElement = document.getElementById("report_lastDayOfWeekReport");
+
+    var weekDateArray = getGenericWeekDatesFromDate(someDate);
+    firstDateElement.textContent = weekDateArray[0].toDateString();
+    lastDateElement.textContent = weekDateArray[6].toDateString();
+
+    document.getElementById("report_noTimeData").hidden = !isEmpty;
 }

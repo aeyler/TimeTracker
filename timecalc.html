@@ -68,11 +68,11 @@
     <div>
         <form onsubmit="onButtonClick_DisplayWeeklyDataForSelectedDate();return false;">
             Pick a day: <input type="date" id="report_daySelection">
-            <input type="submit">
+            <input type="submit" value="Calculate">
         </form>
         <br>
     <div>
-        Showing weekly report for: <i id="report_firstDayOfWeekReport">first of week</i> -thru- <i id="report_lastDayOfWeekReport">last of week</i>
+        Showing weekly report for: <i id="report_firstDayOfWeekReport">first of week</i> -- <i id="report_lastDayOfWeekReport">last of week</i><b id="report_noTimeData" hidden="true"> :: No time data available</b>
     </div>
     </div>
     <div id="report_weeklyReportDisplayArea">
