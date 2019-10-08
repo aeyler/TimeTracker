@@ -10,6 +10,15 @@ function performLoadOperations() {
     displayTodayTimeEntry(todayList);
 
     displayWeekTimeEntriesFor(today);
+
+    // and set the weekly report date to today
+    var year = today.getFullYear().toString();
+    var month = (today.getMonth() + 1).toString();
+    var day = today.getDate().toString();
+    if (month.length < 2) { month = "0" + month; }
+    if (day.length < 2) { day = "0" + day; }
+    var specificDateString = year + "-" + month + "-" + day;
+    document.getElementById("report_daySelection").value = specificDateString;
 }
 
 // Exp: timeEntry1 & timeEntry2 are Date()
@@ -256,13 +265,14 @@ function displayWeekTimeEntriesFor(someDate) {
     var projectTimeWeekEntryList = calculateWeekTimeEntries(someDate);
 
     // and now go display them!
+    var displayDivId = "report_weeklyTotalsDisplayArea";
     for (var i = 0; i < projectTimeWeekEntryList.length; i++) {
-        addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntryList[i]);
+        addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntryList[i], displayDivId);
     }
     
 }
 
-function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry) {
+function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry, displayDivId) {
     var row = document.createElement("div");
     row.className = "w3-row";
     // dev note: no row.id needed as I'm not currently allowing items to be edited/deleted
@@ -280,7 +290,7 @@ function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry) {
         row.appendChild(col);
     }
 
-    document.getElementById("report_weeklyTotalsDisplayArea").appendChild(row);
+    document.getElementById(displayDivId).appendChild(row);
 }
 
 // return: "div" element as a column for row
@@ -311,3 +321,6 @@ function createWeeklyTotalDisplayColumnNumber(timeInMilliseconds) {
     return col;
 }
 
+function onButtonClick_DisplayWeeklyDataFor() {
+    var dateSelector = document.getElementById("report_daySelection");
+}
