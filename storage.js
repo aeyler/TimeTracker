@@ -31,6 +31,7 @@ function TimeEntry (projectData, categoryData, description, startTime) {
 }
 
 // Constructor
+// Exp: totalTime is in milliseconds
 function ProjectTimeTotal (projectData, categoryData, totalTime) {
     this.projectData = projectData;
     this.categoryData = categoryData;

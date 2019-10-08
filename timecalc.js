@@ -139,9 +139,11 @@ function getGenericWeekDatesFromDate(baseDate) {
 
 // Return: time difference in milliseconds
 function timeDiff(timeEntry1, timeEntry2) {
-    var epoch1 = timeEntry1.getTime();
-    var epoch2 = timeEntry2.getTime();
-    return Math.abs(epoch2-epoch1);
+    var timeEntryDate1 = new Date(timeEntry1.startTimeDateString);
+    var timeEntryDate2 = new Date(timeEntry2.startTimeDateString);
+    var epoch1 = timeEntryDate1.getTime();
+    var epoch2 = timeEntryDate2.getTime();
+    return Math.abs(epoch2 - epoch1);
 }
 
 // Given a time entry list, total up the various values
@@ -149,12 +151,40 @@ function timeDiff(timeEntry1, timeEntry2) {
 // Return: ProjectTimeTotal array
 function totalUpTimeEntryList(timeEntryList)
 {
-    projectTimeTotalList = new Array();
-    var beginTime;
-    var nextTime;
+    var projectTimeTotalList = new Array();
+
     for (var i = 0; i < timeEntryList.length; i++) {
-        var timeEntry = timeEntryList[i];
+        var beginTimeEntry = timeEntryList[i];
+        if (isProjectNone(beginTimeEntry.projectData)) {
+            // do not calculate "none" entries
+            continue;
+        }
+
+        var nextTimeEntry = timeEntryList[i+1];
+        if (typeof nextTimeEntry == "undefined") {
+            // assign new date for midnight(ish) for final calc
+            nextTimeEntry = new Date(timeEntry.getFullYear(), timeEntry.getMonth(), timeEntry.getDate(), 23, 59, 59, 999);
+        }
+
+        var timeDiffEpoch = timeDiff(beginTime, nextTime);
+
+        // If this time entry is already in our list, add it on.
+        // Otherwise, push it in.
+        var found = false;
+        for (var i = 0; i < projectTimeTotalList.length; i++) {
+            if (equalProjects(beginTimeEntry.projectData, projectTimeTotalList[i].projectData) &&
+                equalCategories(beginTimeEntry.categoryData, projectTimeTotalList[i].categoryData)) {
+                    projectTimeTotalList[i].totalTime += timeDiffEpoch;
+                    found = true;
+                    break;
+                }
+        }
+        if (!found) {
+            projectTimeTotalList.push(new ProjectTimeTotal(beginTimeEntry.projectData, beginTimeEntry.categoryData, timeDiffEpoch));
+        }
     }
+    
+    return projectTimeTotalList;
 }
 
 // Given a date, find and calculate the weekly time entries for that date
