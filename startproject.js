@@ -1,6 +1,6 @@
 "use strict";
 
-var USETESTDATA = true;
+var USETESTDATA = false;
 
 function debug_displayCurrentTimeEntryItem(timeEntry, operation) {
     var sep = ", ";

@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Test Data</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="testdata.js"></script>
+    <script src="storage.js"></script>
+    <script src="utils.js"></script>
+</head>
+
+<body onload="testdata_performLoadOperations()">
+
+    <h2>Test Data</h2>
+    <div><b>Warning:: </b><button onclick="debug_clearLocalStorage()">Clear Local Storage</button><b> :: Warning</b></div>
+
+    <hr>
+
+    <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
+    <button onclick="debug_insertTestProjectData()">Insert Test Project Data</button>
+    <p id="test_testProjectData"></p>
+
+    <hr>
+
+    <button onclick="debug_insertTestCategoryData()">Insert Test Category Data</button>
+    <p id="test_testCategoryData"></p>
+
+    <hr>
+
+    <button onclick="debug_insertTestTimeEntryData()">Insert Test Time Entries</button>
+    <p id="test_testTimeEntrytData"></p>
+
+    <hr>
+
+    <h3>Data Inserted (as JSON string)</h3>
+    <p id="test_dataInsertedToLocalStorage"><i>...Empty until filled...</i></p>
+
+    <hr>
+
+</body>
+
+</html>

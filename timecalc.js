@@ -1,6 +1,6 @@
 "use strict";
 
-var USETESTDATA = true;
+var USETESTDATA = false;
 
 function performLoadOperations() {
     var timeEntryList = retrieveTimeEntryList(USETESTDATA);
