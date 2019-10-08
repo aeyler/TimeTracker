@@ -9,7 +9,9 @@ function performLoadOperations() {
     var todayList = getTimeEntryListFor(today);
     displayTodayTimeEntry(todayList);
 
-    displayWeekTimeEntriesFor(today);
+    var displayDivId = "report_weeklyTotalsDisplayArea";
+    var removalClassName = "report_weeklyTotalsDisplayArea";
+    displayWeekTimeEntriesFor(today, displayDivId, removalClassName);
 
     // and set the weekly report date to today
     var year = today.getFullYear().toString();
@@ -19,6 +21,10 @@ function performLoadOperations() {
     if (day.length < 2) { day = "0" + day; }
     var specificDateString = year + "-" + month + "-" + day;
     document.getElementById("report_daySelection").value = specificDateString;
+
+    var displayDivId = "report_weeklyReportDisplayArea";
+    var removalClassName = "report_weeklyReportDisplayArea";
+    displayWeekTimeEntriesFor(today, displayDivId, removalClassName);
 }
 
 // Exp: timeEntry1 & timeEntry2 are Date()
@@ -242,8 +248,8 @@ function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryL
 // Given a date, find and calculate the weekly time entries for that date
 function calculateWeekTimeEntries(someDate) {
     var entireTimeEntryList = retrieveTimeEntryList(USETESTDATA);
-    // var weekDateArray = getGenericWeekDatesFromDate(someDate);
-    var weekDateArray = [new Date(2019,9,7), new Date()];
+    var weekDateArray = getGenericWeekDatesFromDate(someDate);
+    //var weekDateArray = [new Date(2019,9,7), new Date()];
     
     var projectTimeWeekEntryList = new Array();
 
@@ -260,22 +266,28 @@ function calculateWeekTimeEntries(someDate) {
     return projectTimeWeekEntryList;
 }
 
-function displayWeekTimeEntriesFor(someDate) {
+function displayWeekTimeEntriesFor(someDate, displayDivId, removalClassName) {
     // get a week's worth of time entries
     var projectTimeWeekEntryList = calculateWeekTimeEntries(someDate);
 
     // and now go display them!
-    var displayDivId = "report_weeklyTotalsDisplayArea";
     for (var i = 0; i < projectTimeWeekEntryList.length; i++) {
-        addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntryList[i], displayDivId);
+        addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntryList[i], displayDivId, removalClassName);
     }
     
 }
 
-function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry, displayDivId) {
+function removeRows(displayDivId, removalClassName) {
+    var removalItems = document.getElementsByClassName(removalClassName);
+    for (var i = (removalItems.length - 1); i >= 0; i--) {
+        removalItems[i].remove();
+    }
+}
+
+function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry, displayDivId, removalClassName) {
     var row = document.createElement("div");
-    row.className = "w3-row";
-    // dev note: no row.id needed as I'm not currently allowing items to be edited/deleted
+    row.className = "w3-row" + " " + removalClassName;
+    row.id = "row_" + displayDivId;
 
     var col = createWeeklyTotalDisplayColumnText(projectTimeWeekEntry.projectData.projectName);
     row.appendChild(col);
@@ -321,6 +333,13 @@ function createWeeklyTotalDisplayColumnNumber(timeInMilliseconds) {
     return col;
 }
 
-function onButtonClick_DisplayWeeklyDataFor() {
+function onButtonClick_DisplayWeeklyDataForSelectedDate() {
     var dateSelector = document.getElementById("report_daySelection");
+    var selectorDateValue = dateSelector.value;
+    var userChosenDate = new Date(selectorDateValue);
+
+    var displayDivId = "report_weeklyReportDisplayArea";
+    var removalClassName = "report_weeklyReportDisplayArea";
+    removeRows(displayDivId, removalClassName);
+    displayWeekTimeEntriesFor(userChosenDate, displayDivId, removalClassName);
 }
