@@ -32,10 +32,23 @@ function TimeEntry (projectData, categoryData, description, startTime) {
 
 // Constructor
 // Exp: totalTime is in milliseconds
-function ProjectTimeAccumulationEntry (projectData, categoryData, totalTime) {
+function ProjectTimeDayEntry (projectData, categoryData, totalTime) {
     this.projectData = projectData;
     this.categoryData = categoryData;
     this.totalTime = totalTime;
+}
+
+// Constructor
+function ProjectTimeWeekEntry (projectData, categoryData) {
+    this.projectData = projectData;
+    this.categoryData = categoryData;
+    this.monTime = 0;
+    this.tueTime = 0;
+    this.wedTime = 0;
+    this.thuTime = 0;
+    this.friTime = 0;
+    this.satTime = 0;
+    this.sunTime = 0;
 }
 
 // Input: ProgramList of data
