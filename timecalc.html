@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Calculate Project Time</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="timecalc.js"></script>
+    <script src="storage.js"></script>
+    <script src="utils.js"></script>
+</head>
+
+<body onload="performLoadOperations()">
+
+    <h2>Daily Entries</h2>
+    <div id="report_dailyTimeEntryDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Project Name</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Description</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Begin Time</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>Weekly Totals</h2>
+    <div id="report_weeklyTotalsDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Project Name</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Mon</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Tue</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Wed</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Thu</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Fri</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Sat</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Sun</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Weekly Report</h2>
+    <div>
+        <form onsubmit="onButtonClick_DisplayWeeklyDataForSelectedDate();return false;">
+            Pick a day: <input type="date" id="report_daySelection">
+            <input type="submit" value="Calculate">
+        </form>
+        <br>
+    <div>
+        Showing weekly report for: <i id="report_firstDayOfWeekReport">first of week</i> -- <i id="report_lastDayOfWeekReport">last of week</i><b id="report_noTimeData" hidden="true"> :: No time data available</b>
+    </div>
+    </div>
+    <div id="report_weeklyReportDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Project Name</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Mon</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Tue</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Wed</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Thu</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Fri</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Sat</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Sun</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="debug_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+    <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+    <p id="report_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
+
+    <hr>
+
+</body>
+
+</html>

@@ -1,12 +1,14 @@
 "use strict";
 
-var test_ProjectList = '[{"projectName":"test proj 1","projectId":"11111"},{"projectName":"test project 22","projectId":"22222"},{"projectName":"test project 333","projectId":"33333"},{"projectName":"no proj","projectId":"no proj"}]';
-var test_CategoryList = '[{"categoryName":"test cat 1","categoryId":"test cat 1"},{"categoryName":"test cat 22","categoryId":"test cat 22"},{"categoryName":"no cat","categoryId":"no cat"}]';
-var test_TimeDataList = '[{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"asdf","startTimeDateString":"Mon Oct 07 2019 08:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"","startTimeDateString":"Mon Oct 07 2019 10:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 22","projectId":"22222"},"categoryData":{"categoryName":"test cat 22","categoryId":"test cat 22"},"description":"","startTimeDateString":"Mon Oct 07 2019 11:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"no proj","projectId":"no proj"},"categoryData":{"categoryName":"no cat","categoryId":"no cat"},"description":"out to launch :)","startTimeDateString":"Mon Oct 07 2019 11:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 333","projectId":"33333"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"Back to cat 1, huh?","startTimeDateString":"Mon Oct 07 2019 13:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"late in the day thing...","startTimeDateString":"Mon Oct 07 2019 16:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"no proj","projectId":"no proj"},"categoryData":{"categoryName":"no cat","categoryId":"no cat"},"description":"done for the day","startTimeDateString":"Mon Oct 07 2019 17:30:00 GMT-0500 (Central Daylight Time)"}]';
+var test_ProjectList = '[{"projectName":"test proj 1","projectId":"11111"},{"projectName":"test project 22","projectId":"22222"},{"projectName":"test project 333","projectId":"33333"},{"projectName":"<none>","projectId":"<none>"}]';
+var test_CategoryList = '[{"categoryName":"test cat 1","categoryId":"test cat 1"},{"categoryName":"test cat 22","categoryId":"test cat 22"},{"categoryName":"<none>","categoryId":"<none>"}]';
+var test_TimeEntryList = '[{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"asdf","startTimeDateString":"Mon Oct 08 2019 08:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"","startTimeDateString":"Mon Oct 08 2019 10:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 22","projectId":"22222"},"categoryData":{"categoryName":"test cat 22","categoryId":"test cat 22"},"description":"","startTimeDateString":"Mon Oct 08 2019 11:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"<none>","projectId":"<none>"},"categoryData":{"categoryName":"<none>","categoryId":"<none>"},"description":"out to launch :)","startTimeDateString":"Mon Oct 08 2019 11:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 333","projectId":"33333"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"Back to cat 1, huh?","startTimeDateString":"Mon Oct 08 2019 13:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"late in the day thing...","startTimeDateString":"Mon Oct 08 2019 16:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"<none>","projectId":"<none>"},"categoryData":{"categoryName":"<none>","categoryId":"<none>"},"description":"done for the day","startTimeDateString":"Mon Oct 08 2019 17:30:00 GMT-0500 (Central Daylight Time)"}]';
 
 function debug_clearLocalStorage() {
     localStorage.clear();
 }
+
+var g_24Hrs = 86400000; // in milliseconds
 
 // Constructor
 function ProjectData(projectName, projectId) {
@@ -21,11 +23,27 @@ function CategoryData (categoryName) {
 };
 
 // Constructor
-function TimeData (projectData, categoryData, description, startTime) {
+function TimeEntry (projectData, categoryData, description, startTime) {
     this.projectData = projectData;
     this.categoryData = categoryData;
     this.description = description;
     this.startTimeDateString = startTime.toString();
+}
+
+// Constructor
+// Exp: totalTime is in milliseconds
+function ProjectTimeDayEntry (projectData, categoryData, totalTime) {
+    this.projectData = projectData;
+    this.categoryData = categoryData;
+    this.totalTime = totalTime;
+}
+
+// Constructor
+function ProjectTimeWeekEntry (projectData, categoryData) {
+    this.projectData = projectData;
+    this.categoryData = categoryData;
+    // M, T, W, Th, F, Sa, Su
+    this.dayTimes = [0, 0, 0, 0, 0, 0, 0];
 }
 
 // Input: ProgramList of data
@@ -64,19 +82,19 @@ function retrieveCategoryList(requestTestData) {
     return categoryList;
 }
 
-// Input: TimeDataList of data
-// Return: TimeDataList as JSON string
-function storeTimeDataList(timeDataList) {
-    var jsonList = JSON.stringify(timeDataList);
-    localStorage.setItem("timeDataList", jsonList);
+// Input: TimeEntryList of data
+// Return: TimeEntryList as JSON string
+function storeTimeEntryList(timeEntryList) {
+    var jsonList = JSON.stringify(timeEntryList);
+    localStorage.setItem("timeEntryList", jsonList);
     return jsonList;
 }
 
-// Return: TimeDataList data from localStorage
-function retrieveTimeDataList(requestTestData) {
-    var jsonList = localStorage.getItem("timeDataList");
+// Return: TimeEntryList data from localStorage
+function retrieveTimeEntryList(requestTestData) {
+    var jsonList = localStorage.getItem("timeEntryList");
     if (requestTestData === true) {
-        jsonList = test_TimeDataList;
+        jsonList = test_TimeEntryList;
     }
     var programList = JSON.parse(jsonList);
     return programList;
