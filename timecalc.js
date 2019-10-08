@@ -157,7 +157,6 @@ function totalUpTimeEntryList(timeEntryList)
 
     for (var i = 0; i < timeEntryList.length; i++) {
         var beginTimeEntry = timeEntryList[i];
-        console.log(beginTimeEntry);
         if (isProjectNone(beginTimeEntry.projectData)) {
             // do not calculate "none" entries
             continue;
@@ -198,7 +197,7 @@ function calculateWeekTimeEntries(someDate) {
     //           try using "foreach" and anonymous functions.
     for (var i = 0; i < weekDateArray.length; i++) {
         var weekDateTimeEntryList = getMatchingTimeEntryList(entireTimeEntryList, weekDateArray[i]);
-        console.log(i, weekDateTimeEntryList);
         var weekDateProjectTimeTotalList = totalUpTimeEntryList(weekDateTimeEntryList);
+        console.log(i, weekDateProjectTimeTotalList);
     }
 }
