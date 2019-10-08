@@ -42,13 +42,8 @@ function ProjectTimeDayEntry (projectData, categoryData, totalTime) {
 function ProjectTimeWeekEntry (projectData, categoryData) {
     this.projectData = projectData;
     this.categoryData = categoryData;
-    this.monTime = 0;
-    this.tueTime = 0;
-    this.wedTime = 0;
-    this.thuTime = 0;
-    this.friTime = 0;
-    this.satTime = 0;
-    this.sunTime = 0;
+    // M, T, W, Th, F, Sa, Su
+    this.dayTimes = [0, 0, 0, 0, 0, 0, 0];
 }
 
 // Input: ProgramList of data

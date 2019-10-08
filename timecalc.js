@@ -9,7 +9,7 @@ function performLoadOperations() {
     var todayList = getTimeEntryListFor(today);
     displayTodayTimeEntry(todayList);
 
-    calculateWeekTimeEntries(today);
+    displayWeekTimeEntriesFor(today);
 }
 
 // Exp: timeEntry1 & timeEntry2 are Date()
@@ -189,15 +189,125 @@ function totalUpTimeEntryList(timeEntryList)
     return projectTimeTotalList;
 }
 
+// Given a list of project times for a certain day, add them into a weekly list
+// Return: weekly List (hopefully updated!)
+function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryList, projectTimeWeekEntryList) {
+    if (typeof dayOfWeek != "number") {
+        console.error("dayOfWeek is not a 'number': ", dayOfWeek);
+    }
+
+    console.log("---accumulateProjectTimeListIntoWeeklyList---");
+    console.log(dayOfWeek);
+    console.log(projectTimeDayEntryList);
+    console.log(projectTimeWeekEntryList);
+
+    for (var i = 0; i < projectTimeDayEntryList.length; i++) {
+        console.log("--projectTimeDayEntryList iteration: ", i);
+        var projectTimeDayEntry = projectTimeDayEntryList[i];
+        console.log("projectTimeDayEntry: ", projectTimeDayEntry);
+        // First - is project time entry in the weekly list?
+        var found = false;
+        for (var k = 0; k < projectTimeWeekEntryList.length; k++) {
+            var projectTimeWeekEntry = projectTimeWeekEntryList[k];
+            console.log(projectTimeWeekEntry);
+            if (equalProjectsAndCategories(projectTimeDayEntry, projectTimeWeekEntry)) {
+                // If so, add the daily time entry value to the weekly time entry (in the correct day)
+                projectTimeWeekEntry.dayTimes[dayOfWeek] += projectTimeDayEntry.totalTime;
+                found = true;
+                break;
+            }
+        }
+        console.log("found: ", found);
+        if (!found) {
+            // otherwise, add a new weekly entry
+            var projectWeekTimeEntry = new ProjectTimeWeekEntry(projectTimeDayEntry.projectData, projectTimeDayEntry.categoryData);
+            projectWeekTimeEntry.dayTimes[dayOfWeek] += projectTimeDayEntry.totalTime;
+            projectTimeWeekEntryList.push(projectWeekTimeEntry);
+        }
+    }
+    
+    // finally, hopefully, return an updated weekly list
+    return projectTimeWeekEntryList;
+}
+
 // Given a date, find and calculate the weekly time entries for that date
 function calculateWeekTimeEntries(someDate) {
     var entireTimeEntryList = retrieveTimeEntryList(USETESTDATA);
-    var weekDateArray = getGenericWeekDatesFromDate(someDate);
+    // var weekDateArray = getGenericWeekDatesFromDate(someDate);
+    var weekDateArray = [new Date(2019,9,7), new Date()];
+    
+    var projectTimeWeekEntryList = new Array();
+
     // dev note: I'm going to use "for" here, but in the future, it would be nice to 
     //           try using "foreach" and anonymous functions.
-    for (var i = 0; i < weekDateArray.length; i++) {
-        var weekDateTimeEntryList = getMatchingTimeEntryList(entireTimeEntryList, weekDateArray[i]);
-        var weekDateProjectTimeTotalList = totalUpTimeEntryList(weekDateTimeEntryList);
-        console.log(i, weekDateProjectTimeTotalList);
+    for (var dayNum = 0; dayNum < weekDateArray.length; dayNum++) {
+        var weekDateTimeEntryList = getMatchingTimeEntryList(entireTimeEntryList, weekDateArray[dayNum]);
+        var weekDateProjectTimeDayEntryList = totalUpTimeEntryList(weekDateTimeEntryList);
+        // console.log(weekDateProjectTimeDayEntryList);
+        accumulateProjectTimeListIntoWeeklyList(dayNum, weekDateProjectTimeDayEntryList, projectTimeWeekEntryList);
     }
+    console.log("projectTimeWeekEntryList - Accumulated!", projectTimeWeekEntryList);
+
+    return projectTimeWeekEntryList;
 }
+
+function displayWeekTimeEntriesFor(someDate) {
+    // get a week's worth of time entries
+    var projectTimeWeekEntryList = calculateWeekTimeEntries(someDate);
+
+    // and now go display them!
+    for (var i = 0; i < projectTimeWeekEntryList.length; i++) {
+        addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntryList[i]);
+    }
+    
+}
+
+function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry) {
+    var row = document.createElement("div");
+    row.className = "w3-row";
+    // dev note: no row.id needed as I'm not currently allowing items to be edited/deleted
+
+    var col = createWeeklyTotalDisplayColumnText(projectTimeWeekEntry.projectData.projectName);
+    row.appendChild(col);
+
+    col = createWeeklyTotalDisplayColumnText(projectTimeWeekEntry.categoryData.categoryName);
+    row.appendChild(col);
+
+    // this has HACK written all over it!!!
+    // basically, use a temp ProjectTimeWeekEntry to iterate over the number of columns to make
+    for (var i = 0; i < projectTimeWeekEntry.dayTimes.length; i++) {
+        col = createWeeklyTotalDisplayColumnNumber(projectTimeWeekEntry.dayTimes[i]);
+        row.appendChild(col);
+    }
+
+    document.getElementById("report_weeklyTotalsDisplayArea").appendChild(row);
+}
+
+// return: "div" element as a column for row
+function createWeeklyTotalDisplayColumnText(displayItem) {
+    var col = document.createElement("div");
+    col.className = "w3-col m2 w3-left";
+
+    if (displayItem === "" || displayItem == null) {
+        displayItem = "xxx";
+    }
+    var node = document.createTextNode(displayItem);
+    col.appendChild(node);
+
+    return col;
+}
+
+// return: "div" element as a column for row
+function createWeeklyTotalDisplayColumnNumber(timeInMilliseconds) {
+    var col = document.createElement("div");
+    col.className = "w3-col s1 w3-left";
+
+    if (typeof timeInMilliseconds != "number" || timeInMilliseconds == null) {
+        timeInMilliseconds = 356400000; // 99 hours should be noticeable as being incorrect
+    }
+    var node = document.createTextNode(epochToHours(timeInMilliseconds));
+    col.appendChild(node);
+
+    return col;
+}
+

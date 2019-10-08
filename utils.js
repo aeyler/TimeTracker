@@ -14,12 +14,20 @@ function equalCategories(cat1, cat2) {
             cat1.categoryId === cat2.categoryId;
 }
 
-function equalTimeEntryProjects(te1, te2) {
-    var equalProjects = equalProjects(te1.projectData, te2.projectData);
-    var equalCategories = equalCategories(te1.categoryData, te2.categoryData);
-    return equalProjects && equalCategories;
+// HACK WARNING - this is abusing the non-type safety of JS!
+// ...I'm assuming that inputs have projectData and categoryData entries...
+function equalProjectsAndCategories(item1, item2) {
+    return equalProjects(item1.projectData, item2.projectData) && 
+        equalCategories(item1.categoryData, item2.categoryData);
 }
 
 function isProjectNone(projectData) {
     return projectData.projectId === g_noneEntry;
+}
+
+function epochToHours(milliseconds) {
+    if (typeof milliseconds != "number") {
+        console.error("epochToHours call requires a number: ", milliseconds);
+    }
+    return milliseconds / 1000 / 60 / 60;
 }
