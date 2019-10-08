@@ -5,8 +5,11 @@ var USETESTDATA = true;
 function performLoadOperations() {
     var timeEntryList = retrieveTimeEntryList(USETESTDATA);
 
-    var todayList = getTimeEntryListForToday();
+    var today = new Date();
+    var todayList = getTimeEntryListFor(today);
     displayTodayTimeEntry(todayList);
+
+    //calculateWeekTimeEntries(today);
 }
 
 // Exp: timeEntry1 & timeEntry2 are Date()
@@ -24,18 +27,17 @@ function datesEqual(timeEntry1, timeEntry2) {
 }
 
 // Returns time entries from/for today's date
-function getTimeEntryListForToday() {
+function getTimeEntryListFor(someDate) {
     var timeEntryList = retrieveTimeEntryList(USETESTDATA);
-    var today = new Date();
-    var todayList = new Array();
+    var someDateList = new Array();
 
     for (var i = 0; i < timeEntryList.length; i++) {
         var testDate = new Date(timeEntryList[i].startTimeDateString);
-        if (datesEqual(testDate, today)) {
-            todayList.push(timeEntryList[i]);
+        if (datesEqual(testDate, someDate)) {
+            someDateList.push(timeEntryList[i]);
         }
     }
-    return todayList;
+    return someDateList;
 }
 
 function displayTodayTimeEntry(todayList) {
@@ -100,8 +102,8 @@ WEEKLY TIME ENTRIES DISPLAY
 - All time entries
 x Get range of dates we're looking for
 xx For given day, find "monday" and go till "sunday"
-- Get list of time entries for each day
-- For each day, total up hours on a per project & category basis
+x Get list of time entries for each day
+x For each day, total up hours on a per project & category basis
 - Create "week time entry" 
 - Display each week time entry in table
 */
@@ -148,7 +150,7 @@ function timeDiff(timeEntry1, timeEntry2) {
 
 // Given a time entry list, total up the various values
 // Exp: TimeEntry array
-// Return: ProjectTimeTotal array
+// Return: ProjectTimeDayEntry array
 function totalUpTimeEntryList(timeEntryList)
 {
     var projectTimeTotalList = new Array();
@@ -180,7 +182,7 @@ function totalUpTimeEntryList(timeEntryList)
                 }
         }
         if (!found) {
-            projectTimeTotalList.push(new ProjectTimeTotal(beginTimeEntry.projectData, beginTimeEntry.categoryData, timeDiffEpoch));
+            projectTimeTotalList.push(new ProjectTimeDayEntry(beginTimeEntry.projectData, beginTimeEntry.categoryData, timeDiffEpoch));
         }
     }
     
