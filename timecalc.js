@@ -9,8 +9,10 @@ function performLoadOperations() {
     displayTodayTimeEntry(todayList);
 }
 
+// Exp: timeEntry1 & timeEntry2 are Date()
 function datesEqual(timeEntry1, timeEntry2) {
-    if (typeof timeEntry1 != "object" || typeof timeEntry2 != "object") {
+    var validator = new Date();
+    if (typeof timeEntry1 != typeof validator || typeof timeEntry2 != typeof validator) {
         console.error("Time data invalid", timeEntry1, timeEntry2);
     }
     if (timeEntry1.getFullYear() == timeEntry2.getFullYear() &&
@@ -91,4 +93,78 @@ function createTimeEntryTimeDisplayColumn(startTime) {
     col.appendChild(node);
 
     return col;
+}
+
+/*
+WEEKLY TIME ENTRIES DISPLAY
+- All time entries
+x Get range of dates we're looking for
+xx For given day, find "monday" and go till "sunday"
+- Get list of time entries for each day
+- For each day, total up hours on a per project & category basis
+- Create "week time entry" 
+- Display each week time entry in table
+*/
+
+// Given a set of time entries, return list of those that match a given day
+// Exp: Array of TimeEntry, Date
+// Return: TimeEntry array
+function getMatchingTimeEntryList(timeEntryList, matchingDate) {
+    var matchingTimeEntryList = new Array();
+    for (var i = 0; i < timeEntryList.length; i++) {
+        var testDate = new Date(timeEntryList[i].startTimeDateString);
+        if (datesEqual(testDate, matchingDate)) {
+            matchingTimeEntryList.push(testDate);
+        }
+    }
+    return matchingTimeEntryList;
+}
+
+// Given a date, get array of dates that match the week
+// Return: Date array
+function getGenericWeekDatesFromDate(baseDate) {
+    var pivotDate = new Date(baseDate.getFullYear(), baseDate.getMonth(), baseDate.getDate());
+    var dayOfWeek = pivotDate.getDay();
+    var mondayShiftDays = dayOfWeek - 1; // Monday day is 1. Sunday is 0;
+    var mondayDateEpoch = pivotDate.getTime() - (mondayShiftDays * g_24Hrs);
+
+    var weekDateArray = new Array();
+    for (var i = 0; i < 7; i++) {
+        var weekDayEpoch = mondayDateEpoch + (i * g_24Hrs);
+        var weekDay = new Date(weekDayEpoch);
+        weekDateArray.push(weekDay);
+    }
+    return weekDateArray;
+}
+
+// Return: time difference in milliseconds
+function timeDiff(timeEntry1, timeEntry2) {
+    var epoch1 = timeEntry1.getTime();
+    var epoch2 = timeEntry2.getTime();
+    return Math.abs(epoch2-epoch1);
+}
+
+// Given a time entry list, total up the various values
+// Exp: TimeEntry array
+// Return: ProjectTimeTotal array
+function totalUpTimeEntryList(timeEntryList)
+{
+    projectTimeTotalList = new Array();
+    var beginTime;
+    var nextTime;
+    for (var i = 0; i < timeEntryList.length; i++) {
+        var timeEntry = timeEntryList[i];
+    }
+}
+
+// Given a date, find and calculate the weekly time entries for that date
+function calculateWeekTimeEntries(someDate) {
+    var entireTimeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var weekDateArray = getGenericWeekDatesFromDate(someDate);
+    // dev note: I'm going to use "for" here, but in the future, it would be nice to 
+    //           try using "foreach" and anonymous functions.
+    for (var i = 0; i < weekDateArray.length; i++) {
+        var weekDateTimeEntryList = getMatchingTimeEntryList(entireTimeEntryList, weekDateArray[i]);
+        var weekDateProjectTimeTotalList = totalUpTimeEntryList(weekDateTimeEntryList);
+    }
 }
