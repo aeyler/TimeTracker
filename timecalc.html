@@ -64,6 +64,51 @@
 
     <hr>
 
+    <h2>Weekly Report</h2>
+    <div>
+        <form onsubmit="onButtonClick_DisplayWeeklyDataFor();return false;">
+            Pick a day: <input type="date" id="report_daySelection">
+            <input type="submit">
+        </form>
+        <br>
+    <div>
+        Showing weekly report for: <i id="report_firstDayOfWeekReport">first of week</i> -thru- <i id="report_lastDayOfWeekReport">last of week</i>
+    </div>
+    </div>
+    <div id="report_weeklyReportDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Project Name</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Mon</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Tue</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Wed</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Thu</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Fri</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Sat</p>
+            </div>
+            <div class="w3-col s1 w3-left">
+                <p style="font-weight:bold">Sun</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
     <p><i>Debug Data Display Area</i> <button onclick="debug_clearLocalStorage()">Clear localStorage</button></p>
     <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
     <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
