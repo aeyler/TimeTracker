@@ -3,71 +3,71 @@
 var USETESTDATA = true;
 
 function performLoadOperations() {
-    var timeDataList = retrieveTimeDataList(USETESTDATA);
+    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
 
-    var todayList = getTimeDataListForToday();
-    displayTodayTimeData(todayList);
+    var todayList = getTimeEntryListForToday();
+    displayTodayTimeEntry(todayList);
 }
 
-function datesEqual(timeData1, timeData2) {
-    if (typeof timeData1 != "object" || typeof timeData2 != "object") {
-        console.error("Time data invalid", timeData1, timeData2);
+function datesEqual(timeEntry1, timeEntry2) {
+    if (typeof timeEntry1 != "object" || typeof timeEntry2 != "object") {
+        console.error("Time data invalid", timeEntry1, timeEntry2);
     }
-    if (timeData1.getFullYear() == timeData2.getFullYear() &&
-        timeData1.getMonth() == timeData2.getMonth() &&
-        timeData1.getDate() == timeData2.getDate()) {
+    if (timeEntry1.getFullYear() == timeEntry2.getFullYear() &&
+        timeEntry1.getMonth() == timeEntry2.getMonth() &&
+        timeEntry1.getDate() == timeEntry2.getDate()) {
             return true;
         }
     return false;
 }
 
 // Returns time entries from/for today's date
-function getTimeDataListForToday() {
-    var timeDataList = retrieveTimeDataList(USETESTDATA);
+function getTimeEntryListForToday() {
+    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
     var today = new Date();
     var todayList = new Array();
 
-    for (var i = 0; i < timeDataList.length; i++) {
-        var testDate = new Date(timeDataList[i].startTimeDateString);
+    for (var i = 0; i < timeEntryList.length; i++) {
+        var testDate = new Date(timeEntryList[i].startTimeDateString);
         if (datesEqual(testDate, today)) {
-            todayList.push(timeDataList[i]);
+            todayList.push(timeEntryList[i]);
         }
     }
     return todayList;
 }
 
-function displayTodayTimeData(todayList) {
+function displayTodayTimeEntry(todayList) {
     for (var i = 0; i < todayList.length; i++) {
-        createTodayTimeDataDisplayColumn(todayList[i]);
+        createTodayTimeEntryDisplayColumn(todayList[i]);
     }
 
 }
 
-function createTodayTimeDataDisplayColumn(timeData) {
+function createTodayTimeEntryDisplayColumn(timeEntry) {
     var row = document.createElement("div");
     row.className = "w3-row";
 
-    var startTime = new Date(timeData.startTimeDateString);
+    var startTime = new Date(timeEntry.startTimeDateString);
     row.id = startTime.getTime();
 
-    var col = createTimeDataDisplayColumn(timeData.projectData.projectName);
+    var col = createTimeEntryDisplayColumn(timeEntry.projectData.projectName);
     row.appendChild(col);
 
-    col = createTimeDataDisplayColumn(timeData.categoryData.categoryId);
+    col = createTimeEntryDisplayColumn(timeEntry.categoryData.categoryId);
     row.appendChild(col);
 
-    col = createTimeDataDisplayColumn(timeData.description);
+    col = createTimeEntryDisplayColumn(timeEntry.description);
     row.appendChild(col);
 
-    col = createTimeDataTimeDisplayColumn(startTime);
+    col = createTimeEntryTimeDisplayColumn(startTime);
     row.appendChild(col);
 
-    document.getElementById("report_projectDisplayArea").appendChild(row);
+    document.getElementById("report_dailyTimeEntryDisplayArea").appendChild(row);
 }
 
-function createTimeDataDisplayColumn(displayString) {
+function createTimeEntryDisplayColumn(displayString) {
     var col = document.createElement("div");
-    col.className = "w3-col m1 w3-left";
+    col.className = "w3-col m2 w3-left";
 
     if (displayString === "" || displayString == null) {
         displayString = "<none>";
@@ -78,7 +78,7 @@ function createTimeDataDisplayColumn(displayString) {
     return col;
 }
 
-function createTimeDataTimeDisplayColumn(startTime) {
+function createTimeEntryTimeDisplayColumn(startTime) {
     if (typeof startTime != "object") {
         console.error("startTime should be a Date object.");
     }
