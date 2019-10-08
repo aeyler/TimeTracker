@@ -196,20 +196,20 @@ function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryL
         console.error("dayOfWeek is not a 'number': ", dayOfWeek);
     }
 
-    console.log("---accumulateProjectTimeListIntoWeeklyList---");
-    console.log(dayOfWeek);
-    console.log(projectTimeDayEntryList);
-    console.log(projectTimeWeekEntryList);
+    // console.log("---accumulateProjectTimeListIntoWeeklyList---");
+    // console.log(dayOfWeek);
+    // console.log(projectTimeDayEntryList);
+    // console.log(projectTimeWeekEntryList);
 
     for (var i = 0; i < projectTimeDayEntryList.length; i++) {
-        console.log("--projectTimeDayEntryList iteration: ", i);
+        // console.log("--projectTimeDayEntryList iteration: ", i);
         var projectTimeDayEntry = projectTimeDayEntryList[i];
-        console.log("projectTimeDayEntry: ", projectTimeDayEntry);
+        // console.log("projectTimeDayEntry: ", projectTimeDayEntry);
         // First - is project time entry in the weekly list?
         var found = false;
         for (var k = 0; k < projectTimeWeekEntryList.length; k++) {
             var projectTimeWeekEntry = projectTimeWeekEntryList[k];
-            console.log(projectTimeWeekEntry);
+            // console.log(projectTimeWeekEntry);
             if (equalProjectsAndCategories(projectTimeDayEntry, projectTimeWeekEntry)) {
                 // If so, add the daily time entry value to the weekly time entry (in the correct day)
                 projectTimeWeekEntry.dayTimes[dayOfWeek] += projectTimeDayEntry.totalTime;
@@ -217,7 +217,7 @@ function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryL
                 break;
             }
         }
-        console.log("found: ", found);
+        // console.log("found: ", found);
         if (!found) {
             // otherwise, add a new weekly entry
             var projectWeekTimeEntry = new ProjectTimeWeekEntry(projectTimeDayEntry.projectData, projectTimeDayEntry.categoryData);
@@ -246,7 +246,7 @@ function calculateWeekTimeEntries(someDate) {
         // console.log(weekDateProjectTimeDayEntryList);
         accumulateProjectTimeListIntoWeeklyList(dayNum, weekDateProjectTimeDayEntryList, projectTimeWeekEntryList);
     }
-    console.log("projectTimeWeekEntryList - Accumulated!", projectTimeWeekEntryList);
+    // console.log("projectTimeWeekEntryList - Accumulated!", projectTimeWeekEntryList);
 
     return projectTimeWeekEntryList;
 }
