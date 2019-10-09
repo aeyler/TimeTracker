@@ -109,7 +109,7 @@ function addCategoryDataToDropdown(categoryData) {
     categoryDropdown.appendChild(div);
 }
 
-function onButtonClick_StartProject() {
+function onButtonClick_time_startProject() {
     var projectButton = document.getElementById("time_selectProjectButton");
     var projectData = new ProjectData(projectButton.textContent, projectButton.value);
     var categoryButton = document.getElementById("time_selectCategoryButton");

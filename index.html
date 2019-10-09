@@ -36,6 +36,64 @@
 
     <div id="tt_timeEntryTab" class="w3-container js_view" style="display:block">
         <h2>Time Entry</h2>
+        <div class="w3-row">
+            <!-- onsubmit return false keeps the page from reloading -->
+            <!-- <form onsubmit="onButtonClick_time_startProject();return false;"> -->
+            <div class="w3-col m2 w3-center">
+                <div class="w3-dropdown-hover">
+                    <button id="time_selectProjectButton" class="w3-button w3-black" value="unset">Select
+                        Project</button>
+                    <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m2 w3-center">
+                <div class="w3-dropdown-hover">
+                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="unset">Select
+                        Category</button>
+                    <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m2 w3-center">
+                <input type="text" id="time_projectDescription" placeholder="Free Text Description"
+                    style="font-style:italic">
+            </div>
+            <div class="w3-col m2 w3-center">
+                <button id="time_startProjectButton" onclick="onButtonClick_time_startProject()"
+                    class="w3-button w3-green">Begin</button>
+            </div>
+            <!-- </form> -->
+        </div>
+
+        <hr>
+
+        <h3>Your Day</h3>
+        <div id="time_projectDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m1 w3-left">
+                    <p style="font-weight:bold">Project Name</p>
+                </div>
+                <div class="w3-col m1 w3-left">
+                    <p style="font-weight:bold">Category</p>
+                </div>
+                <div class="w3-col m1 w3-left">
+                    <p style="font-weight:bold">Description</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Begin Time</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
+        <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+        <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+        <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
+
     </div>
 
     <div id="tt_reportTab" class="w3-container js_view" style="display:none">
@@ -158,13 +216,15 @@
 
     <div id="tt_testDataTab" class="w3-container js_view" style="display:none;">
         <h2>Manage Test Data</h2>
-        <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local Storage</button><b> ::
+        <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local
+                Storage</button><b> ::
                 Warning</b></div>
 
         <hr>
 
         <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->></b><button
-                onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear all data and add
+                onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear
+                all data and add
                 fake NI data</b></b></div>
         <hr>
 
