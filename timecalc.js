@@ -155,10 +155,11 @@ function getGenericWeekDatesFromDate(baseDate) {
     return weekDateArray;
 }
 
+// Exp: date strings in format of: "Mon Oct 07 2019 08:23:00 GMT-0500 (Central Daylight Time)"
 // Return: time difference in milliseconds
-function timeDiff(timeEntry1, timeEntry2) {
-    var timeEntryDate1 = new Date(timeEntry1.startTimeDateString);
-    var timeEntryDate2 = new Date(timeEntry2.startTimeDateString);
+function timeDiff(startTimeDateString1, startTimeDateString2) {
+    var timeEntryDate1 = new Date(startTimeDateString1);
+    var timeEntryDate2 = new Date(startTimeDateString2);
     var epoch1 = timeEntryDate1.getTime();
     var epoch2 = timeEntryDate2.getTime();
     return Math.abs(epoch2 - epoch1);
@@ -173,18 +174,29 @@ function totalUpTimeEntryList(timeEntryList)
 
     for (var i = 0; i < timeEntryList.length; i++) {
         var beginTimeEntry = timeEntryList[i];
+        console.log("beginTimeEntry -> ", beginTimeEntry);
         if (isProjectNone(beginTimeEntry.projectData)) {
             // do not calculate "none" entries
             continue;
         }
 
         var nextTimeEntry = timeEntryList[i+1];
+        var timeDiffEpoch = NaN;
         if (typeof nextTimeEntry == "undefined") {
             // assign new date for midnight(ish) for final calc
-            nextTimeEntry = new Date(timeEntry.getFullYear(), timeEntry.getMonth(), timeEntry.getDate(), 23, 59, 59, 999);
+            var tempTime = new Date(beginTimeEntry.startTimeDateString);
+            console.log("tempTime -> ", tempTime);
+            var endOfDayTime = new Date(tempTime.getFullYear(), tempTime.getMonth(), tempTime.getDate(), 23, 59, 59, 999);
+            // HACK: faking a time entry
+            timeDiffEpoch = timeDiff(beginTimeEntry.startTimeDateString, endOfDayTime.toString());
+            console.log("nextTimeEntry -> ", nextTimeEntry);
+        }
+        else {
+            // we've got a good "next time", so use it
+            timeDiffEpoch = timeDiff(beginTimeEntry.startTimeDateString, nextTimeEntry.startTimeDateString);
         }
 
-        var timeDiffEpoch = timeDiff(beginTimeEntry, nextTimeEntry);
+        console.log("timeDiffEpoch -> ", timeDiffEpoch);
 
         // If this time entry is already in our list, add it on.
         // Otherwise, push it in.
@@ -331,7 +343,7 @@ function createWeeklyTotalDisplayColumnNumber(timeInMilliseconds) {
     if (typeof timeInMilliseconds != "number" || timeInMilliseconds == null) {
         timeInMilliseconds = 356400000; // 99 hours should be noticeable as being incorrect
     }
-    var node = document.createTextNode(epochToHours(timeInMilliseconds));
+    var node = document.createTextNode(epochToHours(timeInMilliseconds).toFixed(2));
     col.appendChild(node);
 
     return col;
