@@ -34,7 +34,7 @@
 
     <!-- Tab Entry Divisions -->
 
-    <div id="tt_timeEntryTab" class="w3-container js_view" style="display:block">
+    <div id="tt_timeEntryTab" class="w3-container js_view" style="display:none">
         <h2>Time Entry</h2>
         <div class="w3-row">
             <!-- onsubmit return false keeps the page from reloading -->
@@ -314,6 +314,8 @@
         <hr>
     </div>
 
+    <!-- Jump start by selecting a tab -->
+    <script>tt_selectView("tt_timeEntryTab");</script>
 </body>
 
 </html>
