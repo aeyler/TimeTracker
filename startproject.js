@@ -22,7 +22,6 @@ function debug_displayCategoryList(categoryList) {
 
 function debug_displayTimeEntryListJson() {
     var list = retrieveTimeEntryList();
-    console.log(list);
     var jsonList = JSON.stringify(list);
     var debugDisplay = document.getElementById("time_debugDisplayTimeEntryJson");
     debugDisplay.innerHTML = "<b>TimeEntry List as JSON:</b>" + "<br>" + jsonList;
