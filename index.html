@@ -89,6 +89,7 @@
 
         <hr>
 
+        <p><i>Debug Data Display Area</i></p>
         <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
         <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
         <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
@@ -208,10 +209,73 @@
 
     <div id="tt_manageProjectsTab" class="w3-container js_view" style="display:none">
         <h2>Manage Projects</h2>
+        <div class="w3-row">
+            <!-- onsubmit return false keeps the page from reloading -->
+            <form onsubmit="onButtonClick_proj_addNewProject();return false;">
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="proj_newProjectName" placeholder="Project Name" style="font-style:italic">
+                </div>
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="proj_newProjectId" placeholder="Project Id" style="font-style:italic">
+                </div>
+                <div class="w3-col m2 w3-center">
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+        <h3>Current Projects</h3>
+        <div id="proj_projectDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Project Name</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Project Identifier</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p><i>Debug Data Display Area</i></p>
+        <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
+        <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
     </div>
 
     <div id="tt_manageCategoriesTab" class="w3-container js_view" style="display:none">
         <h2>Manage Categories</h2>
+        <div class="w3-row">
+            <!-- onsubmit return false keeps the page from reloading -->
+            <form onsubmit="onButtonClick_cat_addNewCategory();return false;">
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="cat_newCategory" placeholder="Category" style="font-style:italic">
+                </div>
+                <div class="w3-col m2 w3-center">
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+        <h3>Current Categories</h3>
+        <div id="cat_categoryDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Category</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p>Debug Data Display Area</p>
+        <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
+        <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+
     </div>
 
     <div id="tt_testDataTab" class="w3-container js_view" style="display:none;">

@@ -43,7 +43,7 @@ function ensureValidProjectId(projectName, projectId) {
     return projectId;
 }
 
-function onButtonClick_AddNewProject() {
+function onButtonClick_proj_addNewProject() {
     var projectName = document.getElementById("proj_newProjectName").value;
     var checkProjectId = document.getElementById("proj_newProjectId").value;
     var projectId = ensureValidProjectId(projectName, checkProjectId);

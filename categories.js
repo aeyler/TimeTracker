@@ -31,7 +31,7 @@ function cat_performLoadOperations() {
     }
 }
 
-function onButtonClick_AddNewCategory() {
+function onButtonClick_cat_addNewCategory() {
     var categoryName = document.getElementById("cat_newCategory").value;
 
     // reset new category control to default blank value
