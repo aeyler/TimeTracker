@@ -1,0 +1,24 @@
+
+[
+{"categoryName":"<none>","categoryId":"<none>"},
+{"categoryName":"test cat 1","categoryId":"test cat 1"},
+{"categoryName":"test cat 22","categoryId":"test cat 22"},
+]
+
+[{"categoryName":"<none>","categoryId":"<none>"},{"categoryName":"test cat 1","categoryId":"test cat 1"},{"categoryName":"test cat 22","categoryId":"test cat 22"}]
+
+
+
+
+[
+{"categoryName":"<none>","categoryId":"<none>"},
+{"categoryName":"Software Development","categoryId":"Software Development"},
+{"categoryName":"Research","categoryId":"Research"},
+{"categoryName":"NPT - Vacation","categoryId":"NPT - Vacation"},
+{"categoryName":"NPT - Holiday","categoryId":"NPT - Holiday"},
+{"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},
+{"categoryName":"NPT - Sick Leave","categoryId":"NPT - Sick Leave"},
+{"categoryName":"NPT - Misc","categoryId":"NPT - Misc"}
+]
+
+[{"categoryName":"<none>","categoryId":"<none>"},{"categoryName":"Software Development","categoryId":"Software Development"},{"categoryName":"Research","categoryId":"Research"},{"categoryName":"NPT - Vacation","categoryId":"NPT - Vacation"},{"categoryName":"NPT - Holiday","categoryId":"NPT - Holiday"},{"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},{"categoryName":"NPT - Sick Leave","categoryId":"NPT - Sick Leave"},{"categoryName":"NPT - Misc","categoryId":"NPT - Misc"}]
