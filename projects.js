@@ -27,7 +27,10 @@ function debug_displayProjectListJson() {
 function proj_performLoadOperations() {
     // get current category list
     var projectDataList = retrieveProjectList();
-    console.log("projectDataList", projectDataList)
+
+    // remove any previous rows sitting there (yay static nodes...?)
+    removeRowsOfClass("tt_proj_row");
+
     // add them to the table
     for (var i = 0; i < projectDataList.length; i++) {
         createProjectDisplayRow(projectDataList[i]);
@@ -43,7 +46,7 @@ function ensureValidProjectId(projectName, projectId) {
     return projectId;
 }
 
-function onButtonClick_AddNewProject() {
+function onButtonClick_proj_addNewProject() {
     var projectName = document.getElementById("proj_newProjectName").value;
     var checkProjectId = document.getElementById("proj_newProjectId").value;
     var projectId = ensureValidProjectId(projectName, checkProjectId);
@@ -88,7 +91,7 @@ function getTagIdentifer(projectData) {
 
 function createProjectDisplayRow(projectData) {
     var row = document.createElement("div");
-    row.className = "w3-row";
+    row.className = "w3-row tt_proj_row";
     row.id = getTagIdentifer(projectData);
 
     var col = createProjectDisplayColumn(projectData.projectName);

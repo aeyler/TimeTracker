@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Time Tracker</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="categories.js"></script>
+    <script src="projects.js"></script>
+    <script src="reporting.js"></script>
+    <script src="testdata.js"></script>
+    <script src="timeentry.js"></script>
+    <script src="timetracker.js"></script>
+    <script src="utils.js"></script>
+    <script src="utils_storage.js"></script>
+</head>
+
+<body onload="tt_performLoadOperations()">
+
+    <div class="w3-bar w3-black">
+        <span class="w3-bar-item">Select Your Option:</span>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_timeEntryTab');">Time
+            Entry</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk"
+            onclick="tt_selectView('tt_reportTab');">Reporting</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk"
+            onclick="tt_selectView('tt_manageProjectsTab');">Manage
+            Projects</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk"
+            onclick="tt_selectView('tt_manageCategoriesTab');">Manage
+            Categories</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_testDataTab');">Test
+            Data</button>
+    </div>
+
+    <!-- Tab Entry Divisions -->
+
+    <div id="tt_timeEntryTab" class="w3-container js_view" style="display:none">
+        <h2>Time Entry</h2>
+        <div class="w3-row">
+            <!-- onsubmit return false keeps the page from reloading -->
+            <!-- <form onsubmit="onButtonClick_time_startProject();return false;"> -->
+            <div class="w3-col m2 w3-center">
+                <div class="w3-dropdown-hover">
+                    <button id="time_selectProjectButton" class="w3-button w3-black" value="unset">Select
+                        Project</button>
+                    <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m2 w3-center">
+                <div class="w3-dropdown-hover">
+                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="unset">Select
+                        Category</button>
+                    <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m2 w3-center">
+                <input type="text" id="time_projectDescription" placeholder="Free Text Description"
+                    style="font-style:italic">
+            </div>
+            <div class="w3-col m2 w3-center">
+                <button id="time_startProjectButton" onclick="onButtonClick_time_startProject()"
+                    class="w3-button w3-green">Begin</button>
+            </div>
+            <!-- </form> -->
+        </div>
+
+        <hr>
+
+        <h3>Your Day</h3>
+        <div id="time_projectDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m1 w3-left">
+                    <p style="font-weight:bold">Project Name</p>
+                </div>
+                <div class="w3-col m1 w3-left">
+                    <p style="font-weight:bold">Category</p>
+                </div>
+                <div class="w3-col m1 w3-left">
+                    <p style="font-weight:bold">Description</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Begin Time</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p><i>Debug Data Display Area</i></p>
+        <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
+        <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+        <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+        <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
+
+    </div>
+
+    <div id="tt_reportTab" class="w3-container js_view" style="display:none">
+        <h2>Daily Entries</h2>
+        <div id="report_dailyTimeEntryDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Project Name</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Category</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Description</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Begin Time</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Weekly Totals</h2>
+        <div id="report_weeklyTotalsDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Project Name</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Category</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Mon</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Tue</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Wed</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Thu</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Fri</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Sat</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Sun</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2>Weekly Report</h2>
+        <div>
+            <form onsubmit="onButtonClick_report_DisplayWeeklyDataForSelectedDate();return false;">
+                Pick a day: <input type="date" id="report_daySelection">
+                <input type="submit" value="Calculate">
+            </form>
+            <br>
+            <div>
+                Showing weekly report for: <i id="report_firstDayOfWeekReport">first of week</i> -- <i
+                    id="report_lastDayOfWeekReport">last of week</i><b id="report_noTimeData" hidden="true"> :: No time
+                    data available</b>
+            </div>
+        </div>
+        <div id="report_weeklyReportDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Project Name</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Category</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Mon</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Tue</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Wed</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Thu</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Fri</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Sat</p>
+                </div>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Sun</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p><i>Debug Data Display Area</i></p>
+        <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
+        <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+        <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+        <p id="report_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
+
+        <hr>
+    </div>
+
+    <div id="tt_manageProjectsTab" class="w3-container js_view" style="display:none">
+        <h2>Manage Projects</h2>
+        <div class="w3-row">
+            <!-- onsubmit return false keeps the page from reloading -->
+            <form onsubmit="onButtonClick_proj_addNewProject();return false;">
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="proj_newProjectName" placeholder="Project Name" style="font-style:italic">
+                </div>
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="proj_newProjectId" placeholder="Project Id" style="font-style:italic">
+                </div>
+                <div class="w3-col m2 w3-center">
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+        <h3>Current Projects</h3>
+        <div id="proj_projectDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Project Name</p>
+                </div>
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Project Identifier</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p><i>Debug Data Display Area</i></p>
+        <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
+        <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+    </div>
+
+    <div id="tt_manageCategoriesTab" class="w3-container js_view" style="display:none">
+        <h2>Manage Categories</h2>
+        <div class="w3-row">
+            <!-- onsubmit return false keeps the page from reloading -->
+            <form onsubmit="onButtonClick_cat_addNewCategory();return false;">
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="cat_newCategory" placeholder="Category" style="font-style:italic">
+                </div>
+                <div class="w3-col m2 w3-center">
+                    <input type="submit" value="Create">
+                </div>
+            </form>
+        </div>
+
+        <hr>
+
+        <h3>Current Categories</h3>
+        <div id="cat_categoryDisplayArea">
+            <div class="w3-row">
+                <div class="w3-col m2 w3-left">
+                    <p style="font-weight:bold">Category</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <p>Debug Data Display Area</p>
+        <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
+        <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+
+    </div>
+
+    <div id="tt_testDataTab" class="w3-container js_view" style="display:none;">
+        <h2>Manage Test Data</h2>
+        <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local
+                Storage</button><b> ::
+                Warning</b></div>
+
+        <hr>
+
+        <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->></b><button
+                onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear
+                all data and add
+                fake NI data</b></b></div>
+        <hr>
+
+        <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
+        <button onclick="onButtonClick_testdata_insertTestProjectData()">Insert Test Project Data</button>
+        <p id="test_testProjectData"></p>
+
+        <hr>
+
+        <button onclick="onButtonClick_testdata_insertTestCategoryData()">Insert Test Category Data</button>
+        <p id="test_testCategoryData"></p>
+
+        <hr>
+
+        <button onclick="onButtonClick_testdata_insertTestTimeEntryData()">Insert Test Time Entries</button>
+        <p id="test_testTimeEntrytData"></p>
+
+        <hr>
+
+        <h3>Debugging: Data Inserted (as JSON string)</h3>
+        <p id="test_dataInsertedToLocalStorage"><i>...Empty until filled...</i></p>
+
+        <hr>
+    </div>
+
+    <!-- Jump start by selecting a tab -->
+    <script>tt_selectView("tt_timeEntryTab");</script>
+</body>
+
+</html>

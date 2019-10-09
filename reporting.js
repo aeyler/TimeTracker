@@ -1,9 +1,11 @@
 "use strict";
 
-var USETESTDATA = false;
-
 function report_performLoadOperations() {
-    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var timeEntryList = retrieveTimeEntryList();
+
+     // remove any previous rows sitting there (yay static nodes...?)
+     removeRowsOfClass("tt_report_day_row");
+     removeRowsOfClass("tt_report_week_row");
 
     var today = new Date();
     var todayList = getTimeEntryListFor(today);
@@ -44,7 +46,7 @@ function datesEqual(timeEntry1, timeEntry2) {
 
 // Returns time entries from/for today's date
 function getTimeEntryListFor(someDate) {
-    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var timeEntryList = retrieveTimeEntryList();
     var someDateList = new Array();
 
     for (var i = 0; i < timeEntryList.length; i++) {
@@ -65,7 +67,7 @@ function displayTodayTimeEntry(todayList) {
 
 function createTodayTimeEntryDisplayColumn(timeEntry) {
     var row = document.createElement("div");
-    row.className = "w3-row";
+    row.className = "w3-row tt_report_day_row";
 
     var startTime = new Date(timeEntry.startTimeDateString);
     row.id = startTime.getTime();
@@ -260,7 +262,7 @@ function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryL
 
 // Given a date, find and calculate the weekly time entries for that date
 function calculateWeekTimeEntries(someDate) {
-    var entireTimeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var entireTimeEntryList = retrieveTimeEntryList();
     var weekDateArray = getGenericWeekDatesFromDate(someDate);
     //var weekDateArray = [new Date(2019,9,7), new Date()];
     
@@ -302,7 +304,7 @@ function removeRows(displayDivId, removalClassName) {
 
 function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry, displayDivId, removalClassName) {
     var row = document.createElement("div");
-    row.className = "w3-row" + " " + removalClassName;
+    row.className = "w3-row tt_report_week_row" + " " + removalClassName;
     row.id = "row_" + displayDivId;
 
     var col = createWeeklyTotalDisplayColumnText(projectTimeWeekEntry.projectData.projectName);
@@ -349,7 +351,7 @@ function createWeeklyTotalDisplayColumnNumber(timeInMilliseconds) {
     return col;
 }
 
-function onButtonClick_DisplayWeeklyDataForSelectedDate() {
+function onButtonClick_report_DisplayWeeklyDataForSelectedDate() {
     var dateSelector = document.getElementById("report_daySelection");
     var selectorDateValue = dateSelector.value;
     var userChosenDate = new Date(selectorDateValue);

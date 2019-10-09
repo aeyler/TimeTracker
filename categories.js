@@ -25,13 +25,17 @@ function debug_displayCategoryListJson() {
 function cat_performLoadOperations() {
     // get current category list
     var categoryDataList = retrieveCategoryList();
+
+    // remove any previous rows sitting there (yay static nodes...?)
+    removeRowsOfClass("tt_cat_row");
+    
     // add them to the table
     for (var i = 0; i < categoryDataList.length; i++) {
         createCategoryDisplayRow(categoryDataList[i]);
     }
 }
 
-function onButtonClick_AddNewCategory() {
+function onButtonClick_cat_addNewCategory() {
     var categoryName = document.getElementById("cat_newCategory").value;
 
     // reset new category control to default blank value
@@ -68,7 +72,7 @@ function addCategoryDataToCategoryList(categoryData) {
 
 function createCategoryDisplayRow(categoryData) {
     var row = document.createElement("div");
-    row.className = "w3-row";
+    row.className = "w3-row tt_cat_row";
     row.id = categoryData.categoryId;
 
     var col = createCategoryDisplayColumn(categoryData.categoryName);

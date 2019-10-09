@@ -12,35 +12,35 @@ function testdata_performLoadOperations() {
 
 }
 
-function testdata_clearLocalStorage() {
+function onButtonClick_testdata_clearLocalStorage() {
     console.log("Clearning all local storage");
     be_careful_clearLocalStorage();
     document.getElementById("test_dataInsertedToLocalStorage").innerHTML = "<i>Nothing, you just cleared it...</i>";
 }
 
-function testdata_insertTestProjectData() {
+function onButtonClick_testdata_insertTestProjectData() {
     console.log("Inserting test project data");
     storeProjectListJsonString(test_ProjectListAsJsonString);
     document.getElementById("test_dataInsertedToLocalStorage").textContent = test_ProjectListAsJsonString;
 }
 
-function testdata_insertTestCategoryData() {
+function onButtonClick_testdata_insertTestCategoryData() {
     console.log("Inserting test category data");
     storeCategoryListJsonString(test_CategoryListAsJsonString);
     document.getElementById("test_dataInsertedToLocalStorage").textContent = test_CategoryListAsJsonString;
 }
 
-function testdata_insertTestTimeEntryData() {
+function onButtonClick_testdata_insertTestTimeEntryData() {
     console.log("Inserting test time entry data");
     storeTimeEntryListJsonString(test_TimeEntryListAsJsonString);
     document.getElementById("test_dataInsertedToLocalStorage").textContent = test_TimeEntryListAsJsonString;
 }
 
-function testdata_gimmeNITestData() {
-    testdata_clearLocalStorage();
-    console.log("Inserting NI test data (like projects, categores, and fake time entries...");
+function onButtonClick_testdata_gimmeNITestData() {
+    be_careful_clearLocalStorage();
+    console.log("Inserting NI test data (like projects, categores, and fake time entries...)");
     storeProjectListJsonString(test_NIProjectList);
     storeCategoryListJsonString(test_NICategoryList);
     storeTimeEntryListJsonString(test_NITimeEntryList);
-    document.getElementById("test_dataInsertedToLocalStorage").textContent = "Way to much data to show...";
+    document.getElementById("test_dataInsertedToLocalStorage").innerHTML = "<i><b>...Way to much data to show, so trust me you fool...</b></i>";
 }
