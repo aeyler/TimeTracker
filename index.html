@@ -32,6 +32,8 @@
             Data</button>
     </div>
 
+    <!-- Tab Entry Divisions -->
+
     <div id="tt_timeEntryTab" class="w3-container js_view" style="display:block">
         <h2>Time Entry</h2>
     </div>
@@ -92,7 +94,7 @@
 
         <h2>Weekly Report</h2>
         <div>
-            <form onsubmit="onButtonClick_DisplayWeeklyDataForSelectedDate();return false;">
+            <form onsubmit="onButtonClick_report_DisplayWeeklyDataForSelectedDate();return false;">
                 Pick a day: <input type="date" id="report_daySelection">
                 <input type="submit" value="Calculate">
             </form>
@@ -137,8 +139,7 @@
 
         <hr>
 
-        <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button>
-        </p>
+        <p><i>Debug Data Display Area</i></p>
         <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
         <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
         <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>

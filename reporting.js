@@ -349,7 +349,7 @@ function createWeeklyTotalDisplayColumnNumber(timeInMilliseconds) {
     return col;
 }
 
-function onButtonClick_DisplayWeeklyDataForSelectedDate() {
+function onButtonClick_report_DisplayWeeklyDataForSelectedDate() {
     var dateSelector = document.getElementById("report_daySelection");
     var selectorDateValue = dateSelector.value;
     var userChosenDate = new Date(selectorDateValue);
