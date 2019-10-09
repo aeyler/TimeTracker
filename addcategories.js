@@ -22,6 +22,15 @@ function debug_displayCategoryListJson() {
     debugDisplay.innerHTML = "<b>Category List as JSON:</b>" + "<br>" + jsonList;
 }
 
+function cat_performLoadOperations() {
+    // get current category list
+    var categoryDataList = retrieveCategoryList();
+    // add them to the table
+    for (var i = 0; i < categoryDataList.length; i++) {
+        createCategoryDisplayRow(categoryDataList[i]);
+    }
+}
+
 function onButtonClick_AddNewCategory() {
     var categoryName = document.getElementById("cat_newCategory").value;
 

@@ -8,7 +8,7 @@
     <script src="storage.js"></script>
 </head>
 
-<body>
+<body onload="cat_performLoadOperations()">
 
     <h2>Add Category</h2>
     <div class="w3-row">
@@ -25,12 +25,6 @@
 
     <hr>
 
-    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
-    <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
-    <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
-
-    <hr>
-
     <h3>Current Categories</h3>
     <div id="cat_categoryDisplayArea">
         <div class="w3-row">
@@ -39,6 +33,12 @@
             </div>
         </div>
     </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
 
 </body>
 
