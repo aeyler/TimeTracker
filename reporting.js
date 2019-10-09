@@ -185,20 +185,26 @@ function totalUpTimeEntryList(timeEntryList)
         var nextTimeEntry = timeEntryList[i+1];
         var timeDiffEpoch = NaN;
         if (typeof nextTimeEntry == "undefined") {
-            // assign new date for midnight(ish) for final calc
-            var tempTime = new Date(beginTimeEntry.startTimeDateString);
-            console.log("tempTime -> ", tempTime);
-            var endOfDayTime = new Date(tempTime.getFullYear(), tempTime.getMonth(), tempTime.getDate(), 23, 59, 59, 999);
+            // we have no "ending" time entry of <none>, so we have to do...something
+            // 1) If it is today, use the current time as a final value to test with
+            // 2) Any other day, use midnight (23:59:59:99)
+            var today = new Date();
+            var checkDate = new Date(beginTimeEntry.startTimeDateString);
+            var endOfDayTime;
+            if (today.toDateString() === checkDate.toDateString()) {
+                endOfDayTime = today;
+            }
+            else {
+                // assign new date for midnight(ish) for final calc
+                endOfDayTime = new Date(checkDate.getFullYear(), checkDate.getMonth(), checkDate.getDate(), 23, 59, 59, 999);
+            }
             // HACK: faking a time entry
             timeDiffEpoch = timeDiff(beginTimeEntry.startTimeDateString, endOfDayTime.toString());
-            console.log("nextTimeEntry -> ", nextTimeEntry);
         }
         else {
             // we've got a good "next time", so use it
             timeDiffEpoch = timeDiff(beginTimeEntry.startTimeDateString, nextTimeEntry.startTimeDateString);
         }
-
-        console.log("timeDiffEpoch -> ", timeDiffEpoch);
 
         // If this time entry is already in our list, add it on.
         // Otherwise, push it in.
