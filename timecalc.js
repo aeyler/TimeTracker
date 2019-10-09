@@ -2,7 +2,7 @@
 
 var USETESTDATA = false;
 
-function performLoadOperations() {
+function report_performLoadOperations() {
     var timeEntryList = retrieveTimeEntryList(USETESTDATA);
 
     var today = new Date();
