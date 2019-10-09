@@ -1,9 +1,7 @@
 "use strict";
 
-var USETESTDATA = false;
-
 function report_performLoadOperations() {
-    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var timeEntryList = retrieveTimeEntryList();
 
     var today = new Date();
     var todayList = getTimeEntryListFor(today);
@@ -44,7 +42,7 @@ function datesEqual(timeEntry1, timeEntry2) {
 
 // Returns time entries from/for today's date
 function getTimeEntryListFor(someDate) {
-    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var timeEntryList = retrieveTimeEntryList();
     var someDateList = new Array();
 
     for (var i = 0; i < timeEntryList.length; i++) {
@@ -260,7 +258,7 @@ function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryL
 
 // Given a date, find and calculate the weekly time entries for that date
 function calculateWeekTimeEntries(someDate) {
-    var entireTimeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var entireTimeEntryList = retrieveTimeEntryList();
     var weekDateArray = getGenericWeekDatesFromDate(someDate);
     //var weekDateArray = [new Date(2019,9,7), new Date()];
     

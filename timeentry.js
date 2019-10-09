@@ -1,7 +1,5 @@
 "use strict";
 
-var USETESTDATA = false;
-
 function debug_displayCurrentTimeEntryItem(timeEntry, operation) {
     var sep = ", ";
     // show new item in test field
@@ -29,8 +27,8 @@ function debug_displayTimeEntryListJson() {
 
 function time_performLoadOperations() {
     // Fill out the project and category selections
-    var projectList = retrieveProjectList(USETESTDATA);
-    var categoryList = retrieveCategoryList(USETESTDATA);
+    var projectList = retrieveProjectList();
+    var categoryList = retrieveCategoryList();
     if (!validateListsContainData(projectList, categoryList)) {
         return;
     }
@@ -42,7 +40,7 @@ function time_performLoadOperations() {
     addCategoriesToDropdown(categoryList);
 
     // Fill out current time data entries
-    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var timeEntryList = retrieveTimeEntryList();
     var todayTimeEntryList = getMatchingTimeEntryList(timeEntryList, new Date());
     for (var i = 0; i < todayTimeEntryList.length; i++) {
         createTimeEntryDisplayRow(todayTimeEntryList[i]);
@@ -130,7 +128,7 @@ function onButtonClick_time_startProject() {
 }
 
 function addTimeEntryToTimeEntryList(timeEntry) {
-    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var timeEntryList = retrieveTimeEntryList();
     if (timeEntryList == null) {
         timeEntryList = new Array();
     }
