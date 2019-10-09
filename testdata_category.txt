@@ -21,6 +21,7 @@ var test_CategoryList = '[{"categoryName":"<none>","categoryId":"<none>"},{"cate
 {"categoryName":"NPT - Holiday","categoryId":"NPT - Holiday"},
 {"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},
 {"categoryName":"NPT - Sick Leave","categoryId":"NPT - Sick Leave"},
-{"categoryName":"NPT - Misc","categoryId":"NPT - Misc"},
+{"categoryName":"NPT - Misc","categoryId":"NPT - Misc"}
 ]
 
+var test_NICategoryList = '[{"categoryName":"<none>","categoryId":"<none>"},{"categoryName":"Software Development","categoryId":"Software Development"},{"categoryName":"Research","categoryId":"Research"},{"categoryName":"NPT - Vacation","categoryId":"NPT - Vacation"},{"categoryName":"NPT - Holiday","categoryId":"NPT - Holiday"},{"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},{"categoryName":"NPT - Sick Leave","categoryId":"NPT - Sick Leave"},{"categoryName":"NPT - Misc","categoryId":"NPT - Misc"}]';

@@ -22,5 +22,5 @@ var test_ProjectList = '[{"projectName":"<none>","projectId":"<none>"},{"project
 {"projectName":"PPIO Tech Week","projectId":"107798"}
 ]
 
-var test_ProjectList = '[{"projectName":"<none>","projectId":"<none>"}{"projectName":"NI DAQmx 19.6","projectId":"107752"},{"projectName":"RIO 19.6,"projectId":"107751"},{"projectName":"MCAS Team","projectId":"NP2041"},{"projectName":"Tech Week","projectId":"???"}]';
+var test_NIProjectList = '[{"projectName":"<none>","projectId":"<none>"}{"projectName":"NI DAQmx 19.6","projectId":"107752"},{"projectName":"RIO 19.6,"projectId":"107751"},{"projectName":"MCAS Team","projectId":"NP2041"},{"projectName":"Tech Week","projectId":"???"}]';
 
