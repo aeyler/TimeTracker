@@ -8,7 +8,7 @@
     <script src="storage.js"></script>
 </head>
 
-<body>
+<body onload="proj_performLoadOperations()">
 
     <h2>Add Project</h2>
     <div class="w3-row">
@@ -28,12 +28,6 @@
 
     <hr>
 
-    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
-    <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
-    <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
-
-    <hr>
-
     <h3>Current Projects</h3>
     <div id="proj_projectDisplayArea">
         <div class="w3-row">
@@ -45,6 +39,12 @@
             </div>
         </div>
     </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
 
 </body>
 

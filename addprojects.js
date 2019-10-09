@@ -24,6 +24,16 @@ function debug_displayProjectListJson() {
     debugDisplay.innerHTML = "<b>Project List as JSON:</b>" + "<br>" + jsonList;
 }
 
+function proj_performLoadOperations() {
+    // get current category list
+    var projectDataList = retrieveProjectList();
+    console.log("projectDataList", projectDataList)
+    // add them to the table
+    for (var i = 0; i < projectDataList.length; i++) {
+        createProjectDisplayRow(projectDataList[i]);
+    }
+}
+
 // If the projectId is blank or null, we will use
 // the projectName instead
 function ensureValidProjectId(projectName, projectId) {
