@@ -38,7 +38,7 @@ function onButtonClick_testdata_insertTestTimeEntryData() {
 
 function onButtonClick_testdata_gimmeNITestData() {
     be_careful_clearLocalStorage();
-    console.log("Inserting NI test data (like projects, categores, and fake time entries...");
+    console.log("Inserting NI test data (like projects, categores, and fake time entries...)");
     storeProjectListJsonString(test_NIProjectList);
     storeCategoryListJsonString(test_NICategoryList);
     storeTimeEntryListJsonString(test_NITimeEntryList);
