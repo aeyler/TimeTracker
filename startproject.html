@@ -5,10 +5,11 @@
     <title>Track Project Time</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script src="startproject.js"></script>
+    <script src="timecalc.js"></script>
     <script src="storage.js"></script>
 </head>
 
-<body onload="performLoadOperations()">
+<body onload="time_performLoadOperations()">
 
     <h2>Begin Tracking Your Time</h2>
     <div class="w3-row">
@@ -46,14 +47,6 @@
 
     <hr>
 
-    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
-    <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
-    <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
-    <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
-    <p id="time_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
-
-    <hr>
-
     <h3>Your Day</h3>
     <div id="time_projectDisplayArea">
         <div class="w3-row">
@@ -71,6 +64,14 @@
             </div>
         </div>
     </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+    <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+    <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
 
 </body>
 

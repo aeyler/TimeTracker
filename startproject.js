@@ -28,8 +28,8 @@ function debug_displayTimeEntryListJson() {
     debugDisplay.innerHTML = "<b>TimeEntry List as JSON:</b>" + "<br>" + jsonList;
 }
 
-// Fill out the project and category selections
-function performLoadOperations() {
+function time_performLoadOperations() {
+    // Fill out the project and category selections
     var projectList = retrieveProjectList(USETESTDATA);
     var categoryList = retrieveCategoryList(USETESTDATA);
     if (!validateListsContainData(projectList, categoryList)) {
@@ -41,6 +41,13 @@ function performLoadOperations() {
 
     addProjectsToDropdown(projectList);
     addCategoriesToDropdown(categoryList);
+
+    // Fill out current time data entries
+    var timeEntryList = retrieveTimeEntryList(USETESTDATA);
+    var todayTimeEntryList = getMatchingTimeEntryList(timeEntryList, new Date());
+    for (var i = 0; i < todayTimeEntryList.length; i++) {
+        createTimeEntryDisplayRow(todayTimeEntryList[i]);
+    }
 }
 
 function validateListsContainData(projectList, categoryList) {
