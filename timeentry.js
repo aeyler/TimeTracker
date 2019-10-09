@@ -36,11 +36,18 @@ function time_performLoadOperations() {
     debug_displayProjectList(projectList);
     debug_displayCategoryList(categoryList);
 
+     // remove any previous project/category selections sitting there (yay static nodes...?)
+     removeRowsOfClass("tt_time_selection");
+
     addProjectsToDropdown(projectList);
     addCategoriesToDropdown(categoryList);
 
     // Fill out current time data entries
     var timeEntryList = retrieveTimeEntryList();
+ 
+     // remove any previous rows sitting there (yay static nodes...?)
+    removeRowsOfClass("tt_time_row");
+
     var todayTimeEntryList = getMatchingTimeEntryList(timeEntryList, new Date());
     for (var i = 0; i < todayTimeEntryList.length; i++) {
         createTimeEntryDisplayRow(todayTimeEntryList[i]);
@@ -75,7 +82,7 @@ function addCategoriesToDropdown(categoryList) {
 
 function getDivItem(name, id) {
     var div = document.createElement("div");
-    div.className = "w3-bar-item w3-button"; // denote a button(esque) look/feel
+    div.className = "w3-bar-item w3-button tt_time_selection"; // denote a button(esque) look/feel
     div.textContent = name;
     div.setAttribute("value", id);
     return div;
@@ -143,7 +150,7 @@ function addTimeEntryToTimeEntryList(timeEntry) {
 
 function createTimeEntryDisplayRow(timeEntry) {
     var row = document.createElement("div");
-    row.className = "w3-row";
+    row.className = "w3-row tt_time_row";
 
     var startTime = new Date(timeEntry.startTimeDateString);
     row.id = startTime.getTime();

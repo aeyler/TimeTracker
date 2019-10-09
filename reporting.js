@@ -3,6 +3,10 @@
 function report_performLoadOperations() {
     var timeEntryList = retrieveTimeEntryList();
 
+     // remove any previous rows sitting there (yay static nodes...?)
+     removeRowsOfClass("tt_report_day_row");
+     removeRowsOfClass("tt_report_week_row");
+
     var today = new Date();
     var todayList = getTimeEntryListFor(today);
     displayTodayTimeEntry(todayList);
@@ -63,7 +67,7 @@ function displayTodayTimeEntry(todayList) {
 
 function createTodayTimeEntryDisplayColumn(timeEntry) {
     var row = document.createElement("div");
-    row.className = "w3-row";
+    row.className = "w3-row tt_report_day_row";
 
     var startTime = new Date(timeEntry.startTimeDateString);
     row.id = startTime.getTime();
@@ -300,7 +304,7 @@ function removeRows(displayDivId, removalClassName) {
 
 function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry, displayDivId, removalClassName) {
     var row = document.createElement("div");
-    row.className = "w3-row" + " " + removalClassName;
+    row.className = "w3-row tt_report_week_row" + " " + removalClassName;
     row.id = "row_" + displayDivId;
 
     var col = createWeeklyTotalDisplayColumnText(projectTimeWeekEntry.projectData.projectName);

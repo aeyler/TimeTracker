@@ -31,3 +31,13 @@ function epochToHours(milliseconds) {
     }
     return milliseconds / 1000 / 60 / 60;
 }
+
+// Remove div nodes based on the given class name
+// Req: rows are built with given class name
+function removeRowsOfClass(removalClass) {
+    var rows = document.getElementsByClassName(removalClass);
+    for (var i = rows.length-1; i >= 0; i--) {
+        rows[i].remove();
+    }
+}
+

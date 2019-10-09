@@ -58,11 +58,8 @@ function storeProjectListJsonString(projectListJsonString) {
 }
 
 // Return: ProgramList data from localStorage
-function retrieveProjectList(requestTestData) {
+function retrieveProjectList() {
     var jsonList = localStorage.getItem("projectList");
-    if (requestTestData === true) {
-        jsonList = test_ProjectList;
-    }
     var projectList = JSON.parse(jsonList);
     return projectList;
 }
@@ -79,11 +76,8 @@ function storeCategoryListJsonString(categoryListJsonString) {
 }
 
 // Return: CategoryList data from localStorage
-function retrieveCategoryList(requestTestData) {
+function retrieveCategoryList() {
     var jsonList = localStorage.getItem("categoryList");
-    if (requestTestData === true) {
-        jsonList = test_CategoryList;
-    }
     var categoryList = JSON.parse(jsonList);
     return categoryList;
 }
@@ -100,11 +94,8 @@ function storeTimeEntryListJsonString(timeEntryListJsonString) {
 }
 
 // Return: TimeEntryList data from localStorage
-function retrieveTimeEntryList(requestTestData) {
+function retrieveTimeEntryList() {
     var jsonList = localStorage.getItem("timeEntryList");
-    if (requestTestData === true) {
-        jsonList = test_TimeEntryList;
-    }
     var programList = JSON.parse(jsonList);
     return programList;
 }
