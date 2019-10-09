@@ -12,25 +12,25 @@
 <body onload="testdata_performLoadOperations()">
 
     <h2>Test Data</h2>
-    <div><b>Warning:: </b><button onclick="testdata_clearLocalStorage()">Clear Local Storage</button><b> :: Warning</b></div>
+    <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local Storage</button><b> :: Warning</b></div>
 
     <hr>
 
-    <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->></b><button onclick="testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear all data and add fake NI data</b></b></div>
+    <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->></b><button onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear all data and add fake NI data</b></b></div>
     <hr>
 
     <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
-    <button onclick="testdata_insertTestProjectData()">Insert Test Project Data</button>
+    <button onclick="onButtonClick_testdata_insertTestProjectData()">Insert Test Project Data</button>
     <p id="test_testProjectData"></p>
 
     <hr>
 
-    <button onclick="testdata_insertTestCategoryData()">Insert Test Category Data</button>
+    <button onclick="onButtonClick_testdata_insertTestCategoryData()">Insert Test Category Data</button>
     <p id="test_testCategoryData"></p>
 
     <hr>
 
-    <button onclick="testdata_insertTestTimeEntryData()">Insert Test Time Entries</button>
+    <button onclick="onButtonClick_testdata_insertTestTimeEntryData()">Insert Test Time Entries</button>
     <p id="test_testTimeEntrytData"></p>
 
     <hr>
