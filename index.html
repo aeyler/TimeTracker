@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Time Tracker</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="categories.js"></script>
+    <script src="projects.js"></script>
+    <script src="reporting.js"></script>
+    <script src="testdata.js"></script>
+    <script src="timeentry.js"></script>
+    <script src="timetracker.js"></script>
+    <script src="utils.js"></script>
+    <script src="utils_storage.js"></script>
+</head>
+
+<body onload="tt_performLoadOperations()">
+
+    <div class="w3-bar w3-black">
+        <span class="w3-bar-item">Select Your Option:</span>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_timeEntryTab');">Time
+            Entry</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk"
+            onclick="tt_selectView('tt_reportingTab');">Reporting</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_manageProjectsTab');">Manage
+            Projects</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_manageCategoriesTab');">Manage
+            Categories</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_testDataTab');">Test
+            Data</button>
+    </div>
+
+    <div id="tt_timeEntryTab" class="w3-container js_view" style="display:block">
+        <h2>Time Entry</h2>
+    </div>
+
+    <div id="tt_reportingTab" class="w3-container js_view" style="display:none">
+        <h2>Reporting</h2>
+    </div>
+
+    <div id="tt_manageProjectsTab" class="w3-container js_view" style="display:none">
+        <h2>Manage Projects</h2>
+    </div>
+
+    <div id="tt_manageCategoriesTab" class="w3-container js_view" style="display:none">
+        <h2>Manage Categories</h2>
+    </div>
+
+    <div id="tt_testDataTab" class="w3-container js_view" style="display:none;">
+        <h2>Manage Test Data</h2>
+        <div><b>Warning:: </b><button onclick="testdata_clearLocalStorage()">Clear Local Storage</button><b> ::
+                Warning</b></div>
+
+        <hr>
+
+        <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->></b><button
+                onclick="testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear all data and add
+                fake NI data</b></b></div>
+        <hr>
+
+        <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
+        <button onclick="testdata_insertTestProjectData()">Insert Test Project Data</button>
+        <p id="test_testProjectData"></p>
+
+        <hr>
+
+        <button onclick="testdata_insertTestCategoryData()">Insert Test Category Data</button>
+        <p id="test_testCategoryData"></p>
+
+        <hr>
+
+        <button onclick="testdata_insertTestTimeEntryData()">Insert Test Time Entries</button>
+        <p id="test_testTimeEntrytData"></p>
+
+        <hr>
+
+        <h3>Data Inserted (as JSON string)</h3>
+        <p id="test_dataInsertedToLocalStorage"><i>...Empty until filled...</i></p>
+
+        <hr>
+    </div>
+
+</body>
+
+</html>
