@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Track Project Time</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="timeEntry.js"></script>
+    <script src="reporting.js"></script>
+    <script src="utils_storage.js"></script>
+</head>
+
+<body onload="time_performLoadOperations()">
+
+    <h2>Begin Tracking Your Time</h2>
+    <div class="w3-row">
+        <!-- onsubmit return false keeps the page from reloading -->
+        <!-- <form onsubmit="onButtonClick_time_startProject();return false;"> -->
+            <div class="w3-col m2 w3-center">
+                <div class="w3-dropdown-hover">
+                    <button id="time_selectProjectButton" class="w3-button w3-black" value="unset">Select
+                        Project</button>
+                    <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        <!-- <div onclick="selectProject()" class="w3-bar-item w3-button">test proj</div>
+                        <div onclick="selectProject()" class="w3-bar-item w3-button">test projx</div>
+                        <div onclick="selectProject()" class="w3-bar-item w3-button">test projxx</div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m2 w3-center">
+                <div class="w3-dropdown-hover">
+                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="unset">Select
+                        Category</button>
+                    <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col m2 w3-center">
+                <input type="text" id="time_projectDescription" placeholder="Free Text Description"
+                    style="font-style:italic">
+            </div>
+            <div class="w3-col m2 w3-center">
+                <button id="time_startProjectButton" onclick="onButtonClick_time_startProject()" class="w3-button w3-green">Begin</button>
+            </div>
+        <!-- </form> -->
+    </div>
+
+    <hr>
+
+    <h3>Your Day</h3>
+    <div id="time_projectDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Project Name</p>
+            </div>
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Category</p>
+            </div>
+            <div class="w3-col m1 w3-left">
+                <p style="font-weight:bold">Description</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Begin Time</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+    <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+    <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
+
+</body>
+
+</html>
