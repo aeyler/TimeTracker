@@ -38,11 +38,16 @@ function display_tt_reportTab() {
     report_performLoadOperations();
 }
 
-function display_tt_manageProjectsTab() {
-    proj_performLoadOperations();
-}
+// function display_tt_manageProjectsTab() {
+//     proj_performLoadOperations();
+// }
 
-function display_tt_manageCategoriesTab() {
+// function display_tt_manageCategoriesTab() {
+//     cat_performLoadOperations();
+// }
+
+function display_tt_manageProjectsAndCategoriesTab() {
+    proj_performLoadOperations();
     cat_performLoadOperations();
 }
 
