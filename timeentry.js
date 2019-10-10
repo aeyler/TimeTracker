@@ -212,7 +212,7 @@ function createProjectDisplayRemoveButton(timeEntry, rowId) {
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function () {
-        onButtonClick_OnRemoveRow(rowId);
+        onButtonClick_time_OnRemoveRow(rowId);
     });
 
     col.appendChild(button);
@@ -220,7 +220,7 @@ function createProjectDisplayRemoveButton(timeEntry, rowId) {
     return col;
 }
 
-function onButtonClick_OnRemoveRow(rowId) {
+function onButtonClick_time_OnRemoveRow(rowId) {
     if (typeof rowId != "string") {
         console.error("rowId should be a string (a number as a string).");
     }
