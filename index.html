@@ -124,27 +124,24 @@
 
     <!-- Reporting Tab -->
     <div id="tt_reportTab" class="w3-container js_view" style="display:none">
-        <h2>Daily Entries</h2>
+        <h2>Current Day Totals</h2>
         <div id="report_dailyTimeEntryDisplayArea">
             <div class="w3-row">
-                <div class="w3-col m1 w3-left">
+                <div class="w3-col m2 w3-left">
                     <p style="font-weight:bold">Project Name</p>
                 </div>
-                <div class="w3-col m1 w3-left">
+                <div class="w3-col m2 w3-left">
                     <p style="font-weight:bold">Category</p>
                 </div>
-                <div class="w3-col m1 w3-left">
-                    <p style="font-weight:bold">Description</p>
-                </div>
-                <div class="w3-col m2 w3-left">
-                    <p style="font-weight:bold">Begin Time</p>
+                <div class="w3-col s1 w3-left">
+                    <p style="font-weight:bold">Today</p>
                 </div>
             </div>
         </div>
 
         <hr>
 
-        <h2>Weekly Totals</h2>
+        <h2>Current Week Totals</h2>
         <div id="report_weeklyTotalsDisplayArea">
             <div class="w3-row">
                 <div class="w3-col m2 w3-left">
@@ -179,7 +176,7 @@
 
         <hr>
 
-        <h2>Weekly Report</h2>
+        <h2>Select-a-Week Report</h2>
         <div>
             <form onsubmit="onButtonClick_report_DisplayWeeklyDataForSelectedDate();return false;">
                 Pick a day: <input type="date" id="report_daySelection">
@@ -188,7 +185,8 @@
             <br>
             <div>
                 Showing weekly report for: <i id="report_firstDayOfWeekReport">first of week</i> -- <i
-                    id="report_lastDayOfWeekReport">last of week</i><b id="report_noTimeData" hidden="true"> :: No time
+                    id="report_lastDayOfWeekReport">last of week</i><b id="report_noTimeData" hidden="true"> :: No
+                    time
                     data available</b>
             </div>
         </div>
@@ -332,17 +330,20 @@
                 <<-- Note: this will clear all data and add fake NI data</b> </div> <hr>
 
                     <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
-                    <button onclick="onButtonClick_testdata_insertTestProjectData()">Insert Test Project Data</button>
+                    <button onclick="onButtonClick_testdata_insertTestProjectData()">Insert Test Project
+                        Data</button>
                     <p id="test_testProjectData"></p>
 
                     <hr>
 
-                    <button onclick="onButtonClick_testdata_insertTestCategoryData()">Insert Test Category Data</button>
+                    <button onclick="onButtonClick_testdata_insertTestCategoryData()">Insert Test Category
+                        Data</button>
                     <p id="test_testCategoryData"></p>
 
                     <hr>
 
-                    <button onclick="onButtonClick_testdata_insertTestTimeEntryData()">Insert Test Time Entries</button>
+                    <button onclick="onButtonClick_testdata_insertTestTimeEntryData()">Insert Test Time
+                        Entries</button>
                     <p id="test_testTimeEntrytData"></p>
 
                     <hr>
