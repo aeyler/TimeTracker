@@ -55,12 +55,9 @@ function time_performLoadOperations() {
 }
 
 function validateListsContainData(projectList, categoryList) {
-    if (projectList == null) {
-        alert("No Projects Defined");
-        return false;
-    }
-    if (categoryList == null) {
-        alert("No Categories Defined");
+    if (projectList == null || categoryList == null) {
+        var alertMsg = "No Projects or Categories have been created.\n\nPlease go to the Manage Projects and/or Manage Categories tab to add them.";
+        alert(alertMsg);
         return false;
     }
     return true;
