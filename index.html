@@ -9,10 +9,8 @@
             height: 100%;
             width: 50%;
             position: fixed;
-            z-index: 1;
-            top: 0;
+            z-index: -1;
             overflow-x: hidden;
-            padding-top: 20px;
         }
 
         .left {
@@ -237,19 +235,19 @@
 
     <!-- Manage Projects & Categories Tab -->
     <div id="tt_manageProjectsAndCategoriesTab" class="w3-container js_view" style="display:none">
-        <div class="split left">
+        <div class="w3-container split left">
             <h2>Manage Projects</h2>
             <div class="w3-row">
                 <!-- onsubmit return false keeps the page from reloading -->
                 <form onsubmit="onButtonClick_proj_addNewProject();return false;">
-                    <div class="w3-col m2 w3-center">
+                    <div class="w3-col m3 w3-center">
                         <input type="text" id="proj_newProjectName" placeholder="Project Name"
                             style="font-style:italic">
                     </div>
-                    <div class="w3-col m2 w3-center">
+                    <div class="w3-col m3 w3-center">
                         <input type="text" id="proj_newProjectId" placeholder="Project Id" style="font-style:italic">
                     </div>
-                    <div class="w3-col m2 w3-center">
+                    <div class="w3-col m1 w3-center">
                         <input type="submit" value="Create">
                     </div>
                 </form>
@@ -260,10 +258,10 @@
             <h3>Current Projects</h3>
             <div id="proj_projectDisplayArea">
                 <div class="w3-row">
-                    <div class="w3-col m2 w3-left">
+                    <div class="w3-col m3 w3-left">
                         <p style="font-weight:bold">Project Name</p>
                     </div>
-                    <div class="w3-col m2 w3-left">
+                    <div class="w3-col m3 w3-left">
                         <p style="font-weight:bold">Project Identifier</p>
                     </div>
                 </div>
@@ -285,10 +283,10 @@
             <div class="w3-row">
                 <!-- onsubmit return false keeps the page from reloading -->
                 <form onsubmit="onButtonClick_cat_addNewCategory();return false;">
-                    <div class="w3-col m2 w3-center">
+                    <div class="w3-col m3 w3-center">
                         <input type="text" id="cat_newCategory" placeholder="Category" style="font-style:italic">
                     </div>
-                    <div class="w3-col m2 w3-center">
+                    <div class="w3-col m1 w3-center">
                         <input type="submit" value="Create">
                     </div>
                 </form>
@@ -299,7 +297,7 @@
             <h3>Current Categories</h3>
             <div id="cat_categoryDisplayArea">
                 <div class="w3-row">
-                    <div class="w3-col m2 w3-left">
+                    <div class="w3-col m3 w3-left">
                         <p style="font-weight:bold">Category</p>
                     </div>
                 </div>
@@ -317,7 +315,7 @@
     </div>
 
     <!-- Test Data & Debugging Tab -->
-    <div id="tt_testDataTab" class="w3-container js_view" style="display:none;">
+    <div id="tt_testDataTab" class="w3-container js_view" style="display:none">
         <h2>Manage Test Data</h2>
         <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local
                 Storage</button><b> ::

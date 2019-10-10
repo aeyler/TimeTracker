@@ -109,7 +109,7 @@ function createProjectDisplayRow(projectData) {
 // return: "div" element as a column for w3
 function createProjectDisplayColumn(displayString) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m3 w3-left";
 
     if (displayString === "" || displayString == null) {
         displayString = "xxx";
@@ -122,7 +122,7 @@ function createProjectDisplayColumn(displayString) {
 
 function createProjectDisplayRemoveButton(projectData, rowId) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m1 w3-left";
 
     var button = document.createElement("button");
     var tagId = getTagIdentifer(projectData);

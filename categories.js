@@ -87,7 +87,7 @@ function createCategoryDisplayRow(categoryData) {
 // return: "div" element as a column for w3
 function createCategoryDisplayColumn(displayItem) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m3 w3-left";
 
     if (displayItem === "" || displayItem == null) {
         displayItem = "xxx";
@@ -109,7 +109,7 @@ function getTagIdentifer(str1) {
 
 function createCategoryDisplayRemoveButton(categoryData, rowId) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m1 w3-left";
 
     var button = document.createElement("button");
     var tagId = rowId;
