@@ -4,24 +4,10 @@
 <head>
     <title>Time Tracker</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <style>
-        .split {
-            height: 100%;
-            width: 50%;
-            position: fixed;
-            z-index: -1;
-            overflow-x: hidden;
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            right: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="timetracker.css">
     <script src="categories.js"></script>
+    <script src="help.js"></script>
     <script src="projects.js"></script>
     <script src="reporting.js"></script>
     <script src="testdata.js"></script>
@@ -57,7 +43,7 @@
 
     <!-- Time Entry Tab -->
     <div id="tt_timeEntryTab" class="w3-container js_view" style="display:none">
-        <h2>Time Entry</h2>
+        <h2>Time Entry <div class="material-icons popup" onclick="onIconClick_time_timeEntryHelp()">help</div></h2>
         <div class="w3-row">
             <!-- onsubmit return false keeps the page from reloading -->
             <form onsubmit="onButtonClick_time_startProject();return false;">
@@ -176,7 +162,7 @@
 
         <hr>
 
-        <h2>Select-a-Week Report</h2>
+        <h2>Select-a-Week Report <div class="material-icons popup" onclick="onIconClick_report_SelectAWeekHelp()">help</div></h2>
         <div>
             <form onsubmit="onButtonClick_report_DisplayWeeklyDataForSelectedDate();return false;">
                 Pick a day: <input type="date" id="report_daySelection">
@@ -237,7 +223,7 @@
     <!-- Manage Projects & Categories Tab -->
     <div id="tt_manageProjectsAndCategoriesTab" class="w3-container js_view" style="display:none">
         <div class="w3-container split left">
-            <h2>Manage Projects</h2>
+            <h2>Manage Projects <div class="material-icons popup" onclick="onIconClick_proj_ManageProjectsHelp()">help</div></h2>
             <div class="w3-row">
                 <!-- onsubmit return false keeps the page from reloading -->
                 <form onsubmit="onButtonClick_proj_addNewProject();return false;">
@@ -280,7 +266,7 @@
 
         <!-- Manage Categories Tab -->
         <div class="split right">
-            <h2>Manage Categories</h2>
+            <h2>Manage Categories <div class="material-icons popup" onclick="onIconClick_cat_ManageCategoriesHelp()">help</div></h2>
             <div class="w3-row">
                 <!-- onsubmit return false keeps the page from reloading -->
                 <form onsubmit="onButtonClick_cat_addNewCategory();return false;">
@@ -317,7 +303,7 @@
 
     <!-- Test Data & Debugging Tab -->
     <div id="tt_testDataTab" class="w3-container js_view" style="display:none">
-        <h2>Manage Test Data</h2>
+        <h2>Manage Test Data <div class="material-icons popup" onclick="onIconClick_testdata_PageHelp()">help</div></h2>
         <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local
                 Storage</button><b> ::
                 Warning</b>
