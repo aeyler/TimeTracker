@@ -126,11 +126,12 @@ function createProjectDisplayRemoveButton(projectData, rowId) {
 
     var button = document.createElement("button");
     var tagId = getProjectDataTagIdentifer(projectData);
-    button.id = "button" + tagId;
+    button.id = "button_proj_" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function () {
+        console.log("onButtonClick_proj_OnRemoveRow");
         onButtonClick_proj_OnRemoveRow(rowId);
     });
 
@@ -162,7 +163,7 @@ function onButtonClick_proj_OnRemoveRow(rowId) {
     }
 
     // Having removed an item, store current projectList
-    storeProjectList(programList);
+    storeProjectList(projectList);
 
     // DEBUGGING
     debug_displayProjectListJson();

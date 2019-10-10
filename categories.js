@@ -114,11 +114,12 @@ function createCategoryDisplayRemoveButton(categoryData, rowId) {
 
     var button = document.createElement("button");
     var tagId = rowId;
-    button.id = "button" + tagId;
+    button.id = "button_cat_" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function() {
+        console.log("onButtonClick_cat_OnRemoveRow");
         onButtonClick_cat_OnRemoveRow(tagId);
     });
     

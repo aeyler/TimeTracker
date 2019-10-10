@@ -167,7 +167,7 @@ function createTimeEntryDisplayRow(timeEntry) {
     col = createTimeEntryTimeDisplayColumn(startTime);
     row.appendChild(col);
 
-    col = createProjectDisplayRemoveButton(timeEntry, row.id);
+    col = createTimeEntryDisplayRemoveButton(timeEntry, row.id);
     row.appendChild(col);
 
     document.getElementById("time_projectDisplayArea").appendChild(row);
@@ -201,17 +201,18 @@ function createTimeEntryTimeDisplayColumn(startTime) {
     return col;
 }
 
-function createProjectDisplayRemoveButton(timeEntry, rowId) {
+function createTimeEntryDisplayRemoveButton(timeEntry, rowId) {
     var col = document.createElement("div");
     col.className = "w3-col m1 w3-left";
 
     var button = document.createElement("button");
     var tagId = rowId
-    button.id = "button" + tagId;
+    button.id = "button_time_" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function () {
+        console.log("onButtonClick_time_OnRemoveRow");
         onButtonClick_time_OnRemoveRow(rowId);
     });
 
