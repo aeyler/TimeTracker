@@ -122,6 +122,9 @@ function onButtonClick_time_startProject() {
             return;
         }
     var description = document.getElementById("time_projectDescription").value;
+    if (description === "" || description == null) {
+        description = "<none>";
+    }
     var startTime = new Date();
 
     console.log(startTime.toString());
@@ -174,8 +177,8 @@ function createTimeEntryDisplayColumn(displayString) {
     var col = document.createElement("div");
     col.className = "w3-col m1 w3-left";
 
-    if (displayString == null) {
-        displayString = "";
+    if (displayString === "" || displayString == null) {
+        displayString = "<none>";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
