@@ -57,8 +57,13 @@ function time_performLoadOperations() {
 
 function validateListsContainData(projectList, categoryList) {
     if (projectList == null || categoryList == null) {
-        var alertMsg = "No Projects or Categories have been created.\n\nPlease go to the Manage Projects and/or Manage Categories tab to add them.";
-        alert(alertMsg);
+        var helpMsg = "";
+        helpMsg += "-- Warning --";
+        helpMsg += "\n";
+        helpMsg += "No Projects or Categories have been found.";
+        helpMsg += "\n\n";
+        helpMsg += "Fix: Go to the -- [Project Management] -- tab and create some.";
+        alert(helpMsg);
         return false;
     }
     return true;
