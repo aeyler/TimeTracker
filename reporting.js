@@ -59,29 +59,26 @@ function getTimeEntryListFor(someDate) {
 }
 
 function displayTodayTimeEntry(todayList) {
-    for (var i = 0; i < todayList.length; i++) {
-        createTodayTimeEntryDisplayColumn(todayList[i]);
+    var todayTimeEntryList = getMatchingTimeEntryList(todayList, new Date());
+    var todayProjectTimeDayEntryList = totalUpTimeEntryList(todayTimeEntryList);
+    for (var i = 0; i < todayProjectTimeDayEntryList.length; i++) {
+        createTodayTimeEntryDisplayColumn(todayProjectTimeDayEntryList[i]);
     }
-
 }
 
-function createTodayTimeEntryDisplayColumn(timeEntry) {
+function createTodayTimeEntryDisplayColumn(projectTimeDayEntry) {
     var row = document.createElement("div");
     row.className = "w3-row tt_report_day_row";
 
-    var startTime = new Date(timeEntry.startTimeDateString);
-    row.id = startTime.getTime();
+    row.id = projectTimeDayEntry.projectData.projectId.toString() + projectTimeDayEntry.categoryData.categoryId + projectTimeDayEntry.totalTime;
 
-    var col = createTimeEntryDisplayColumn(timeEntry.projectData.projectName);
+    var col = createWeeklyTotalDisplayColumnText(projectTimeDayEntry.projectData.projectName);
     row.appendChild(col);
 
-    col = createTimeEntryDisplayColumn(timeEntry.categoryData.categoryId);
+    col = createWeeklyTotalDisplayColumnText(projectTimeDayEntry.categoryData.categoryId);
     row.appendChild(col);
 
-    col = createTimeEntryDisplayColumn(timeEntry.description);
-    row.appendChild(col);
-
-    col = createTimeEntryTimeDisplayColumn(startTime);
+    col = createWeeklyTotalDisplayColumnNumber(projectTimeDayEntry.totalTime);
     row.appendChild(col);
 
     document.getElementById("report_dailyTimeEntryDisplayArea").appendChild(row);
@@ -92,7 +89,7 @@ function createTimeEntryDisplayColumn(displayString) {
     col.className = "w3-col m2 w3-left";
 
     if (displayString === "" || displayString == null) {
-        displayString = "[none]";
+        displayString = "<none>";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
@@ -184,7 +181,7 @@ function totalUpTimeEntryList(timeEntryList)
         var nextTimeEntry = timeEntryList[i+1];
         var timeDiffEpoch = NaN;
         if (typeof nextTimeEntry == "undefined") {
-            // we have no "ending" time entry of [none], so we have to do...something
+            // we have no "ending" time entry of <none>, so we have to do...something
             // 1) If it is today, use the current time as a final value to test with
             // 2) Any other day, use midnight (23:59:59:99)
             var today = new Date();
