@@ -1,7 +1,7 @@
 "use strict";
 
 function tt_performLoadOperations () {
-    console.error("TODO: tt_performLoadOperations not implemented.");
+    // no-op currently
 }
 
 function tt_selectView(viewSelection) {
