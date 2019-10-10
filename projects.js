@@ -131,7 +131,7 @@ function createProjectDisplayRemoveButton(projectData, rowId) {
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function () {
-        onButtonClick_OnRemoveRow(rowId);
+        onButtonClick_proj_OnRemoveRow(rowId);
     });
 
     col.appendChild(button);
@@ -139,7 +139,7 @@ function createProjectDisplayRemoveButton(projectData, rowId) {
     return col;
 }
 
-function onButtonClick_OnRemoveRow(rowId) {
+function onButtonClick_proj_OnRemoveRow(rowId) {
     // Remove the row in the html page
     document.getElementById(rowId).remove();
 
