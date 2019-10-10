@@ -63,7 +63,7 @@
             <!-- <form onsubmit="onButtonClick_time_startProject();return false;"> -->
             <div class="w3-col m2 w3-center">
                 <div class="w3-dropdown-hover">
-                    <button id="time_selectProjectButton" class="w3-button w3-black" value="unset">Select
+                    <button id="time_selectProjectButton" class="w3-button w3-black" value="[unset]">Select
                         Project</button>
                     <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
                     </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="w3-col m2 w3-center">
                 <div class="w3-dropdown-hover">
-                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="unset">Select
+                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="[unset]">Select
                         Category</button>
                     <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
                         <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
@@ -354,6 +354,7 @@
 
         <!-- Jump start by selecting a tab -->
         <script>tt_selectView("tt_timeEntryTab");</script>
+        <script>onButtonClick_testData_enableDebugAreas();</script>
 </body>
 
 </html>

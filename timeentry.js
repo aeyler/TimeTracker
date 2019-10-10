@@ -1,12 +1,13 @@
 "use strict";
 
 function debug_displayCurrentTimeEntryItem(timeEntry, operation) {
+    console.log("debug_displayCurrentTimeEntryItem", timeEntry);
     var sep = ", ";
     // show new item in test field
     var debugDisplay = document.getElementById("time_debugDisplay");
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
     debugDisplay.innerHTML += "<b>Project Name & Id:</b> " + timeEntry.projectData.projectName + ", " + timeEntry.projectData.projectId + sep;
-    debugDisplay.innerHTML += "<b>Start Time:</b> " + timeEntry.dateString + sep;
+    debugDisplay.innerHTML += "<b>Start Time:</b> " + timeEntry.startTimeDateString + sep;
     debugDisplay.innerHTML += "<br>";
 }
 
@@ -116,19 +117,26 @@ function onButtonClick_time_startProject() {
     var projectData = new ProjectData(projectButton.textContent, projectButton.value);
     var categoryButton = document.getElementById("time_selectCategoryButton");
     var categoryData = new CategoryData(categoryButton.textContent, categoryButton.value);
-    if (projectData.projectId == "unset" ||
-        categoryData.categoryId == "unset") {
+
+    console.log ("projectData: ", projectData);
+    console.log ("categoryData: ", categoryData);
+
+    if (projectData.projectId == "[unset]" ||
+        categoryData.categoryId == "[unset]") {
             alert("You must select both a project and a category prior to the start of time tracking");
             return;
         }
     var description = document.getElementById("time_projectDescription").value;
     if (description === "" || description == null) {
-        description = "<none>";
+        description = "[none]";
     }
     var startTime = new Date();
 
     console.log(startTime.toString());
     var timeEntry = new TimeEntry(projectData, categoryData, description, startTime);
+
+    console.log("timeEntry: ", timeEntry);
+
     debug_displayCurrentTimeEntryItem(timeEntry, "Add");
 
     addTimeEntryToTimeEntryList(timeEntry);
@@ -178,7 +186,7 @@ function createTimeEntryDisplayColumn(displayString) {
     col.className = "w3-col m1 w3-left";
 
     if (displayString === "" || displayString == null) {
-        displayString = "<none>";
+        displayString = "[none]";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);

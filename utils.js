@@ -1,6 +1,6 @@
 "use strict";
 
-var g_noneEntry = "<none>";
+var g_noneEntry = "[none]";
 
 // In: ProjectData, ProjectData
 // Ret: bool for equality

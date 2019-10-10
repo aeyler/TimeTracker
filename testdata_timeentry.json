@@ -16,8 +16,8 @@
 "description":"",
 "startTimeDateString":"Wed Oct 09 2019 11:00:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"out to launch :)",
 "startTimeDateString":"Wed Oct 09 2019 11:30:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -31,14 +31,14 @@
 "description":"late in the day thing...",
 "startTimeDateString":"Wed Oct 09 2019 16:30:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"done for the day",
 "startTimeDateString":"Wed Oct 09 2019 17:30:00 GMT-0500 (Central Daylight Time)"
 }
 ]
 
-[{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"asdf","startTimeDateString":"Wed Oct 09 2019 08:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"","startTimeDateString":"Wed Oct 09 2019 10:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 22","projectId":"22222"},"categoryData":{"categoryName":"test cat 22","categoryId":"test cat 22"},"description":"","startTimeDateString":"Wed Oct 09 2019 11:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"<none>","projectId":"<none>"},"categoryData":{"categoryName":"<none>","categoryId":"<none>"},"description":"out to launch :)","startTimeDateString":"Wed Oct 09 2019 11:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 333","projectId":"33333"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"Back to cat 1, huh?","startTimeDateString":"Wed Oct 09 2019 13:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"late in the day thing...","startTimeDateString":"Wed Oct 09 2019 16:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"<none>","projectId":"<none>"},"categoryData":{"categoryName":"<none>","categoryId":"<none>"},"description":"done for the day","startTimeDateString":"Wed Oct 09 2019 17:30:00 GMT-0500 (Central Daylight Time)"}]
+[{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"asdf","startTimeDateString":"Wed Oct 09 2019 08:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"","startTimeDateString":"Wed Oct 09 2019 10:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 22","projectId":"22222"},"categoryData":{"categoryName":"test cat 22","categoryId":"test cat 22"},"description":"","startTimeDateString":"Wed Oct 09 2019 11:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"out to launch :)","startTimeDateString":"Wed Oct 09 2019 11:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 333","projectId":"33333"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"Back to cat 1, huh?","startTimeDateString":"Wed Oct 09 2019 13:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"test proj 1","projectId":"11111"},"categoryData":{"categoryName":"test cat 1","categoryId":"test cat 1"},"description":"late in the day thing...","startTimeDateString":"Wed Oct 09 2019 16:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"done for the day","startTimeDateString":"Wed Oct 09 2019 17:30:00 GMT-0500 (Central Daylight Time)"}]
 
 
 
@@ -52,8 +52,8 @@
 "description":"Mode Switching",
 "startTimeDateString":"Mon Sep 30 2019 08:00:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"Off to lunch",
 "startTimeDateString":"Mon Sep 30 2019 11:00:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -67,8 +67,8 @@
 "description":"",
 "startTimeDateString":"Mon Sep 30 2019 13:30:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"Done!",
 "startTimeDateString":"Mon Sep 30 2019 17:00:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -78,8 +78,8 @@
 "description":"",
 "startTimeDateString":"Tue Oct 01 2019 08:00:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Tue Oct 01 2019 17:00:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -89,8 +89,8 @@
 "description":"Cleanup...again",
 "startTimeDateString":"Wed Oct 02 2019 09:00:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Wed Oct 02 2019 17:30:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -115,8 +115,8 @@
 "description":"",
 "startTimeDateString":"Thu Oct 03 2019 14:00:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"Done!",
 "startTimeDateString":"Thu Oct 03 2019 16:30:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -131,8 +131,8 @@
 "description":"Woot!",
 "startTimeDateString":"Fri Oct 04 2019 10:30:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Fri Oct 04 2019 17:00:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -142,8 +142,8 @@
 "description":"weekend playtime",
 "startTimeDateString":"Sat Oct 05 2019 17:00:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Sat Oct 05 2019 20:00:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -153,8 +153,8 @@
 "description":"Captivating",
 "startTimeDateString":"Sun Oct 06 2019 15:00:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Sun Oct 06 2019 19:30:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -164,8 +164,8 @@
 "description":"tech week monday",
 "startTimeDateString":"Mon Oct 07 2019 08:23:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Mon Oct 07 2019 16:59:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -175,8 +175,8 @@
 "description":"tech week toes-day",
 "startTimeDateString":"Tue Oct 08 2019 07:54:00 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Tue Oct 08 2019 17:15:00 GMT-0500 (Central Daylight Time)"
 },{
@@ -186,21 +186,19 @@
 "description":"tech week wedding day",
 "startTimeDateString":"Wed Oct 09 2019 08:25:19 GMT-0500 (Central Daylight Time)"
 },{
-"projectData":{"projectName":"<none>","projectId":"<none>"},
-"categoryData":{"categoryName":"<none>","categoryId":"<none>"},
+"projectData":{"projectName":"[none]","projectId":"[none]"},
+"categoryData":{"categoryName":"[none]","categoryId":"[none]"},
 "description":"",
 "startTimeDateString":"Wed Oct 09 2019 17:30:00 GMT-0500 (Central Daylight Time)"
-},{
-
-"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},
-"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},
-"description":"Code cleanup",
-"startTimeDateString":"Thu Oct 10 2019 08:07:04 GMT-0500 (Central Daylight Time)"
 },
+
+{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Code cleanup","startTimeDateString":"Thu Oct 10 2019 07:29:04 GMT-0500 (Central Daylight Time)"},
 {"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Debug display work","startTimeDateString":"Thu Oct 10 2019 08:44:50 GMT-0500 (Central Daylight Time)"},
-{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Adding PPIO :/","startTimeDateString":"Thu Oct 10 2019 09:06:46 GMT-0500 (Central Daylight Time)"}
+{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Adding PPIO :/","startTimeDateString":"Thu Oct 10 2019 09:01:46 GMT-0500 (Central Daylight Time)"},
+{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"removeRows consolidation","startTimeDateString":"Thu Oct 10 2019 09:07:35 GMT-0500 (Central Daylight Time)"},
+{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"merge projects & categories","startTimeDateString":"Thu Oct 10 2019 09:11:52 GMT-0500 (Central Daylight Time)"},
+{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"debugging row removal","startTimeDateString":"Thu Oct 10 2019 09:52:44 GMT-0500 (Central Daylight Time)"},
+{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Thu Oct 10 2019 10:56:41 GMT-0500 (Central Daylight Time)"}
 ]
 
-
-[    {    "projectData":{"projectName":"RIO 19.6","projectId":"107751"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"Mode Switching",    "startTimeDateString":"Mon Sep 30 2019 08:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"Off to lunch",    "startTimeDateString":"Mon Sep 30 2019 11:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"MCAS Team","projectId":"NP2041"},    "categoryData":{"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},    "description":"Ethical deliberations",    "startTimeDateString":"Mon Sep 30 2019 12:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"NI DAQmx 19.6","projectId":"107752"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"",    "startTimeDateString":"Mon Sep 30 2019 13:30:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"Done!",    "startTimeDateString":"Mon Sep 30 2019 17:00:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"MCAS Team","projectId":"NP2041"},    "categoryData":{"categoryName":"NPT - Sick Leave","categoryId":"NPT - Sick Leave"},    "description":"",    "startTimeDateString":"Tue Oct 01 2019 08:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Tue Oct 01 2019 17:00:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"NI DAQmx 19.6","projectId":"107752"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"Cleanup...again",    "startTimeDateString":"Wed Oct 02 2019 09:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Wed Oct 02 2019 17:30:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"Beginning research",    "startTimeDateString":"Thu Oct 03 2019 08:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"MCAS Team","projectId":"NP2041"},    "categoryData":{"categoryName":"NPT - Misc","categoryId":"NPT - Misc"},    "description":"I do not remember",    "startTimeDateString":"Thu Oct 03 2019 11:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"MCAS Team","projectId":"NP2041"},    "categoryData":{"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},    "description":"Off to lunch",    "startTimeDateString":"Thu Oct 03 2019 13:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"NI DAQmx 19.6","projectId":"107752"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"",    "startTimeDateString":"Thu Oct 03 2019 14:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"Done!",    "startTimeDateString":"Thu Oct 03 2019 16:30:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"Beginning research",    "startTimeDateString":"Fri Oct 04 2019 08:15:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"MCAS Team","projectId":"NP2041"},    "categoryData":{"categoryName":"NPT - Vacation","categoryId":"NPT - Vacation"},    "description":"Woot!",    "startTimeDateString":"Fri Oct 04 2019 10:30:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Fri Oct 04 2019 17:00:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"weekend playtime",    "startTimeDateString":"Sat Oct 05 2019 17:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Sat Oct 05 2019 20:00:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"Captivating",    "startTimeDateString":"Sun Oct 06 2019 15:00:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Sun Oct 06 2019 19:30:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"tech week monday",    "startTimeDateString":"Mon Oct 07 2019 08:23:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Mon Oct 07 2019 16:59:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"tech week toes-day",    "startTimeDateString":"Tue Oct 08 2019 07:54:00 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Tue Oct 08 2019 17:15:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"tech week wedding day",    "startTimeDateString":"Wed Oct 09 2019 08:25:19 GMT-0500 (Central Daylight Time)"    },{    "projectData":{"projectName":"<none>","projectId":"<none>"},    "categoryData":{"categoryName":"<none>","categoryId":"<none>"},    "description":"",    "startTimeDateString":"Wed Oct 09 2019 17:30:00 GMT-0500 (Central Daylight Time)"    },{        "projectData":{"projectName":"Tech Week","projectId":"107798"},    "categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},    "description":"Code cleanup",    "startTimeDateString":"Thu Oct 10 2019 08:07:04 GMT-0500 (Central Daylight Time)"    },{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Adding PPIO :/","startTimeDateString":"Thu Oct 10 2019 09:06:46 GMT-0500 (Central Daylight Time)"}    ]
-    
+[{"projectData":{"projectName":"RIO 19.6","projectId":"107751"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Mode Switching","startTimeDateString":"Mon Sep 30 2019 08:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"Off to lunch","startTimeDateString":"Mon Sep 30 2019 11:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"MCAS Team","projectId":"NP2041"},"categoryData":{"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},"description":"Ethical deliberations","startTimeDateString":"Mon Sep 30 2019 12:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"NI DAQmx 19.6","projectId":"107752"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"","startTimeDateString":"Mon Sep 30 2019 13:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"Done!","startTimeDateString":"Mon Sep 30 2019 17:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"MCAS Team","projectId":"NP2041"},"categoryData":{"categoryName":"NPT - Sick Leave","categoryId":"NPT - Sick Leave"},"description":"","startTimeDateString":"Tue Oct 01 2019 08:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Tue Oct 01 2019 17:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"NI DAQmx 19.6","projectId":"107752"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Cleanup...again","startTimeDateString":"Wed Oct 02 2019 09:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Wed Oct 02 2019 17:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Beginning research","startTimeDateString":"Thu Oct 03 2019 08:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"MCAS Team","projectId":"NP2041"},"categoryData":{"categoryName":"NPT - Misc","categoryId":"NPT - Misc"},"description":"I do not remember","startTimeDateString":"Thu Oct 03 2019 11:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"MCAS Team","projectId":"NP2041"},"categoryData":{"categoryName":"NPT - Training/Conf.","categoryId":"NPT - Training/Conf."},"description":"Off to lunch","startTimeDateString":"Thu Oct 03 2019 13:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"NI DAQmx 19.6","projectId":"107752"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"","startTimeDateString":"Thu Oct 03 2019 14:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"Done!","startTimeDateString":"Thu Oct 03 2019 16:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Beginning research","startTimeDateString":"Fri Oct 04 2019 08:15:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"MCAS Team","projectId":"NP2041"},"categoryData":{"categoryName":"NPT - Vacation","categoryId":"NPT - Vacation"},"description":"Woot!","startTimeDateString":"Fri Oct 04 2019 10:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Fri Oct 04 2019 17:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"weekend playtime","startTimeDateString":"Sat Oct 05 2019 17:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Sat Oct 05 2019 20:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Captivating","startTimeDateString":"Sun Oct 06 2019 15:00:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Sun Oct 06 2019 19:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"tech week monday","startTimeDateString":"Mon Oct 07 2019 08:23:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Mon Oct 07 2019 16:59:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"tech week toes-day","startTimeDateString":"Tue Oct 08 2019 07:54:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Tue Oct 08 2019 17:15:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"tech week wedding day","startTimeDateString":"Wed Oct 09 2019 08:25:19 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Wed Oct 09 2019 17:30:00 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Code cleanup","startTimeDateString":"Thu Oct 10 2019 07:29:04 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Debug display work","startTimeDateString":"Thu Oct 10 2019 08:44:50 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"Adding PPIO :/","startTimeDateString":"Thu Oct 10 2019 09:01:46 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"removeRows consolidation","startTimeDateString":"Thu Oct 10 2019 09:07:35 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"merge projects & categories","startTimeDateString":"Thu Oct 10 2019 09:11:52 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"PPIO Tech Week","projectId":"107798"},"categoryData":{"categoryName":"Software Development","categoryId":"Software Development"},"description":"debugging row removal","startTimeDateString":"Thu Oct 10 2019 09:52:44 GMT-0500 (Central Daylight Time)"},{"projectData":{"projectName":"[none]","projectId":"[none]"},"categoryData":{"categoryName":"[none]","categoryId":"[none]"},"description":"","startTimeDateString":"Thu Oct 10 2019 10:56:41 GMT-0500 (Central Daylight Time)"}]

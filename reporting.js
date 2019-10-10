@@ -92,7 +92,7 @@ function createTimeEntryDisplayColumn(displayString) {
     col.className = "w3-col m2 w3-left";
 
     if (displayString === "" || displayString == null) {
-        displayString = "<none>";
+        displayString = "[none]";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
@@ -184,7 +184,7 @@ function totalUpTimeEntryList(timeEntryList)
         var nextTimeEntry = timeEntryList[i+1];
         var timeDiffEpoch = NaN;
         if (typeof nextTimeEntry == "undefined") {
-            // we have no "ending" time entry of <none>, so we have to do...something
+            // we have no "ending" time entry of [none], so we have to do...something
             // 1) If it is today, use the current time as a final value to test with
             // 2) Any other day, use midnight (23:59:59:99)
             var today = new Date();
