@@ -55,12 +55,9 @@ function time_performLoadOperations() {
 }
 
 function validateListsContainData(projectList, categoryList) {
-    if (projectList == null) {
-        alert("No Projects Defined");
-        return false;
-    }
-    if (categoryList == null) {
-        alert("No Categories Defined");
+    if (projectList == null || categoryList == null) {
+        var alertMsg = "No Projects or Categories have been created.\n\nPlease go to the Manage Projects and/or Manage Categories tab to add them.";
+        alert(alertMsg);
         return false;
     }
     return true;
@@ -125,6 +122,9 @@ function onButtonClick_time_startProject() {
             return;
         }
     var description = document.getElementById("time_projectDescription").value;
+    if (description === "" || description == null) {
+        description = "<none>";
+    }
     var startTime = new Date();
 
     console.log(startTime.toString());
@@ -177,8 +177,8 @@ function createTimeEntryDisplayColumn(displayString) {
     var col = document.createElement("div");
     col.className = "w3-col m1 w3-left";
 
-    if (displayString == null) {
-        displayString = "";
+    if (displayString === "" || displayString == null) {
+        displayString = "<none>";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
