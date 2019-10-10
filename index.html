@@ -28,12 +28,14 @@
         <button class="w3-bar-item w3-button js_tab js_tab_trunk"
             onclick="tt_selectView('tt_manageCategoriesTab');">Manage
             Categories</button>
-        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_testDataTab');">Test
-            Data</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_testDataTab');">Debugging</button>
     </div>
 
-    <!-- Tab Entry Divisions -->
+    <!--
+    Tab Entry Divisions
+    -->
 
+    <!-- Time Entry Tab -->
     <div id="tt_timeEntryTab" class="w3-container js_view" style="display:none">
         <h2>Time Entry</h2>
         <div class="w3-row">
@@ -87,16 +89,19 @@
             </div>
         </div>
 
-        <hr>
+        <div class="tt_debugDisplay" style="display:none">
+            <hr>
 
-        <p><i>Debug Data Display Area</i></p>
-        <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
-        <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
-        <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
+            <p><i>Debug Data Display Area</i></p>
+            <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
+            <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+            <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+            <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
+        </div>
 
     </div>
 
+    <!-- Reporting Tab -->
     <div id="tt_reportTab" class="w3-container js_view" style="display:none">
         <h2>Daily Entries</h2>
         <div id="report_dailyTimeEntryDisplayArea">
@@ -196,17 +201,19 @@
             </div>
         </div>
 
-        <hr>
+        <div class="tt_debugDisplay" style="display:none">
+            <hr>
 
-        <p><i>Debug Data Display Area</i></p>
-        <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
-        <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
-        <p id="report_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
+            <p><i>Debug Data Display Area</i></p>
+            <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
+            <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+            <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+            <p id="report_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
+        </div>
 
-        <hr>
     </div>
 
+    <!-- Manage Projects Tab -->
     <div id="tt_manageProjectsTab" class="w3-container js_view" style="display:none">
         <h2>Manage Projects</h2>
         <div class="w3-row">
@@ -240,11 +247,15 @@
 
         <hr>
 
-        <p><i>Debug Data Display Area</i></p>
-        <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+        <div class="tt_debugDisplay" style="display:none">
+            <p><i>Debug Data Display Area</i></p>
+            <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
+            <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+        </div>
+
     </div>
 
+    <!-- Manage Categories Tab -->
     <div id="tt_manageCategoriesTab" class="w3-container js_view" style="display:none">
         <h2>Manage Categories</h2>
         <div class="w3-row">
@@ -272,24 +283,30 @@
 
         <hr>
 
-        <p>Debug Data Display Area</p>
-        <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+        <div class="tt_debugDisplay" style="display:none">
+            <p>Debug Data Display Area</p>
+            <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
+            <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+        </div>
 
     </div>
 
+    <!-- Test Data & Debugging Tab -->
     <div id="tt_testDataTab" class="w3-container js_view" style="display:none;">
         <h2>Manage Test Data</h2>
         <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local
                 Storage</button><b> ::
-                Warning</b></div>
+                Warning</b>
+        </div>
 
         <hr>
 
-        <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->></b><button
-                onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear
+        <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->> </b><button
+                onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b> <<-- Note: this will clear
                 all data and add
-                fake NI data</b></b></div>
+                fake NI data</b>
+        </div>
+
         <hr>
 
         <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
@@ -308,11 +325,13 @@
 
         <hr>
 
-        <h3>Debugging: Data Inserted (as JSON string)</h3>
-        <p id="test_dataInsertedToLocalStorage"><i>...Empty until filled...</i></p>
+        <button onclick="onButtonClick_testData_enableDebugAreas()">Enable Debug Displays</button>
+        <div class="tt_debugDisplay" style="display:none">
+            <h3>Debugging: Data Inserted (as JSON string)</h3>
+            <p id="test_dataInsertedToLocalStorage"><i>...Empty until filled...</i></p>
+        </div>
 
-        <hr>
-    </div>
+</div>
 
     <!-- Jump start by selecting a tab -->
     <script>tt_selectView("tt_timeEntryTab");</script>
