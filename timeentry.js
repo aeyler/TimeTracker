@@ -37,16 +37,16 @@ function time_performLoadOperations() {
     debug_displayProjectList(projectList);
     debug_displayCategoryList(categoryList);
 
-     // remove any previous project/category selections sitting there (yay static nodes...?)
-     removeRowsByClass("tt_time_selection");
+    // remove any previous project/category selections sitting there (yay static nodes...?)
+    removeRowsByClass("tt_time_selection");
 
     addProjectsToDropdown(projectList);
     addCategoriesToDropdown(categoryList);
 
     // Fill out current time data entries
     var timeEntryList = retrieveTimeEntryList();
- 
-     // remove any previous rows sitting there (yay static nodes...?)
+
+    // remove any previous rows sitting there (yay static nodes...?)
     removeRowsByClass("tt_time_row");
 
     var todayTimeEntryList = getMatchingTimeEntryList(timeEntryList, new Date());
@@ -116,16 +116,16 @@ function onButtonClick_time_startProject() {
     var projectButton = document.getElementById("time_selectProjectButton");
     var projectData = new ProjectData(projectButton.textContent, projectButton.value);
     var categoryButton = document.getElementById("time_selectCategoryButton");
-    var categoryData = new CategoryData(categoryButton.textContent, categoryButton.value);
+    var categoryData = new CategoryData(categoryButton.value);
 
-    console.log ("projectData: ", projectData);
-    console.log ("categoryData: ", categoryData);
+    console.log("projectData: ", projectData);
+    console.log("categoryData: ", categoryData);
 
     if (projectData.projectId == "[unset]" ||
         categoryData.categoryId == "[unset]") {
-            alert("You must select both a project and a category prior to the start of time tracking");
-            return;
-        }
+        alert("You must select both a project and a category prior to the start of time tracking");
+        return;
+    }
     var description = document.getElementById("time_projectDescription").value;
     if (description === "" || description == null) {
         description = "[none]";
@@ -140,6 +140,9 @@ function onButtonClick_time_startProject() {
     debug_displayCurrentTimeEntryItem(timeEntry, "Add");
 
     addTimeEntryToTimeEntryList(timeEntry);
+
+    // and reset for next user entry
+    resetTimeEntryControls();
 }
 
 function addTimeEntryToTimeEntryList(timeEntry) {
@@ -198,11 +201,11 @@ function createTimeEntryTimeDisplayColumn(startTime) {
     if (typeof startTime != "object") {
         console.error("startTime should be a Date object.");
     }
-    
+
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
-    var displayString = startTime.toLocaleString("en-GR", {hourCycle: "h24"});
+    var displayString = startTime.toLocaleString("en-GR", { hourCycle: "h24" });
     var node = document.createTextNode(displayString);
     col.appendChild(node);
 
@@ -236,7 +239,7 @@ function onButtonClick_time_OnRemoveRow(rowId) {
 
     // Remove the row in the html page
     document.getElementById(rowId).remove();
-    
+
     var timeEntryList = retrieveTimeEntryList();
     console.log(timeEntryList);
     var removedTimeEntry = null;
@@ -247,11 +250,11 @@ function onButtonClick_time_OnRemoveRow(rowId) {
         var startTimeEpoch = startTime.getTime();
         var startTimeEpochString = startTimeEpoch.toString();
         if (startTimeEpochString === rowId) {
-                var retList = timeEntryList.splice(i, 1);
-                removedTimeEntry = retList[0];
-                // breaking out here...will ensure no duplicates elsewhere
-                break;
-            }        
+            var retList = timeEntryList.splice(i, 1);
+            removedTimeEntry = retList[0];
+            // breaking out here...will ensure no duplicates elsewhere
+            break;
+        }
     }
 
     if (removedTimeEntry == null) {
@@ -265,4 +268,17 @@ function onButtonClick_time_OnRemoveRow(rowId) {
 
     // DEBUGGING
     debug_displayTimeEntryListJson();
+}
+
+function resetTimeEntryControls() {
+    var selectProj = document.getElementById("time_selectProjectButton");
+    selectProj.value = "[unset]";
+    selectProj.innerHTML = "<i>Select Project</i>";
+
+    var selectCat = document.getElementById("time_selectCategoryButton");
+    selectCat.value = "[unset]";
+    selectCat.innerHTML = "<i>Select Category</i>";
+
+    var enterDesc = document.getElementById("time_projectDescription");
+    enterDesc.value = "";
 }

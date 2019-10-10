@@ -60,33 +60,34 @@
         <h2>Time Entry</h2>
         <div class="w3-row">
             <!-- onsubmit return false keeps the page from reloading -->
-            <!-- <form onsubmit="onButtonClick_time_startProject();return false;"> -->
-            <div class="w3-col m2 w3-center">
-                <div class="w3-dropdown-hover">
-                    <button id="time_selectProjectButton" class="w3-button w3-black" value="[unset]">Select
-                        Project</button>
-                    <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+            <form onsubmit="onButtonClick_time_startProject();return false;">
+                <div class="w3-col m2 w3-center">
+                    <div class="w3-dropdown-hover">
+                        <button id="time_selectProjectButton" class="w3-button w3-black" value="[unset]"><i>Select
+                            Project</i></button>
+                        <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w3-col m2 w3-center">
-                <div class="w3-dropdown-hover">
-                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="[unset]">Select
-                        Category</button>
-                    <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
-                        <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
+                <div class="w3-col m2 w3-center">
+                    <div class="w3-dropdown-hover">
+                        <button id="time_selectCategoryButton" class="w3-button w3-black" value="[unset]"><i>Select
+                            Category</i></button>
+                        <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w3-col m2 w3-center">
-                <input type="text" id="time_projectDescription" placeholder="Free Text Description"
-                    style="font-style:italic">
-            </div>
-            <div class="w3-col m2 w3-center">
-                <button id="time_startProjectButton" onclick="onButtonClick_time_startProject()"
-                    class="w3-button w3-green">Begin</button>
-            </div>
-            <!-- </form> -->
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="time_projectDescription" placeholder="Free Text Description"
+                        style="font-style:italic">
+                </div>
+                <div class="w3-col m1 w3-center">
+                    <!-- <input type="submit" class="w3-green" value="Begin"> -->
+                    <!-- <button id="time_startProjectButton" onclick="onButtonClick_time_startProject()"
+                    class="w3-button w3-green">Begin</button> -->
+                    <button id="time_startProjectButton" class="w3-button w3-green">Begin</button>
+                </div>
+            </form>
         </div>
 
         <hr>
