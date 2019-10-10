@@ -2,7 +2,9 @@
 
 function resetAddCategoryControls() {
     // reset form items to their origianl placeholder values
-    document.getElementById("cat_newCategory").value = "";
+    var catItem = document.getElementById("cat_newCategory");
+    catItem.value = "";
+    catItem.focus();
 }
 
 function debug_displayCurrentCategoryItem(categoryData, operation) {

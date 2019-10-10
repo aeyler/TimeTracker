@@ -2,8 +2,12 @@
 
 function resetAddProjectControls() {
     // reset form items to their origianl placeholder values
-    document.getElementById("proj_newProjectName").value = "";
-    document.getElementById("proj_newProjectId").value = "";
+    var projNameInput = document.getElementById("proj_newProjectName");
+    projNameInput.value = "";
+    projNameInput.focus();
+
+    var projIdInput = document.getElementById("proj_newProjectId");
+    projIdInput.value = "";
 }
 
 function debug_displayCurrentProgramItem(projectData, operation) {
