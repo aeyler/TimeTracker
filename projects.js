@@ -29,7 +29,7 @@ function proj_performLoadOperations() {
     var projectDataList = retrieveProjectList();
 
     // remove any previous rows sitting there (yay static nodes...?)
-    removeRowsOfClass("tt_proj_row");
+    removeRowsByClass("tt_proj_row");
 
     // add them to the table
     for (var i = 0; i < projectDataList.length; i++) {

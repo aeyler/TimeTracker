@@ -27,7 +27,7 @@ function cat_performLoadOperations() {
     var categoryDataList = retrieveCategoryList();
 
     // remove any previous rows sitting there (yay static nodes...?)
-    removeRowsOfClass("tt_cat_row");
+    removeRowsByClass("tt_cat_row");
     
     // add them to the table
     for (var i = 0; i < categoryDataList.length; i++) {

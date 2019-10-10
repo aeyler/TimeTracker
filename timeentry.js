@@ -37,7 +37,7 @@ function time_performLoadOperations() {
     debug_displayCategoryList(categoryList);
 
      // remove any previous project/category selections sitting there (yay static nodes...?)
-     removeRowsOfClass("tt_time_selection");
+     removeRowsByClass("tt_time_selection");
 
     addProjectsToDropdown(projectList);
     addCategoriesToDropdown(categoryList);
@@ -46,7 +46,7 @@ function time_performLoadOperations() {
     var timeEntryList = retrieveTimeEntryList();
  
      // remove any previous rows sitting there (yay static nodes...?)
-    removeRowsOfClass("tt_time_row");
+    removeRowsByClass("tt_time_row");
 
     var todayTimeEntryList = getMatchingTimeEntryList(timeEntryList, new Date());
     for (var i = 0; i < todayTimeEntryList.length; i++) {

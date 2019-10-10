@@ -4,8 +4,8 @@ function report_performLoadOperations() {
     var timeEntryList = retrieveTimeEntryList();
 
      // remove any previous rows sitting there (yay static nodes...?)
-     removeRowsOfClass("tt_report_day_row");
-     removeRowsOfClass("tt_report_week_row");
+     removeRowsByClass("tt_report_day_row");
+     removeRowsByClass("tt_report_week_row");
 
     var today = new Date();
     var todayList = getTimeEntryListFor(today);
@@ -301,13 +301,6 @@ function displayWeekTimeEntriesFor(someDate, displayDivId, removalClassName) {
     return isEmpty;
 }
 
-function removeRows(displayDivId, removalClassName) {
-    var removalItems = document.getElementsByClassName(removalClassName);
-    for (var i = (removalItems.length - 1); i >= 0; i--) {
-        removalItems[i].remove();
-    }
-}
-
 function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry, displayDivId, removalClassName) {
     var row = document.createElement("div");
     row.className = "w3-row tt_report_week_row" + " " + removalClassName;
@@ -364,7 +357,7 @@ function onButtonClick_report_DisplayWeeklyDataForSelectedDate() {
 
     var displayDivId = "report_weeklyReportDisplayArea";
     var removalClassName = "report_weeklyReportDisplayArea";
-    removeRows(displayDivId, removalClassName);
+    removeRowsByClass(removalClassName);
     var isEmpty = displayWeekTimeEntriesFor(userChosenDate, displayDivId, removalClassName);
     displayWeeklyDateRangeFor(userChosenDate, isEmpty);
 }
