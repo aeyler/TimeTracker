@@ -1,23 +1,23 @@
 
 [
-{"projectName":"<none>","projectId":"<none>"},
+{"projectName":"[none]","projectId":"[none]"},
 {"projectName":"test proj 1","projectId":"11111"},
 {"projectName":"test project 22","projectId":"22222"},
 {"projectName":"test project 333","projectId":"33333"}
 ]
 
-[{"projectName":"<none>","projectId":"<none>"},{"projectName":"test proj 1","projectId":"11111"},{"projectName":"test project 22","projectId":"22222"},{"projectName":"test project 333","projectId":"33333"}]
+[{"projectName":"[none]","projectId":"[none]"},{"projectName":"test proj 1","projectId":"11111"},{"projectName":"test project 22","projectId":"22222"},{"projectName":"test project 333","projectId":"33333"}]
 
 
 
 
 [
-{"projectName":"<none>","projectId":"<none>"},
+{"projectName":"[none]","projectId":"[none]"},
 {"projectName":"NI DAQmx 19.6","projectId":"107752"},
 {"projectName":"RIO 19.6","projectId":"107751"},
 {"projectName":"MCAS Team","projectId":"NP2041"},
 {"projectName":"PPIO Tech Week","projectId":"107798"}
 ]
 
-[{"projectName":"<none>","projectId":"<none>"},{"projectName":"NI DAQmx 19.6","projectId":"107752"},{"projectName":"RIO 19.6","projectId":"107751"},{"projectName":"MCAS Team","projectId":"NP2041"},{"projectName":"Tech Week","projectId":"107798"}]
+[{"projectName":"[none]","projectId":"[none]"},{"projectName":"NI DAQmx 19.6","projectId":"107752"},{"projectName":"RIO 19.6","projectId":"107751"},{"projectName":"MCAS Team","projectId":"NP2041"},{"projectName":"PPIO Tech Week","projectId":"107798"}]
 

@@ -1,12 +1,13 @@
 "use strict";
 
 function debug_displayCurrentTimeEntryItem(timeEntry, operation) {
+    console.log("debug_displayCurrentTimeEntryItem", timeEntry);
     var sep = ", ";
     // show new item in test field
     var debugDisplay = document.getElementById("time_debugDisplay");
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
     debugDisplay.innerHTML += "<b>Project Name & Id:</b> " + timeEntry.projectData.projectName + ", " + timeEntry.projectData.projectId + sep;
-    debugDisplay.innerHTML += "<b>Start Time:</b> " + timeEntry.dateString + sep;
+    debugDisplay.innerHTML += "<b>Start Time:</b> " + timeEntry.startTimeDateString + sep;
     debugDisplay.innerHTML += "<br>";
 }
 
@@ -36,17 +37,17 @@ function time_performLoadOperations() {
     debug_displayProjectList(projectList);
     debug_displayCategoryList(categoryList);
 
-     // remove any previous project/category selections sitting there (yay static nodes...?)
-     removeRowsOfClass("tt_time_selection");
+    // remove any previous project/category selections sitting there (yay static nodes...?)
+    removeRowsByClass("tt_time_selection");
 
     addProjectsToDropdown(projectList);
     addCategoriesToDropdown(categoryList);
 
     // Fill out current time data entries
     var timeEntryList = retrieveTimeEntryList();
- 
-     // remove any previous rows sitting there (yay static nodes...?)
-    removeRowsOfClass("tt_time_row");
+
+    // remove any previous rows sitting there (yay static nodes...?)
+    removeRowsByClass("tt_time_row");
 
     var todayTimeEntryList = getMatchingTimeEntryList(timeEntryList, new Date());
     for (var i = 0; i < todayTimeEntryList.length; i++) {
@@ -115,23 +116,33 @@ function onButtonClick_time_startProject() {
     var projectButton = document.getElementById("time_selectProjectButton");
     var projectData = new ProjectData(projectButton.textContent, projectButton.value);
     var categoryButton = document.getElementById("time_selectCategoryButton");
-    var categoryData = new CategoryData(categoryButton.textContent, categoryButton.value);
-    if (projectData.projectId == "unset" ||
-        categoryData.categoryId == "unset") {
-            alert("You must select both a project and a category prior to the start of time tracking");
-            return;
-        }
+    var categoryData = new CategoryData(categoryButton.value);
+
+    console.log("projectData: ", projectData);
+    console.log("categoryData: ", categoryData);
+
+    if (projectData.projectId == "[unset]" ||
+        categoryData.categoryId == "[unset]") {
+        alert("You must select both a project and a category prior to the start of time tracking");
+        return;
+    }
     var description = document.getElementById("time_projectDescription").value;
     if (description === "" || description == null) {
-        description = "<none>";
+        description = "[none]";
     }
     var startTime = new Date();
 
     console.log(startTime.toString());
     var timeEntry = new TimeEntry(projectData, categoryData, description, startTime);
+
+    console.log("timeEntry: ", timeEntry);
+
     debug_displayCurrentTimeEntryItem(timeEntry, "Add");
 
     addTimeEntryToTimeEntryList(timeEntry);
+
+    // and reset for next user entry
+    resetTimeEntryControls();
 }
 
 function addTimeEntryToTimeEntryList(timeEntry) {
@@ -167,7 +178,7 @@ function createTimeEntryDisplayRow(timeEntry) {
     col = createTimeEntryTimeDisplayColumn(startTime);
     row.appendChild(col);
 
-    col = createProjectDisplayRemoveButton(timeEntry, row.id);
+    col = createTimeEntryDisplayRemoveButton(timeEntry, row.id);
     row.appendChild(col);
 
     document.getElementById("time_projectDisplayArea").appendChild(row);
@@ -178,7 +189,7 @@ function createTimeEntryDisplayColumn(displayString) {
     col.className = "w3-col m1 w3-left";
 
     if (displayString === "" || displayString == null) {
-        displayString = "<none>";
+        displayString = "[none]";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
@@ -190,29 +201,30 @@ function createTimeEntryTimeDisplayColumn(startTime) {
     if (typeof startTime != "object") {
         console.error("startTime should be a Date object.");
     }
-    
+
     var col = document.createElement("div");
     col.className = "w3-col m2 w3-left";
 
-    var displayString = startTime.toLocaleString("en-GR", {hourCycle: "h24"});
+    var displayString = startTime.toLocaleString("en-GR", { hourCycle: "h24" });
     var node = document.createTextNode(displayString);
     col.appendChild(node);
 
     return col;
 }
 
-function createProjectDisplayRemoveButton(timeEntry, rowId) {
+function createTimeEntryDisplayRemoveButton(timeEntry, rowId) {
     var col = document.createElement("div");
     col.className = "w3-col m1 w3-left";
 
     var button = document.createElement("button");
     var tagId = rowId
-    button.id = "button" + tagId;
+    button.id = "button_time_" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function () {
-        onButtonClick_OnRemoveRow(rowId);
+        console.log("onButtonClick_time_OnRemoveRow");
+        onButtonClick_time_OnRemoveRow(rowId);
     });
 
     col.appendChild(button);
@@ -220,14 +232,14 @@ function createProjectDisplayRemoveButton(timeEntry, rowId) {
     return col;
 }
 
-function onButtonClick_OnRemoveRow(rowId) {
+function onButtonClick_time_OnRemoveRow(rowId) {
     if (typeof rowId != "string") {
         console.error("rowId should be a string (a number as a string).");
     }
 
     // Remove the row in the html page
     document.getElementById(rowId).remove();
-    
+
     var timeEntryList = retrieveTimeEntryList();
     console.log(timeEntryList);
     var removedTimeEntry = null;
@@ -238,11 +250,11 @@ function onButtonClick_OnRemoveRow(rowId) {
         var startTimeEpoch = startTime.getTime();
         var startTimeEpochString = startTimeEpoch.toString();
         if (startTimeEpochString === rowId) {
-                var retList = timeEntryList.splice(i, 1);
-                removedTimeEntry = retList[0];
-                // breaking out here...will ensure no duplicates elsewhere
-                break;
-            }        
+            var retList = timeEntryList.splice(i, 1);
+            removedTimeEntry = retList[0];
+            // breaking out here...will ensure no duplicates elsewhere
+            break;
+        }
     }
 
     if (removedTimeEntry == null) {
@@ -256,4 +268,17 @@ function onButtonClick_OnRemoveRow(rowId) {
 
     // DEBUGGING
     debug_displayTimeEntryListJson();
+}
+
+function resetTimeEntryControls() {
+    var selectProj = document.getElementById("time_selectProjectButton");
+    selectProj.value = "[unset]";
+    selectProj.innerHTML = "<i>Select Project</i>";
+
+    var selectCat = document.getElementById("time_selectCategoryButton");
+    selectCat.value = "[unset]";
+    selectCat.innerHTML = "<i>Select Category</i>";
+
+    var enterDesc = document.getElementById("time_projectDescription");
+    enterDesc.value = "";
 }

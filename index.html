@@ -4,6 +4,23 @@
 <head>
     <title>Time Tracker</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        .split {
+            height: 100%;
+            width: 50%;
+            position: fixed;
+            z-index: -1;
+            overflow-x: hidden;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            right: 0;
+        }
+    </style>
     <script src="categories.js"></script>
     <script src="projects.js"></script>
     <script src="reporting.js"></script>
@@ -22,49 +39,55 @@
             Entry</button>
         <button class="w3-bar-item w3-button js_tab js_tab_trunk"
             onclick="tt_selectView('tt_reportTab');">Reporting</button>
-        <button class="w3-bar-item w3-button js_tab js_tab_trunk"
+        <!-- <button class="w3-bar-item w3-button js_tab js_tab_trunk"
             onclick="tt_selectView('tt_manageProjectsTab');">Manage
             Projects</button>
         <button class="w3-bar-item w3-button js_tab js_tab_trunk"
             onclick="tt_selectView('tt_manageCategoriesTab');">Manage
-            Categories</button>
-        <button class="w3-bar-item w3-button js_tab js_tab_trunk" onclick="tt_selectView('tt_testDataTab');">Test
-            Data</button>
+            Categories</button> -->
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk"
+            onclick="tt_selectView('tt_manageProjectsAndCategoriesTab');">Project Management</button>
+        <button class="w3-bar-item w3-button js_tab js_tab_trunk"
+            onclick="tt_selectView('tt_testDataTab');">Debugging</button>
     </div>
 
-    <!-- Tab Entry Divisions -->
+    <!--
+    Tab Entry Divisions
+    -->
 
+    <!-- Time Entry Tab -->
     <div id="tt_timeEntryTab" class="w3-container js_view" style="display:none">
         <h2>Time Entry</h2>
         <div class="w3-row">
             <!-- onsubmit return false keeps the page from reloading -->
-            <!-- <form onsubmit="onButtonClick_time_startProject();return false;"> -->
-            <div class="w3-col m2 w3-center">
-                <div class="w3-dropdown-hover">
-                    <button id="time_selectProjectButton" class="w3-button w3-black" value="unset">Select
-                        Project</button>
-                    <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+            <form onsubmit="onButtonClick_time_startProject();return false;">
+                <div class="w3-col m2 w3-center">
+                    <div class="w3-dropdown-hover">
+                        <button id="time_selectProjectButton" class="w3-button w3-black" value="[unset]"><i>Select
+                                Project</i></button>
+                        <div id="time_selectProjectDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w3-col m2 w3-center">
-                <div class="w3-dropdown-hover">
-                    <button id="time_selectCategoryButton" class="w3-button w3-black" value="unset">Select
-                        Category</button>
-                    <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
-                        <!-- <div onclick="selectCategory()" class="w3-bar-item w3-button">test cat</div> -->
+                <div class="w3-col m2 w3-center">
+                    <div class="w3-dropdown-hover">
+                        <button id="time_selectCategoryButton" class="w3-button w3-black" value="[unset]"><i>Select
+                                Category</i></button>
+                        <div id="time_selectCategoryDropdown" class="w3-dropdown-content w3-bar-block w3-border">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w3-col m2 w3-center">
-                <input type="text" id="time_projectDescription" placeholder="Free Text Description"
-                    style="font-style:italic">
-            </div>
-            <div class="w3-col m2 w3-center">
-                <button id="time_startProjectButton" onclick="onButtonClick_time_startProject()"
-                    class="w3-button w3-green">Begin</button>
-            </div>
-            <!-- </form> -->
+                <div class="w3-col m2 w3-center">
+                    <input type="text" id="time_projectDescription" placeholder="Free Text Description"
+                        style="font-style:italic">
+                </div>
+                <div class="w3-col m1 w3-center">
+                    <!-- <input type="submit" class="w3-green" value="Begin"> -->
+                    <!-- <button id="time_startProjectButton" onclick="onButtonClick_time_startProject()"
+                    class="w3-button w3-green">Begin</button> -->
+                    <button id="time_startProjectButton" class="w3-button w3-green">Begin</button>
+                </div>
+            </form>
         </div>
 
         <hr>
@@ -87,16 +110,19 @@
             </div>
         </div>
 
-        <hr>
+        <div class="tt_debugDisplay" style="display:none">
+            <hr>
 
-        <p><i>Debug Data Display Area</i></p>
-        <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
-        <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
-        <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
+            <p><i>Debug Data Display Area</i></p>
+            <p id="time_debugDisplay"><i>...Empty until filled...</i></p>
+            <p id="time_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+            <p id="time_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+            <p id="time_debugDisplayTimeEntryJson"><i>...JSON data empty until filled...</i></p>
+        </div>
 
     </div>
 
+    <!-- Reporting Tab -->
     <div id="tt_reportTab" class="w3-container js_view" style="display:none">
         <h2>Daily Entries</h2>
         <div id="report_dailyTimeEntryDisplayArea">
@@ -115,6 +141,8 @@
                 </div>
             </div>
         </div>
+
+        <hr>
 
         <h2>Weekly Totals</h2>
         <div id="report_weeklyTotalsDisplayArea">
@@ -196,126 +224,140 @@
             </div>
         </div>
 
-        <hr>
+        <div class="tt_debugDisplay" style="display:none">
+            <hr>
 
-        <p><i>Debug Data Display Area</i></p>
-        <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
-        <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
-        <p id="report_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
-
-        <hr>
-    </div>
-
-    <div id="tt_manageProjectsTab" class="w3-container js_view" style="display:none">
-        <h2>Manage Projects</h2>
-        <div class="w3-row">
-            <!-- onsubmit return false keeps the page from reloading -->
-            <form onsubmit="onButtonClick_proj_addNewProject();return false;">
-                <div class="w3-col m2 w3-center">
-                    <input type="text" id="proj_newProjectName" placeholder="Project Name" style="font-style:italic">
-                </div>
-                <div class="w3-col m2 w3-center">
-                    <input type="text" id="proj_newProjectId" placeholder="Project Id" style="font-style:italic">
-                </div>
-                <div class="w3-col m2 w3-center">
-                    <input type="submit" value="Create">
-                </div>
-            </form>
+            <p><i>Debug Data Display Area</i></p>
+            <p id="report_debugDisplay"><i>...Empty until filled...</i></p>
+            <p id="report_debugDisplayProjectJson"><i>...JSON data empty until filled...</i></p>
+            <p id="report_debugDisplayCategoryJson"><i>...JSON data empty until filled...</i></p>
+            <p id="report_debugDisplayTimeDataJson"><i>...JSON data empty until filled...</i></p>
         </div>
 
-        <hr>
+    </div>
 
-        <h3>Current Projects</h3>
-        <div id="proj_projectDisplayArea">
+    <!-- Manage Projects & Categories Tab -->
+    <div id="tt_manageProjectsAndCategoriesTab" class="w3-container js_view" style="display:none">
+        <div class="w3-container split left">
+            <h2>Manage Projects</h2>
             <div class="w3-row">
-                <div class="w3-col m2 w3-left">
-                    <p style="font-weight:bold">Project Name</p>
-                </div>
-                <div class="w3-col m2 w3-left">
-                    <p style="font-weight:bold">Project Identifier</p>
+                <!-- onsubmit return false keeps the page from reloading -->
+                <form onsubmit="onButtonClick_proj_addNewProject();return false;">
+                    <div class="w3-col m3 w3-center">
+                        <input type="text" id="proj_newProjectName" placeholder="Project Name"
+                            style="font-style:italic">
+                    </div>
+                    <div class="w3-col m3 w3-center">
+                        <input type="text" id="proj_newProjectId" placeholder="Project Id" style="font-style:italic">
+                    </div>
+                    <div class="w3-col m1 w3-center">
+                        <input type="submit" value="Create">
+                    </div>
+                </form>
+            </div>
+
+            <hr>
+
+            <h3>Current Projects</h3>
+            <div id="proj_projectDisplayArea">
+                <div class="w3-row">
+                    <div class="w3-col m3 w3-left">
+                        <p style="font-weight:bold">Project Name</p>
+                    </div>
+                    <div class="w3-col m3 w3-left">
+                        <p style="font-weight:bold">Project Identifier</p>
+                    </div>
                 </div>
             </div>
+
+            <hr>
+
+            <div class="tt_debugDisplay" style="display:none">
+                <p><i>Debug Data Display Area</i></p>
+                <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
+                <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+            </div>
+
         </div>
 
-        <hr>
-
-        <p><i>Debug Data Display Area</i></p>
-        <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
-    </div>
-
-    <div id="tt_manageCategoriesTab" class="w3-container js_view" style="display:none">
-        <h2>Manage Categories</h2>
-        <div class="w3-row">
-            <!-- onsubmit return false keeps the page from reloading -->
-            <form onsubmit="onButtonClick_cat_addNewCategory();return false;">
-                <div class="w3-col m2 w3-center">
-                    <input type="text" id="cat_newCategory" placeholder="Category" style="font-style:italic">
-                </div>
-                <div class="w3-col m2 w3-center">
-                    <input type="submit" value="Create">
-                </div>
-            </form>
-        </div>
-
-        <hr>
-
-        <h3>Current Categories</h3>
-        <div id="cat_categoryDisplayArea">
+        <!-- Manage Categories Tab -->
+        <div class="split right">
+            <h2>Manage Categories</h2>
             <div class="w3-row">
-                <div class="w3-col m2 w3-left">
-                    <p style="font-weight:bold">Category</p>
+                <!-- onsubmit return false keeps the page from reloading -->
+                <form onsubmit="onButtonClick_cat_addNewCategory();return false;">
+                    <div class="w3-col m3 w3-center">
+                        <input type="text" id="cat_newCategory" placeholder="Category" style="font-style:italic">
+                    </div>
+                    <div class="w3-col m1 w3-center">
+                        <input type="submit" value="Create">
+                    </div>
+                </form>
+            </div>
+
+            <hr>
+
+            <h3>Current Categories</h3>
+            <div id="cat_categoryDisplayArea">
+                <div class="w3-row">
+                    <div class="w3-col m3 w3-left">
+                        <p style="font-weight:bold">Category</p>
+                    </div>
                 </div>
             </div>
+
+            <hr>
+
+            <div class="tt_debugDisplay" style="display:none">
+                <p>Debug Data Display Area</p>
+                <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
+                <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+            </div>
+
         </div>
-
-        <hr>
-
-        <p>Debug Data Display Area</p>
-        <p id="cat_debugDisplay"><i>...Empty until filled...</i></p>
-        <p id="cat_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
-
     </div>
 
-    <div id="tt_testDataTab" class="w3-container js_view" style="display:none;">
+    <!-- Test Data & Debugging Tab -->
+    <div id="tt_testDataTab" class="w3-container js_view" style="display:none">
         <h2>Manage Test Data</h2>
         <div><b>Warning:: </b><button onclick="onButtonClick_testdata_clearLocalStorage()">Clear Local
                 Storage</button><b> ::
-                Warning</b></div>
+                Warning</b>
+        </div>
 
         <hr>
 
-        <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->></b><button
-                onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b> :: Note - this will clear
-                all data and add
-                fake NI data</b></b></div>
-        <hr>
+        <div><b>Gimme a set of that sweet NI project/category/time entry data!!! --->> </b><button
+                onclick="onButtonClick_testdata_gimmeNITestData()">NI Test Data</button><b>
+                <<-- Note: this will clear all data and add fake NI data</b> </div> <hr>
 
-        <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
-        <button onclick="onButtonClick_testdata_insertTestProjectData()">Insert Test Project Data</button>
-        <p id="test_testProjectData"></p>
+                    <p><i>Note: Inserting without clearning data can double up on items. Your call...</i></p>
+                    <button onclick="onButtonClick_testdata_insertTestProjectData()">Insert Test Project Data</button>
+                    <p id="test_testProjectData"></p>
 
-        <hr>
+                    <hr>
 
-        <button onclick="onButtonClick_testdata_insertTestCategoryData()">Insert Test Category Data</button>
-        <p id="test_testCategoryData"></p>
+                    <button onclick="onButtonClick_testdata_insertTestCategoryData()">Insert Test Category Data</button>
+                    <p id="test_testCategoryData"></p>
 
-        <hr>
+                    <hr>
 
-        <button onclick="onButtonClick_testdata_insertTestTimeEntryData()">Insert Test Time Entries</button>
-        <p id="test_testTimeEntrytData"></p>
+                    <button onclick="onButtonClick_testdata_insertTestTimeEntryData()">Insert Test Time Entries</button>
+                    <p id="test_testTimeEntrytData"></p>
 
-        <hr>
+                    <hr>
 
-        <h3>Debugging: Data Inserted (as JSON string)</h3>
-        <p id="test_dataInsertedToLocalStorage"><i>...Empty until filled...</i></p>
+                    <button onclick="onButtonClick_testData_enableDebugAreas()">Enable Debug Displays</button>
+                    <div class="tt_debugDisplay" style="display:none">
+                        <h3>Debugging: Data Inserted (as JSON string)</h3>
+                        <p id="test_dataInsertedToLocalStorage"><i>...Empty until filled...</i></p>
+                    </div>
 
-        <hr>
-    </div>
+        </div>
 
-    <!-- Jump start by selecting a tab -->
-    <script>tt_selectView("tt_timeEntryTab");</script>
+        <!-- Jump start by selecting a tab -->
+        <script>tt_selectView("tt_timeEntryTab");</script>
+        <script>onButtonClick_testData_enableDebugAreas();</script>
 </body>
 
 </html>

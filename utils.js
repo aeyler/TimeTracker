@@ -1,6 +1,6 @@
 "use strict";
 
-var g_noneEntry = "<none>";
+var g_noneEntry = "[none]";
 
 // In: ProjectData, ProjectData
 // Ret: bool for equality
@@ -34,10 +34,10 @@ function epochToHours(milliseconds) {
 
 // Remove div nodes based on the given class name
 // Req: rows are built with given class name
-function removeRowsOfClass(removalClass) {
-    var rows = document.getElementsByClassName(removalClass);
-    for (var i = rows.length-1; i >= 0; i--) {
-        rows[i].remove();
+function removeRowsByClass(removalClass) {
+    var rowsToRemove = document.getElementsByClassName(removalClass);
+    for (var i = (rowsToRemove.length - 1); i >= 0; i--) {
+        rowsToRemove[i].remove();
     }
 }
 

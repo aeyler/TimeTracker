@@ -2,8 +2,12 @@
 
 function resetAddProjectControls() {
     // reset form items to their origianl placeholder values
-    document.getElementById("proj_newProjectName").value = "";
-    document.getElementById("proj_newProjectId").value = "";
+    var projNameInput = document.getElementById("proj_newProjectName");
+    projNameInput.value = "";
+    projNameInput.focus();
+
+    var projIdInput = document.getElementById("proj_newProjectId");
+    projIdInput.value = "";
 }
 
 function debug_displayCurrentProgramItem(projectData, operation) {
@@ -13,7 +17,7 @@ function debug_displayCurrentProgramItem(projectData, operation) {
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
     debugDisplay.innerHTML += "<b>Project Name:</b> " + projectData.projectName + sep;
     debugDisplay.innerHTML += "<b>Project Id:</b> " + projectData.projectId + sep;
-    debugDisplay.innerHTML += "<b>Tracking Id:</b> " + getTagIdentifer(projectData);
+    debugDisplay.innerHTML += "<b>Tracking Id:</b> " + getProjectDataTagIdentifer(projectData);
     debugDisplay.innerHTML += "<br>";
 }
 
@@ -29,7 +33,7 @@ function proj_performLoadOperations() {
     var projectDataList = retrieveProjectList();
 
     // remove any previous rows sitting there (yay static nodes...?)
-    removeRowsOfClass("tt_proj_row");
+    removeRowsByClass("tt_proj_row");
 
     // add them to the table
     for (var i = 0; i < projectDataList.length; i++) {
@@ -81,7 +85,7 @@ function addProjectDataToProjectList(projectData) {
 }
 
 // "id" tag based on concat of str1+str2
-function getTagIdentifer(projectData) {
+function getProjectDataTagIdentifer(projectData) {
     if (typeof projectData.projectName != "string" || typeof projectData.projectId != "string") {
         console.error("One of these isn't a string: ", projectData.projectName, projectData.projectId);
     }
@@ -92,7 +96,7 @@ function getTagIdentifer(projectData) {
 function createProjectDisplayRow(projectData) {
     var row = document.createElement("div");
     row.className = "w3-row tt_proj_row";
-    row.id = getTagIdentifer(projectData);
+    row.id = getProjectDataTagIdentifer(projectData);
 
     var col = createProjectDisplayColumn(projectData.projectName);
     row.appendChild(col);
@@ -109,7 +113,7 @@ function createProjectDisplayRow(projectData) {
 // return: "div" element as a column for w3
 function createProjectDisplayColumn(displayString) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m3 w3-left";
 
     if (displayString === "" || displayString == null) {
         displayString = "xxx";
@@ -122,16 +126,17 @@ function createProjectDisplayColumn(displayString) {
 
 function createProjectDisplayRemoveButton(projectData, rowId) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m1 w3-left";
 
     var button = document.createElement("button");
-    var tagId = getTagIdentifer(projectData);
-    button.id = "button" + tagId;
+    var tagId = getProjectDataTagIdentifer(projectData);
+    button.id = "button_proj_" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function () {
-        onButtonClick_OnRemoveRow(rowId);
+        console.log("onButtonClick_proj_OnRemoveRow");
+        onButtonClick_proj_OnRemoveRow(rowId);
     });
 
     col.appendChild(button);
@@ -139,30 +144,30 @@ function createProjectDisplayRemoveButton(projectData, rowId) {
     return col;
 }
 
-function onButtonClick_OnRemoveRow(rowId) {
+function onButtonClick_proj_OnRemoveRow(rowId) {
     // Remove the row in the html page
     document.getElementById(rowId).remove();
 
-    var programList = retrieveProjectList();
-    var removedProgramData = null;
+    var projectList = retrieveProjectList();
+    var removedProjectData = null;
     // Now remove the item from the project list array
-    for (var i = 0; i < programList.length; i++) {
-        if (getTagIdentifer(programList[i]) == rowId) {
-            var removedProgramList = programList.splice(i, 1);
-            removedProgramData = removedProgramList[0];
+    for (var i = 0; i < projectList.length; i++) {
+        if (getProjectDataTagIdentifer(projectList[i]) == rowId) {
+            var removedProjectList = projectList.splice(i, 1);
+            removedProjectData = removedProjectList[0];
             // breaking out here...will ensure no duplicates elsewhere
             break;
         }
     }
 
-    if (removedProgramData == null) {
-        console.error("No program item removed for: ", rowId);
+    if (removedProjectData == null) {
+        console.error("No project item removed for: ", rowId);
     } else {
-        debug_displayCurrentProgramItem(removedProgramData, "Remove");
+        debug_displayCurrentProgramItem(removedProjectData, "Remove");
     }
 
     // Having removed an item, store current projectList
-    storeProjectList(programList);
+    storeProjectList(projectList);
 
     // DEBUGGING
     debug_displayProjectListJson();

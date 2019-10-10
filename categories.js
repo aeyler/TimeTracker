@@ -2,7 +2,9 @@
 
 function resetAddCategoryControls() {
     // reset form items to their origianl placeholder values
-    document.getElementById("cat_newCategory").value = "";
+    var catItem = document.getElementById("cat_newCategory");
+    catItem.value = "";
+    catItem.focus();
 }
 
 function debug_displayCurrentCategoryItem(categoryData, operation) {
@@ -12,6 +14,7 @@ function debug_displayCurrentCategoryItem(categoryData, operation) {
     debugDisplay.innerHTML = "<b>Operation:</b> " + operation + sep;
     debugDisplay.innerHTML += "<b>Category:</b> " + categoryData.categoryName + sep;
     debugDisplay.innerHTML += "<b>Category Id:</b> " + categoryData.categoryId + sep;
+    debugDisplay.innerHTML += "<b>Tracking Id:</b> " + getCategoryDataTagIdentifer(categoryData);
     debugDisplay.innerHTML += "<br>";
 }
 
@@ -27,7 +30,7 @@ function cat_performLoadOperations() {
     var categoryDataList = retrieveCategoryList();
 
     // remove any previous rows sitting there (yay static nodes...?)
-    removeRowsOfClass("tt_cat_row");
+    removeRowsByClass("tt_cat_row");
     
     // add them to the table
     for (var i = 0; i < categoryDataList.length; i++) {
@@ -73,7 +76,7 @@ function addCategoryDataToCategoryList(categoryData) {
 function createCategoryDisplayRow(categoryData) {
     var row = document.createElement("div");
     row.className = "w3-row tt_cat_row";
-    row.id = categoryData.categoryId;
+    row.id = getCategoryDataTagIdentifer(categoryData);
 
     var col = createCategoryDisplayColumn(categoryData.categoryName);
     row.appendChild(col);
@@ -87,7 +90,7 @@ function createCategoryDisplayRow(categoryData) {
 // return: "div" element as a column for w3
 function createCategoryDisplayColumn(displayItem) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m3 w3-left";
 
     if (displayItem === "" || displayItem == null) {
         displayItem = "xxx";
@@ -98,27 +101,28 @@ function createCategoryDisplayColumn(displayItem) {
     return col;
 }
 
-// "id" tag = str1
-function getTagIdentifer(str1) {
-    if (typeof str1 != "string") {
-        console.error("str1 isn't a string: ", str1);
+// "id" tag based on category data id
+function getCategoryDataTagIdentifer(categoryData) {
+    if (typeof categoryData.categoryId != "string") {
+        console.error("Category data project id isn't a string: ", categoryData.categoryId);
     }
-    
-    return str1;
+
+    return categoryData.categoryId;
 }
 
 function createCategoryDisplayRemoveButton(categoryData, rowId) {
     var col = document.createElement("div");
-    col.className = "w3-col m2 w3-left";
+    col.className = "w3-col m1 w3-left";
 
     var button = document.createElement("button");
     var tagId = rowId;
-    button.id = "button" + tagId;
+    button.id = "button_cat_" + tagId;
     button.textContent = "Remove";
     // set up listener for Remove button click
     // anonymous function allows passing calling my function with parameters
     button.addEventListener("click", function() {
-        onButtonClick_OnRemoveRow(tagId);
+        console.log("onButtonClick_cat_OnRemoveRow");
+        onButtonClick_cat_OnRemoveRow(tagId);
     });
     
     col.appendChild(button);
@@ -126,7 +130,7 @@ function createCategoryDisplayRemoveButton(categoryData, rowId) {
     return col;
 }
 
-function onButtonClick_OnRemoveRow(rowId) {
+function onButtonClick_cat_OnRemoveRow(rowId) {
     // Remove the row in the html page
     document.getElementById(rowId).remove();
     
@@ -134,7 +138,8 @@ function onButtonClick_OnRemoveRow(rowId) {
     var removedCategoryData = null;
     // Now remove the item from the category list array
     for (var i = 0; i < categoryList.length; i++) {
-        if (categoryList[i].categoryId == rowId) {
+        console.log("rowId: ", rowId);
+        if (getCategoryDataTagIdentifer(categoryList[i]) == rowId) {
                 var retList = categoryList.splice(i, 1);
                 removedCategoryData = retList[0];
                 // breaking out here...will ensure no duplicates elsewhere

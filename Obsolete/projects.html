@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Project Definition & Review</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="projects.js"></script>
+    <script src="utils_storage.js"></script>
+</head>
+
+<body onload="proj_performLoadOperations()">
+
+    <h2>Add Project</h2>
+    <div class="w3-row">
+        <!-- onsubmit return false keeps the page from reloading -->
+        <form onsubmit="onButtonClick_proj_addNewProject();return false;">
+            <div class="w3-col m2 w3-center">
+                <input type="text" id="proj_newProjectName" placeholder="Project Name" style="font-style:italic">
+            </div>
+            <div class="w3-col m2 w3-center">
+                <input type="text" id="proj_newProjectId" placeholder="Project Id" style="font-style:italic">
+            </div>
+            <div class="w3-col m2 w3-center">
+                <input type="submit" value="Create">
+            </div>
+        </form>
+    </div>
+
+    <hr>
+
+    <h3>Current Projects</h3>
+    <div id="proj_projectDisplayArea">
+        <div class="w3-row">
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Project Name</p>
+            </div>
+            <div class="w3-col m2 w3-left">
+                <p style="font-weight:bold">Project Identifier</p>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <p><i>Debug Data Display Area</i> <button onclick="be_careful_clearLocalStorage()">Clear localStorage</button></p>
+    <p id="proj_debugDisplay"><i>...Empty until filled...</i></p>
+    <p id="proj_debugDisplayJson"><i>...JSON data empty until filled...</i></p>
+
+</body>
+
+</html>

@@ -4,8 +4,8 @@ function report_performLoadOperations() {
     var timeEntryList = retrieveTimeEntryList();
 
      // remove any previous rows sitting there (yay static nodes...?)
-     removeRowsOfClass("tt_report_day_row");
-     removeRowsOfClass("tt_report_week_row");
+     removeRowsByClass("tt_report_day_row");
+     removeRowsByClass("tt_report_week_row");
 
     var today = new Date();
     var todayList = getTimeEntryListFor(today);
@@ -92,7 +92,7 @@ function createTimeEntryDisplayColumn(displayString) {
     col.className = "w3-col m2 w3-left";
 
     if (displayString === "" || displayString == null) {
-        displayString = "<none>";
+        displayString = "[none]";
     }
     var node = document.createTextNode(displayString);
     col.appendChild(node);
@@ -176,7 +176,6 @@ function totalUpTimeEntryList(timeEntryList)
 
     for (var i = 0; i < timeEntryList.length; i++) {
         var beginTimeEntry = timeEntryList[i];
-        console.log("beginTimeEntry -> ", beginTimeEntry);
         if (isProjectNone(beginTimeEntry.projectData)) {
             // do not calculate "none" entries
             continue;
@@ -185,7 +184,7 @@ function totalUpTimeEntryList(timeEntryList)
         var nextTimeEntry = timeEntryList[i+1];
         var timeDiffEpoch = NaN;
         if (typeof nextTimeEntry == "undefined") {
-            // we have no "ending" time entry of <none>, so we have to do...something
+            // we have no "ending" time entry of [none], so we have to do...something
             // 1) If it is today, use the current time as a final value to test with
             // 2) Any other day, use midnight (23:59:59:99)
             var today = new Date();
@@ -232,20 +231,12 @@ function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryL
         console.error("dayOfWeek is not a 'number': ", dayOfWeek);
     }
 
-    // console.log("---accumulateProjectTimeListIntoWeeklyList---");
-    // console.log(dayOfWeek);
-    // console.log(projectTimeDayEntryList);
-    // console.log(projectTimeWeekEntryList);
-
     for (var i = 0; i < projectTimeDayEntryList.length; i++) {
-        // console.log("--projectTimeDayEntryList iteration: ", i);
         var projectTimeDayEntry = projectTimeDayEntryList[i];
-        // console.log("projectTimeDayEntry: ", projectTimeDayEntry);
         // First - is project time entry in the weekly list?
         var found = false;
         for (var k = 0; k < projectTimeWeekEntryList.length; k++) {
             var projectTimeWeekEntry = projectTimeWeekEntryList[k];
-            // console.log(projectTimeWeekEntry);
             if (equalProjectsAndCategories(projectTimeDayEntry, projectTimeWeekEntry)) {
                 // If so, add the daily time entry value to the weekly time entry (in the correct day)
                 projectTimeWeekEntry.dayTimes[dayOfWeek] += projectTimeDayEntry.totalTime;
@@ -253,7 +244,6 @@ function accumulateProjectTimeListIntoWeeklyList(dayOfWeek, projectTimeDayEntryL
                 break;
             }
         }
-        // console.log("found: ", found);
         if (!found) {
             // otherwise, add a new weekly entry
             var projectWeekTimeEntry = new ProjectTimeWeekEntry(projectTimeDayEntry.projectData, projectTimeDayEntry.categoryData);
@@ -279,10 +269,8 @@ function calculateWeekTimeEntries(someDate) {
     for (var dayNum = 0; dayNum < weekDateArray.length; dayNum++) {
         var weekDateTimeEntryList = getMatchingTimeEntryList(entireTimeEntryList, weekDateArray[dayNum]);
         var weekDateProjectTimeDayEntryList = totalUpTimeEntryList(weekDateTimeEntryList);
-        // console.log(weekDateProjectTimeDayEntryList);
         accumulateProjectTimeListIntoWeeklyList(dayNum, weekDateProjectTimeDayEntryList, projectTimeWeekEntryList);
     }
-    // console.log("projectTimeWeekEntryList - Accumulated!", projectTimeWeekEntryList);
 
     return projectTimeWeekEntryList;
 }
@@ -299,13 +287,6 @@ function displayWeekTimeEntriesFor(someDate, displayDivId, removalClassName) {
     // another quick hack for no time data available
     var isEmpty = projectTimeWeekEntryList.length == 0;
     return isEmpty;
-}
-
-function removeRows(displayDivId, removalClassName) {
-    var removalItems = document.getElementsByClassName(removalClassName);
-    for (var i = (removalItems.length - 1); i >= 0; i--) {
-        removalItems[i].remove();
-    }
 }
 
 function addProjectTimeWeekEntryRowToDisplay(projectTimeWeekEntry, displayDivId, removalClassName) {
@@ -364,7 +345,7 @@ function onButtonClick_report_DisplayWeeklyDataForSelectedDate() {
 
     var displayDivId = "report_weeklyReportDisplayArea";
     var removalClassName = "report_weeklyReportDisplayArea";
-    removeRows(displayDivId, removalClassName);
+    removeRowsByClass(removalClassName);
     var isEmpty = displayWeekTimeEntriesFor(userChosenDate, displayDivId, removalClassName);
     displayWeeklyDateRangeFor(userChosenDate, isEmpty);
 }
